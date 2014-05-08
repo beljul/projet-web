@@ -11,7 +11,7 @@ public class Application extends Controller {
 
     public static void index() {
         render();
-        //comment test
+        //comment test 2
     }
     
 }
