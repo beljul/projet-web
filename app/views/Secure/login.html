@@ -4,24 +4,32 @@
 <!--#{welcome /}-->
 <div class="container">
 	<div class="col-md-3 col-md-offset-2">
-		<form id="default-conf" action="#">
+		#{form @authenticate()}
+			#{if flash.error}
+				<p class="error">
+					&{flash.error}
+				</p>
+			#{/if}
+			#{if flash.success}
+				<p class="success">
+					&{flash.success}
+				</p>
+			#{/if}
 		    <fieldset>
 		        <legend>Sign in</legend>
-		        <div class="input-group">
-		            <label for="email">Email</label>:
-		            <input id="email" name="email"
-		                   type="text" class="form-control"
-		                   placeholder="User email">
-		        </div>
-		        <div class="input-group">
-		            <label for="password">Password</label>:
-		            <input id="password" name="password" type="password"
-		                   class="form-control" placeholder="Password"/>
-		        </div>
-		        <input class="btn btn-lg btn-primary btn-block" type="submit"
-		                    value="Sign in"/>
+		        <p id="username-field">
+					<label for="username">&{'secure.username'}</label>
+					<input class="form-control" type="text" name="username" id="username" value="${flash.username}" placeholder="Email"/>
+				</p>
+				<p id="password-field">
+					<label for="password">&{'secure.password'}</label>
+					<input class="form-control" type="password" name="password" id="password" value="" placeholder="Password"/>
+				</p>
+		        <p id="signin-field">
+					<input class="btn btn-lg btn-primary btn-block" type="submit" id="signin" value="&{'secure.signin'}" />
+				</p>
 		    </fieldset>
-		</form>
+		#{/form}
 	</div>
 	<div class="col-md-3 col-md-offset-2">
 		<form id="default-conf" action="#">
