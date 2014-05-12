@@ -7,11 +7,16 @@ import play.mvc.Http.*;
 public class ApplicationTest extends FunctionalTest {
 
     @Test
-    public void testThatIndexPageWorks() {
-        Response response = GET("/");
-        assertIsOk(response);
-        assertContentType("text/html", response);
-        assertCharset(play.Play.defaultWebEncoding, response);
+    public void requireAuthentication() {
+        Response response = GET("/");        
+        assertStatus(302, response);     
     }
+    
+//    @Test
+//    public void badRoute() {
+//        Result result = routeAndCall(fakeRequest(GET, "/xx/Kiki"));
+//        assertThat(result).isNull();
+//    }
+    
     
 }

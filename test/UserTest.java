@@ -7,23 +7,25 @@ import models.*;
 
 public class UserTest extends UnitTest {
 	@Test
-	public void connect() {		
-		ScrumMaster sm = new ScrumMaster("leponge", "bob", 
-							"bob.leponge@gmail.fr", "bob");
+	public void connect() {
+		String pwd = "bob";
+		User sm = new ScrumMaster("leponge", "bob", 
+							"bob.leponge@gmail.com", pwd);
 		sm.save();
-		// Retrieve the user with e-mail address bob@gmail.com
-	    User bob = User.find("byEmail", "bob.leponge@gmail.com").first();
-	    
-	    // A failed authentication
-	    User u = ((User) sm).connect("bob.leponge@gmail.com","bob404");
-	    assertNotNull(u);	    
+		
+	    // A failed authentication	    
+	    User uFailed = sm.connect("bob.leponge@gmail.com",pwd + 404);
+	    assertNull(uFailed);	    
 	    
 	    // A good authentication
-	    //
-	    
-	    
-	    // Test 
-//	    assertNotNull(bob);
-	    
+	    User uSuccess = sm.connect("bob.leponge@gmail.com",pwd);
+	    assertNotNull(uSuccess);	    	    	    	   
+	}
+	
+	@Test
+	public void register(){
+		String firstname = "patrick";
+		String name = "letoile";
+		
 	}
 }
