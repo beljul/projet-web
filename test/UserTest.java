@@ -1,26 +1,29 @@
 import org.junit.*;
+
 import java.util.*;
+
 import play.test.*;
 import models.*;
 
 public class UserTest extends UnitTest {
 	@Test
-	public void authentication() {
-		new User("bob@gmail.com","dat'pwd").save();
+	public void connect() {		
+		ScrumMaster sm = new ScrumMaster("leponge", "bob", 
+							"bob.leponge@gmail.fr", "bob");
+		sm.save();
 		// Retrieve the user with e-mail address bob@gmail.com
-	    User bob = User.find("byEmail", "bob@gmail.com").first();
+	    User bob = User.find("byEmail", "bob.leponge@gmail.com").first();
 	    
 	    // A failed authentication
-	    boolean auth = 
-	    		new User("bob@gmail.com", "fakePwd").authenticate();
-	    assertEquals(false, auth);
+	    User u = ((User) sm).connect("bob.leponge@gmail.com","bob404");
+	    assertNotNull(u);	    
 	    
 	    // A good authentication
 	    //
 	    
 	    
 	    // Test 
-	    assertNotNull(bob);
-	    assertEquals("Bob", bob.fullname);
+//	    assertNotNull(bob);
+	    
 	}
 }
