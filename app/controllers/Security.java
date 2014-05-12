@@ -5,10 +5,14 @@ import models.*;
 public class Security extends Secure.Security {
 	
 	static boolean authenticate (String email, String password) {
-		return User.connect(email, password) != null;
+		return models.User.connect(email, password) != null;
 	}
 	
 	static void onDisconnected() {
 	    Application.index();
+	}
+	
+	static void register() {
+		
 	}
 }
