@@ -11,7 +11,7 @@ import play.db.jpa.*;
     discriminatorType=DiscriminatorType.STRING)
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @Entity 
-public abstract class User extends Model {
+public class User extends Model {
 	private String name;
 	private String firstName;
 	private String email;
@@ -28,6 +28,5 @@ public abstract class User extends Model {
 	public static User connect(String email, String password) {
 	    return find("byEmailAndPassword", email, password).first();
 	}
-
 	
 }
