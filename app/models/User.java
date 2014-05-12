@@ -8,8 +8,8 @@ import play.db.jpa.*;
 
 @DiscriminatorColumn(
     name="type",
-    discriminatorType=DiscriminatorType.STRING
-)
+    discriminatorType=DiscriminatorType.STRING)
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @Entity 
 public abstract class User extends Model {
 	private String name;
