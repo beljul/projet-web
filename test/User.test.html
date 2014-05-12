@@ -1,0 +1,21 @@
+*{fixture delete:'all', load:'data.yml' /}*
+
+#{selenium 'Test connect'}
+	clearSession()
+	open('/')
+	
+	assertTextPresent('Sign in')
+	assertTextPresent('E-mail')
+	assertTextPresent('Password')
+	
+	type('username', 'patrick.letoile42@gmail.com')
+	type('password', 'root')
+	
+	clickAndWait('signin')
+	
+	assertTextPresent('Log out')
+	
+	clickAndWait('logout')
+	
+	
+#{/selenium}
