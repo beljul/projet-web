@@ -1,5 +1,6 @@
-11 mai 2014 21:55:56,067 INFO  ~ Starting /home/kevin/Documents/Ensimag/2A/Web/projet/scrum
-11 mai 2014 21:55:56,604 WARN  ~ You're running Play! in DEV mode
-11 mai 2014 21:55:56,674 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
-11 mai 2014 21:56:02,061 INFO  ~ Connected to jdbc:mysql://localhost/scrum?useUnicode=yes&characterEncoding=UTF-8&connectionCollation=utf8_general_ci
-11 mai 2014 21:56:02,087 INFO  ~ Application 'scrum' is now started !
+12 mai 2014 13:16:23,952 INFO  ~ Starting /home/kevin/Documents/Ensimag/2A/Web/projet/scrum
+12 mai 2014 13:16:23,955 INFO  ~ Module secure is available (/home/kevin/Documents/Ensimag/2A/Web/projet/modules/secure)
+12 mai 2014 13:16:24,501 WARN  ~ You're running Play! in DEV mode
+12 mai 2014 13:16:24,568 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+12 mai 2014 13:16:33,169 INFO  ~ Connected to jdbc:mysql://localhost/scrum?useUnicode=yes&characterEncoding=UTF-8&connectionCollation=utf8_general_ci
+12 mai 2014 13:16:33,194 INFO  ~ Application 'scrum' is now started !
