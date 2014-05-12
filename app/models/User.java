@@ -4,6 +4,7 @@ import java.util.*;
 
 import javax.persistence.*;
 
+import net.sf.cglib.transform.impl.AddDelegateTransformer;
 import play.db.jpa.*;
 
 @DiscriminatorColumn(
@@ -27,6 +28,12 @@ public class User extends Model {
 	
 	public static User connect(String email, String password) {
 	    return find("byEmailAndPassword", email, password).first();
+	}
+	public static User register(String email, String name, String firstname, 
+								  String password, String secondPassword) {
+		models.User user = new models.User(name, firstname, email, password);
+		user.save();
+		return user;
 	}
 	
 }
