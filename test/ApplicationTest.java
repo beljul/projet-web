@@ -1,4 +1,6 @@
 import org.junit.*;
+import org.junit.Before;
+
 import play.test.*;
 import play.mvc.*;
 import play.mvc.Http.*;
@@ -6,6 +8,11 @@ import play.mvc.Http.*;
 
 public class ApplicationTest extends FunctionalTest {
 
+	@Before
+	public void setUp() {
+	    Fixtures.deleteAll();
+	}
+	
     @Test
     public void requireAuthentication() {
         Response response = GET("/");        
