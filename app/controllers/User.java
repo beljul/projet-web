@@ -4,7 +4,7 @@ import play.mvc.Controller;
 
 public class User extends Controller {
 
-	public static User register(String email, String name, String firstname, 
+	public static models.User register(String email, String name, String firstname, 
 								String password, String secondPassword) {		
 		
 		validation.required(name);

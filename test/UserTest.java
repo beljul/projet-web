@@ -36,10 +36,12 @@ public class UserTest extends UnitTest {
 		String pwd = "root";
 		String pwdConfirm = "root";
 		
-		User uSuccess = controllers.User.register(email, name, firstname, pwd, pwdConfirm);
+		User uSuccess = User.register(email, name, firstname, pwd, pwdConfirm);
 		assertNotNull(uSuccess);	
 	}
 	
+	
+	// TODO : Selenium
 	@Test
 	public void registerFailPwd() {
 		String firstname = "patrick";
