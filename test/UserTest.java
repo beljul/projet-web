@@ -51,19 +51,19 @@ public class UserTest extends UnitTest {
 		String pwdConfirm = "root404";
 		
 		// Both have to be the same
-		User uFailed = controllers.User.register(email, name, firstname, pwd, pwdConfirm);
+		User uFailed = User.register(email, name, firstname, pwd, pwdConfirm);
 		assertNull(uFailed);
 		
 		// Pwd not empty
 		pwd = "";
 		pwdConfirm = "";
-		uFailed = controllers.User.register(email, name, firstname, pwd, pwdConfirm);
+		uFailed = User.register(email, name, firstname, pwd, pwdConfirm);
 		assertNull(uFailed);
 		
 		// Pwd >= 6
 		pwd = "size5";
 		pwdConfirm = "size5";
-		uFailed = controllers.User.register(email, name, firstname, pwd, pwdConfirm);
+		uFailed = User.register(email, name, firstname, pwd, pwdConfirm);
 		assertNull(uFailed);
 	}
 	
@@ -76,22 +76,22 @@ public class UserTest extends UnitTest {
 		String pwdConfirm = "root";
 		
 		// Need @ into mail address
-		User uFailed = controllers.User.register(email, name, firstname, pwd, pwdConfirm);
+		User uFailed = User.register(email, name, firstname, pwd, pwdConfirm);
 		assertNull(uFailed);
 		
 		// No special chars : just allow alpha numeric
 		email = "#patrick!@gmail.com";
-		uFailed = controllers.User.register(email, name, firstname, pwd, pwdConfirm);
+		uFailed = User.register(email, name, firstname, pwd, pwdConfirm);
 		assertNull(uFailed);
 		
 		// Need extension at the end
 		email = "patrick.letoile@gmail";
-		uFailed = controllers.User.register(email, name, firstname, pwd, pwdConfirm);
+		uFailed = User.register(email, name, firstname, pwd, pwdConfirm);
 		assertNull(uFailed);
 		
 		// No space in email
 		email = "patrick letoile@gmail";
-		uFailed = controllers.User.register(email, name, firstname, pwd, pwdConfirm);
+		uFailed = User.register(email, name, firstname, pwd, pwdConfirm);
 		assertNull(uFailed);
 	}
 	
@@ -104,33 +104,33 @@ public class UserTest extends UnitTest {
 		String pwdConfirm = "root";
 		
 		// No numbers in firstname
-		User uFailed = controllers.User.register(email, name, firstname, pwd, pwdConfirm);
+		User uFailed = User.register(email, name, firstname, pwd, pwdConfirm);
 		assertNull(uFailed);
 		
 		// No special chars in firstname
 		firstname="patrick!";
-		uFailed = controllers.User.register(email, name, firstname, pwd, pwdConfirm);
+		uFailed = User.register(email, name, firstname, pwd, pwdConfirm);
 		assertNull(uFailed);
 		
 		// No spaces in firstname
 		firstname=" patr  ick";
-		uFailed = controllers.User.register(email, name, firstname, pwd, pwdConfirm);
+		uFailed = User.register(email, name, firstname, pwd, pwdConfirm);
 		assertNull(uFailed);
 		firstname="patrick";
 		
 		// No special chars in name
 		name="leto#ile";
-		uFailed = controllers.User.register(email, name, firstname, pwd, pwdConfirm);
+		uFailed = User.register(email, name, firstname, pwd, pwdConfirm);
 		assertNull(uFailed);
 		
 		// No numbers in name
 		name="letoile42";
-		uFailed = controllers.User.register(email, name, firstname, pwd, pwdConfirm);
+		uFailed = User.register(email, name, firstname, pwd, pwdConfirm);
 		assertNull(uFailed);
 		
 		// No spaces in name
 		name="  letoile ";
-		uFailed = controllers.User.register(email, name, firstname, pwd, pwdConfirm);
+		uFailed = User.register(email, name, firstname, pwd, pwdConfirm);
 		assertNull(uFailed);
 	}
 }

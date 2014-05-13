@@ -5,12 +5,12 @@ import play.mvc.Controller;
 public class User extends Controller {
 
 	public static void register(String email, String name, String firstname, 
-								String password, String secondPassword) {		
+								String firstPassword, String secondPassword) {		
 		
 		validation.required(name);
 	    validation.required(email);
 	    validation.required(firstname);
-	    validation.required(password);
+	    validation.required(firstPassword);
 	    validation.required(secondPassword);
 	    
 	     if(validation.hasErrors()) {
@@ -18,8 +18,12 @@ public class User extends Controller {
 	             System.out.println(error.message());
 	         }
 	         System.out.println("blabllaba");
-	         renderTemplate("Secure/login.html",name,email,firstname,password,secondPassword);
+	         renderTemplate("Secure/login.html",name,email,firstname,firstPassword,secondPassword);
 	         System.out.println("blibliblib");
+	     }
+	     else {
+	    	 //models.User.register(email, name, firstname, firstPassword, secondPassword);
+	         renderTemplate("Application/index.html",name,email,firstname,firstPassword,secondPassword);
 	     }
 	}
 
