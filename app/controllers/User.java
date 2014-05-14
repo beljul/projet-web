@@ -22,7 +22,7 @@ public class User extends Controller {
 	         System.out.println("blibliblib");
 	     }
 	     else {
-	    	 //models.User.register(email, name, firstname, firstPassword, secondPassword);
+	    	 models.User.register(email, name, firstname, firstPassword, secondPassword);
 	         renderTemplate("Application/index.html",name,email,firstname,firstPassword,secondPassword);
 	     }
 	}
