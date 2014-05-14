@@ -1,0 +1,15 @@
+div#navigation a{
+	padding-left:px;
+}
+h2.page-header {
+	margin-top:0 ;
+}
+div.scrum-col {
+	border-width:0 0 0 1px;
+	border-style:solid;
+	border-color:#eeeeee;
+}
+div.scrum-col:last-child {
+	border-width:0 1px 0 1px;
+	border-style:solid;
+}

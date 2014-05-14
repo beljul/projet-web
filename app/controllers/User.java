@@ -22,11 +22,16 @@ public class User extends Controller {
 	         for(play.data.validation.Error error : validation.errors()) {
 	             System.out.println(error.message());	             
 	         }	         
-	         renderTemplate("Secure/login.html",name,email,firstname,firstPassword,secondPassword);	         
+	         renderTemplate("Secure/login.html",name,email,firstname,firstPassword,secondPassword);
+	         
 	     }
 	     else {
+	    	 //Record new user
 	    	 models.User.register(email, name, firstname, firstPassword, secondPassword);
-	         renderTemplate("Application/index.html",name,email,firstname,firstPassword,secondPassword);
+	    	 //Connect the user 
+	    	 session.put("username", name);
+	    	 redirect("/Application/dashboard");	    	 
+	         //renderTemplate("Application/dashboard.html",name,email,firstname,firstPassword,secondPassword);
 	     }
 	}
 

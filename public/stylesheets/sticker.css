@@ -1,0 +1,46 @@
+/*
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+div.sticker{
+	height:7em;
+    padding:0.5em;
+    margin-bottom: 1em;
+    -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
+    -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+    -o-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+    box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+    -webkit-transform:rotate(-1deg);
+  	-o-transform:rotate(-1deg);
+  	-moz-transform:rotate(-1deg);
+  	cursor:move;
+}
+div.sticker.sticker-yellow{
+background-color: #FFF999;
+}
+div.sticker.sticker-pink{
+background-color: #FFC9EE;
+}
+div.sticker.sticker-orange{
+    background-color: #FF9854;
+}
+div.sticker.sticker-blue{
+    background-color: #8CFFF7;
+}
+div.sticker.sticker-purple{
+    background-color: #FFA5F4;
+}
+div.sticker.sticker-green{
+    background-color: #9BFF6D;
+}
+div.sticker h3{
+    font-size:1.2em;
+    text-decoration: underline;
+    font-family:arial,sans-serif;
+}
+ 
+div.sticker p{
+    font-size: 1em;
+    font-family:Reenie Beanie,arial,sans-serif;
+    font-size:2em;
+}
