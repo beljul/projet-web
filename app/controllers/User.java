@@ -42,7 +42,7 @@ public class User extends Controller {
 		String jsonString = new String("[ ");
 		for (models.User user : users) {
 			jsonString += "{label:id, value:" + user.getId() + 
-						  "label:email, value:" + user.getEmail() + "}, ";
+						  ",label:email, value:" + user.getEmail() + "}, ";
 		}
 		jsonString = jsonString.substring(0, jsonString.length()-2);
 		jsonString += " ]";
