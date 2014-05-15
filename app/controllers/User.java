@@ -39,7 +39,14 @@ public class User extends Controller {
 	
 	public static void jsonSearch(String email) {
 		List<models.User> users = models.User.getByBeginOfEmail(email);
-		renderJSON(users);
+		String jsonString = new String("[ ");
+		for (models.User user : users) {
+			jsonString += "{label:id, value:" + user.getId() + 
+						  "label:email, value:" + user.getEmail() + "}, ";
+		}
+		jsonString = jsonString.substring(0, jsonString.length()-2);
+		jsonString += " ]";
+		renderJSON(jsonString);
 	}
 
 }
