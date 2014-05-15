@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.List;
+
 import play.mvc.Controller;
 
 public class User extends Controller {
@@ -33,6 +35,11 @@ public class User extends Controller {
 	    	 redirect("/Application/dashboard");	    	 
 	         //renderTemplate("Application/dashboard.html",name,email,firstname,firstPassword,secondPassword);
 	     }
+	}
+	
+	public static void jsonSearch(String email) {
+		List<models.User> users = models.User.getByBeginOfEmail(email);
+		renderJSON(users);
 	}
 
 }

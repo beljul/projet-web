@@ -44,4 +44,8 @@ public class Team extends Model {
 		return team;
 	}
 	
+	public static Team getByname(String name) {
+		return find("byName", name).first();
+	}
+	
 }

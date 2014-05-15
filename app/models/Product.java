@@ -15,6 +15,7 @@ public class Product extends Model {
 	private String name;
 	private Date created;
 	private String description;
+	private int sprintDuration;
 	
 	@ManyToOne
 	private Team team;
@@ -29,13 +30,13 @@ public class Product extends Model {
 	@ManyToMany
 	private Set<Skill> skills;
 
-	public Product(String name, Date created, String description, Team team,
-			ScrumMaster scrumMaster, ProductOwner productOwner,
-			Customer customer) {
+	public Product(String name, Date created, String description, int sprintDuration, Team team,
+			ScrumMaster scrumMaster, ProductOwner productOwner, Customer customer) {
 		super();
 		this.name = name;
 		this.created = created;
 		this.description = description;
+		this.sprintDuration = sprintDuration;
 		this.team = team;
 		this.scrumMaster = scrumMaster;
 		this.productOwner = productOwner;
@@ -47,10 +48,10 @@ public class Product extends Model {
 		return this.skills.add(s);
 	}
 	
-	public static Product register(String name, Date created, String description, Team team,
-			ScrumMaster scrumMaster, ProductOwner productOwner,
+	public static Product register(String name, Date created, String description, int sprintDuration, 
+			Team team, ScrumMaster scrumMaster, ProductOwner productOwner,
 			Customer customer) {
-		Product p = new Product(name, created, description, team, scrumMaster, productOwner, customer);
+		Product p = new Product(name, created, description, sprintDuration, team, scrumMaster, productOwner, customer);
 		p.save();
 		return p;
 	}
