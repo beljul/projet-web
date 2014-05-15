@@ -32,6 +32,9 @@
           <ul class="nav navbar-nav">            
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
+            #{if session.username}
+            <li><a href="@{Secure.logout()}" id="logout">Log out</a></li>
+            #{/if}
           </ul>          
         </div><!--/.nav-collapse -->
       </div>
