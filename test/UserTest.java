@@ -7,11 +7,6 @@ import models.*;
 
 public class UserTest extends UnitTest {
 	
-	@Before
-	public void setUp() {
-	    Fixtures.deleteAll();
-	}
-	
 	@Test
 	public void connect() {
 		String pwd = "bob";
