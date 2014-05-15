@@ -13,6 +13,7 @@ public class User extends Controller {
 	    validation.required(firstname);
 	    validation.match(firstname, "^[a-zA-Z]+$").message("Firstname must be alphanumeric");
 	    validation.required("password", firstPassword);
+	    validation.minSize(firstPassword, 6);
 	    validation.required("password check",secondPassword);
 	    validation.email(email);	  
 	    play.data.validation.Error e = validation.equals("password", firstPassword, "password verif", secondPassword).error;

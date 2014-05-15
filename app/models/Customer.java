@@ -9,4 +9,7 @@ public class Customer extends User {
 		super(name, firstName, email, password);
 	}
 
+	public boolean isCustomer() {
+		return true;
+	}
 }
