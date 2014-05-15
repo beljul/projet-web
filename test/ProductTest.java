@@ -17,7 +17,8 @@ public class ProductTest extends UnitTest {
 	public void register(){
 		String name = "Beer";
 		String description = "After 5pm, every days.";
-
+		int sprintDuration = 3;
+		
 		java.util.Calendar cal = java.util.Calendar.getInstance();
 		java.util.Date utilDate = cal.getTime();
 		Date created = new Date(utilDate.getTime());
@@ -28,7 +29,7 @@ public class ProductTest extends UnitTest {
 		Customer customer = new Customer("junkie", "noname", "junkie.42@gmail.com", "rootroot");
 
 		
-		Product pSuccess = Product.register(name, created, description,
+		Product pSuccess = Product.register(name, created, description, sprintDuration,
 											team, scrumMaster, productOwner, customer);
 		assertNotNull(pSuccess);	
 	}
