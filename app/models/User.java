@@ -53,4 +53,12 @@ public class User extends Model {
 		return false;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 }

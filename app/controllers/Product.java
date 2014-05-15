@@ -15,6 +15,10 @@ import play.mvc.Controller;
 
 public class Product extends Controller {
 
+	public static void create() {
+		render();
+	}
+	
 	public static void register(String name, String description, Integer sprintDuration, 
 			Integer idScrumMaster, Integer idCustomer, 
 			Set<Integer> idDevelopers, String teamName) {		
