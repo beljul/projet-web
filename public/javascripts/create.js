@@ -21,3 +21,22 @@ $('form').on("keydown",'input.product-dev',function(e){
 		newDev.focus();		
 	}	
 });
+$("#sprint-duration").change(function() {
+	slider.slider("value", this.selectedIndex + 1);
+});
+$('form').on("keydown",'input.product-dev',function(e){	
+	if(e.target === this && e.keyCode === 13) {
+		e.preventDefault();
+		e.stopPropagation();
+		var inputDev = $(this);
+		var newDev = inputDev.clone();
+		inputDev.after(newDev.val(""));
+		newDev.focus();		
+	}	
+});
+$( ".product-dev" ).autocomplete({
+	source:'/User/jsonSearch?email=kev',	
+	response: function( ul, item ) {
+		console.log(item);
+	}
+});
