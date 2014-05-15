@@ -41,10 +41,9 @@ public class User extends Controller {
 		List<models.User> users = models.User.getByBeginOfEmail(email);
 		String jsonString = new String("[ ");
 		for (models.User user : users) {
-			jsonString += "{label:id, value:" + user.getId() + 
-						  "label:email, value:" + user.getEmail() + "}, ";
+			jsonString += "\"" + user.getEmail() + "\",";
 		}
-		jsonString = jsonString.substring(0, jsonString.length()-2);
+		jsonString = jsonString.substring(0, jsonString.length()-1);
 		jsonString += " ]";
 		renderJSON(jsonString);
 	}
