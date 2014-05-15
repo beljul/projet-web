@@ -37,4 +37,8 @@ public class User extends Model {
 		return user;
 	}
 	
+	public boolean isCustomer() {
+		return false;
+	}
+	
 }
