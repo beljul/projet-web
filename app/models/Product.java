@@ -7,8 +7,10 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import play.db.jpa.Model;
+
 @Entity
-public class Product {
+public class Product extends Model {
 	
 	private String name;
 	private Date created;
@@ -43,6 +45,14 @@ public class Product {
 	
 	public boolean addSkill(Skill s) {
 		return this.skills.add(s);
+	}
+	
+	public static Product register(String name, Date created, String description, Team team,
+			ScrumMaster scrumMaster, ProductOwner productOwner,
+			Customer customer) {
+		Product p = new Product(name, created, description, team, scrumMaster, productOwner, customer);
+		p.save();
+		return p;
 	}
 	
 }

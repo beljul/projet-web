@@ -7,8 +7,10 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import play.db.jpa.Model;
+
 @Entity
-public class Team {
+public class Team extends Model {
 	
 	private String name;
 	private Date created;
@@ -34,6 +36,12 @@ public class Team {
 	public boolean addMember(User u) {
 		if(u.isCustomer()) return false;
 		return this.members.add(u);
+	}
+	
+	public static Team register(String name, Date created) {
+		Team team = new Team(name, created);
+		team.save();
+		return team;
 	}
 	
 }
