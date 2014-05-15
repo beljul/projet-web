@@ -38,6 +38,10 @@ public class User extends Model {
 		return find("byEmail", email).first();
 	}
 	
+	public static List<User> getByBeginOfEmail(String email) {
+		return find("email like ?", email + "%").fetch(5);
+	}
+	
 	public static User register(String email, String name, String firstname, 
 								  String password, String secondPassword) {
 		models.User user = new models.User(name, firstname, email, password);
@@ -48,5 +52,5 @@ public class User extends Model {
 	public boolean isCustomer() {
 		return false;
 	}
-	
+
 }
