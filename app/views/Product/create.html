@@ -2,9 +2,9 @@
 #{stylesheet 'create.css' /}
 <h1 class="page-header">Création d'un nouveau produit</h1>
 
+<form action="#">
 <div class="row">
-	<div class="col-md-8 col-xs-10 col-md-offset-2 col-xs-offset-1">
-		<form action="#">
+	<div class="col-md-6 col-xs-10 col-md-offset-1 col-xs-offset-1 col-lg-offset-1">		
 			<div class="input-group">
 				<label for="name">Nom du projet</label> <input id="name" type="text"
 					class="form-control" placeholder="Nom du projet">
@@ -14,14 +14,6 @@
 				<textarea id="description" class="form-control" rows="10" cols="80"
 					placeholder="Description"></textarea>
 			</div>
-			<div class="input-group">
-				<label for="description">Scrum master</label>
-				<input type="text" class="form-control"/>
-			</div>
-			<div class="input-group">
-				<label for="description">Interlocuteur client</label>
-				<input type="text" class="form-control"/>
-			</div>
 			<label for="sprint-duration">Duree de sprint (en semaine)</label> <select
 				name="sprint-duration" id="sprint-duration">
 				<option>1</option>
@@ -29,16 +21,34 @@
 				<option>3</option>
 				<option selected="selected">4</option>
 				<option>5</option>
+				<option>6</option>
 			</select>
-
+			</div>
+			<div class="col-md-5 col-xs-10 col-xs-offset-1 col-lg-offset-0">
 			<div class="input-group">
-				<input id="name" name="idDeveloppers[]" type="text" class="form-control product-dev"
-					placeholder="Ajouter un développeur">
-			</div>			
-			<input type="submit" class="btn-lg btn btn-success"
-				value="Nouveau produit" />
-		</form>
+				<label for="scrum-master">Scrum master</label>
+				<input id="scrum-master" type="text" class="form-control"
+						placeholder="Nom du scrum master"/>				
+			</div>
+			<div class="input-group">
+				<label for="customer">Interlocuteur client</label>
+				<input id="customer" type="text" class="form-control" placeholder="Nom de l'interlocuteur client"/>
+			</div>
+			<label for="dev1">Developpeurs</label>
+			<div class="input-group">
+				<label for="dev1" class="sr-only">Développeur 1</label> 
+				<input 	id="dev1" name="idDeveloppers[]" type="text" 
+						class="form-control product-dev"
+						placeholder="Ajouter un développeur"/>
+			</div>							
 	</div>
 </div>
+	<div class="row">
+		<div id="submit" class="col-md-12 col-xs-12 col-lg-12">			
+			<input type="submit" class="btn-lg btn btn-success"
+				value="Nouveau produit" />
+		</div>
+	</div>
+</form>
 
 #{script 'jquery-ui.min.js' /} #{script 'create.js' /}

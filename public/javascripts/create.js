@@ -11,24 +11,50 @@ var slider = $("<div id='slider'></div>").insertAfter(select).slider( {
 $("#sprint-duration").change(function() {
 	slider.slider("value", this.selectedIndex + 1);
 });
+var devCounters = 1;
 $('form').on("keydown",'input.product-dev',function(e){	
 	if(e.target === this && e.keyCode === 13) {
 		e.preventDefault();
 		e.stopPropagation();
-		var inputDev = $(this);
-		var newDev = inputDev.clone().autocomplete({
-			source:'/User/jsonSearch?email=kev',	
-			response: function( ul, item ) {
-				console.log(item);
-			}
-		});
-		inputDev.after(newDev.val(""));
-		newDev.focus();		
+		if($(this).val() != "") {
+			var inputGrp = $(this).parent();
+			var newGrp = inputGrp.clone();
+			/*Place label link on the new input */
+			inputGrp.prev("label").attr("for","dev" + (++devCounters));			
+			var newDev = newGrp.find("input").customAutocomplete()
+					  .val("").attr("id","dev" + devCounters)
+					  .prev("label")
+					  .attr("for","dev" + devCounters)
+					  .text("Développeur " + devCounters);			
+			inputGrp.after(newGrp);
+			newDev.focus();
+		}
 	}	
 });
-$( ".product-dev" ).autocomplete({
-	source:'/User/jsonSearch?email=kev',	
-	response: function( ul, item ) {
-		console.log(item);
-	}
-});
+var cache = {};
+$.fn.customAutocomplete = function() {
+	this.autocomplete({
+		 source:"/User/jsonSearch",
+		 focus: function( event, ui ) {
+			console.log(ui.item.label);
+			$(this).val( ui.item.label );
+			return false;
+		 },
+		 dataType: 'json',
+		 select: function( event, ui ) {
+//			 $( "#project" ).val( ui.item.label );
+//			 $( "#project-id" ).val( ui.item.value );
+//			 $( "#project-description" ).html( ui.item.desc );
+//			 $( "#project-icon" ).attr( "src", "images/" + ui.item.icon );
+			 return false;		 
+	}}).data( "ui-autocomplete" )._renderItem =  function( ul, item ) {
+		$(this).data("dev-id",item.id)				
+ 		return $( "<li>" )
+ 			.attr( "data-value", item.value )
+ 			.append( $( "<a>" ).text( item.label ) )
+ 			.appendTo( ul );
+	 	
+	};
+	return this;
+}
+$( ".product-dev" ).customAutocomplete();

@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import play.mvc.Controller;
@@ -36,16 +37,24 @@ public class User extends Controller {
 	         //renderTemplate("Application/dashboard.html",name,email,firstname,firstPassword,secondPassword);
 	     }
 	}
-	
-	public static void jsonSearch(String email) {
-		List<models.User> users = models.User.getByBeginOfEmail(email);
-		String jsonString = new String("[ ");
-		for (models.User user : users) {
-			jsonString += "\"" + user.getEmail() + "\",";
+	private static class JsonSearchItem {
+		private String label;
+		private long value;		
+		private JsonSearchItem(String label, long value){
+			this.label = label;
+			this.value = value;			
 		}
-		jsonString = jsonString.substring(0, jsonString.length()-1);
-		jsonString += " ]";
-		renderJSON(jsonString);
+	};	
+	public static void jsonSearch(String term) {
+		List<models.User> users = models.User.getByBeginOfEmail(term);
+		List<JsonSearchItem> items = new ArrayList<JsonSearchItem>();		
+		for (models.User user : users) {
+			String lab = user.getEmail() + " (" 
+						+ user.getFirstName() + " " + user.getName() + ")";
+			JsonSearchItem jsi = new JsonSearchItem(lab,user.getId());
+			items.add(jsi);
+		}		
+		renderJSON(items);
 	}
 
 }
