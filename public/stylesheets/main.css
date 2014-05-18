@@ -5,6 +5,7 @@ h1.page-header,h2.page-header {
 	margin-top:0 ;
 }
 form input[type="submit"] {
-/* 	float:right; */
+	display:block;
+	margin:auto;	
 	margin-top:1em;
 }

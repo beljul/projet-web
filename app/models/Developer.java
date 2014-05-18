@@ -9,5 +9,7 @@ public class Developer extends User {
 			String password) {
 		super(name, firstName, email, password);
 	}
-
+	public static Developer getByEmail(String email){
+		return find("byEmail", email).first();
+	}
 }

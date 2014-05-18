@@ -12,4 +12,7 @@ public class Customer extends User {
 	public boolean isCustomer() {
 		return true;
 	}
+	public static Customer getByEmail(String email) {
+		return find("byEmail", email).first();
+	}
 }

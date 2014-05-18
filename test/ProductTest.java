@@ -27,7 +27,6 @@ public class ProductTest extends UnitTest {
 		ScrumMaster scrumMaster = new ScrumMaster("white", "walter", "walter.white@gmail.com", "rootroot");
 		ProductOwner productOwner = new ProductOwner("pinkman", "jessie", "jessie.pinkman@gmail.com", "rootroot");
 		Customer customer = new Customer("junkie", "noname", "junkie.42@gmail.com", "rootroot");
-
 		
 		Product pSuccess = Product.register(name, created, description, sprintDuration,
 											team, scrumMaster, productOwner, customer);

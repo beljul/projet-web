@@ -9,5 +9,7 @@ public class ScrumMaster extends User {
 			String password) {
 		super(name, firstName, email, password);
 	}
-
+	public static ScrumMaster getByEmail(String email){
+		return find("byEmail", email).first();
+	}
 }

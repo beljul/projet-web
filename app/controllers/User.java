@@ -18,7 +18,7 @@ public class User extends Controller {
 	    validation.required("password", firstPassword);
 	    validation.minSize(firstPassword, 6);
 	    validation.required("password check",secondPassword);
-	    validation.email(email);	  
+	    validation.email(email);  
 	    play.data.validation.Error e = validation.equals("password", firstPassword, "password verif", secondPassword).error;
 
 	     if(validation.hasErrors()) {
@@ -39,19 +39,20 @@ public class User extends Controller {
 	}
 	private static class JsonSearchItem {
 		private String label;
+		private String name;
 		private long value;		
-		private JsonSearchItem(String label, long value){
+		private JsonSearchItem(String label, String name, long value){
 			this.label = label;
-			this.value = value;			
+			this.value = value;
+			this.name = name;
 		}
 	};	
 	public static void jsonSearch(String term) {
 		List<models.User> users = models.User.getByBeginOfEmail(term);
 		List<JsonSearchItem> items = new ArrayList<JsonSearchItem>();		
 		for (models.User user : users) {
-			String lab = user.getEmail() + " (" 
-						+ user.getFirstName() + " " + user.getName() + ")";
-			JsonSearchItem jsi = new JsonSearchItem(lab,user.getId());
+			String name = "(" + user.getFirstName() + " " + user.getName() + ")";
+			JsonSearchItem jsi = new JsonSearchItem(user.getEmail(), name, user.getId());
 			items.add(jsi);
 		}		
 		renderJSON(items);

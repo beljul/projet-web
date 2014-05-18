@@ -31,30 +31,26 @@ $('form').on("keydown",'input.product-dev',function(e){
 		}
 	}	
 });
-var cache = {};
 $.fn.customAutocomplete = function() {
-	this.autocomplete({
+	$(this).autocomplete({
 		 source:"/User/jsonSearch",
-		 focus: function( event, ui ) {
-			console.log(ui.item.label);
-			$(this).val( ui.item.label );
+		 focus: function( event, ui ) {		
+			$(this).val( ui.item.label);
+			$(this).attr("title",ui.item.name);
 			return false;
 		 },
 		 dataType: 'json',
 		 select: function( event, ui ) {
-//			 $( "#project" ).val( ui.item.label );
-//			 $( "#project-id" ).val( ui.item.value );
-//			 $( "#project-description" ).html( ui.item.desc );
-//			 $( "#project-icon" ).attr( "src", "images/" + ui.item.icon );
+			 $(this).attr("title",ui.item.name);				
 			 return false;		 
-	}}).data( "ui-autocomplete" )._renderItem =  function( ul, item ) {
-		$(this).data("dev-id",item.id)				
+	}}).each(function(){ 
+		$(this).data( "ui-autocomplete" )._renderItem =  function( ul, item ) {	    
  		return $( "<li>" )
  			.attr( "data-value", item.value )
  			.append( $( "<a>" ).text( item.label ) )
  			.appendTo( ul );
 	 	
-	};
+	}});
 	return this;
 }
-$( ".product-dev" ).customAutocomplete();
+$( "[name=scrumMaster], .product-dev , [name=customer]" ).customAutocomplete();

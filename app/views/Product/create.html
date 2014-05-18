@@ -1,54 +1,73 @@
-#{extends 'main.html' /} #{set title:'My dashboard' /}
+#{extends 'main.html' /} 
+#{set title:'Nouveau produit' /}
 #{stylesheet 'create.css' /}
 <h1 class="page-header">Création d'un nouveau produit</h1>
 
-<form action="#">
+#{form @Product.register()}
 <div class="row">
 	<div class="col-md-6 col-xs-10 col-md-offset-1 col-xs-offset-1 col-lg-offset-1">		
 			<div class="input-group">
-				<label for="name">Nom du projet</label> <input id="name" type="text"
-					class="form-control" placeholder="Nom du projet">
+				<label for="name">Nom du projet</label> 
+				<input id="name" name="name" type="text" class="form-control" 
+					   placeholder="Nom du projet" value="${name}">
 			</div>
 			<div class="input-group">
 				<label for="description">Description du projet</label>
-				<textarea id="description" class="form-control" rows="10" cols="80"
-					placeholder="Description"></textarea>
+				<textarea name="description" id="description" 
+						  class="form-control" rows="10" cols="80"
+						  placeholder="Description">${description}</textarea>
 			</div>
-			<label for="sprint-duration">Duree de sprint (en semaine)</label> <select
-				name="sprint-duration" id="sprint-duration">
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option selected="selected">4</option>
-				<option>5</option>
-				<option>6</option>
-			</select>
+			<label for="sprint-duration">Duree de sprint (en semaine)</label> 
+				<select name="sprintDuration" id="sprint-duration">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option selected="selected">4</option>
+					<option>5</option>
+					<option>6</option>
+				</select>
 			</div>
 			<div class="col-md-5 col-xs-10 col-xs-offset-1 col-lg-offset-0">
 			<div class="input-group">
 				<label for="scrum-master">Scrum master</label>
-				<input id="scrum-master" type="text" class="form-control"
-						placeholder="Nom du scrum master"/>				
+				<input name="scrumMaster" id="scrum-master" type="text" class="form-control"
+					   placeholder="Nom du scrum master" value="${scrumMaster}"/>				
 			</div>
 			<div class="input-group">
 				<label for="customer">Interlocuteur client</label>
-				<input id="customer" type="text" class="form-control" placeholder="Nom de l'interlocuteur client"/>
+				<input id="customer" name="customer"
+					  type="text" class="form-control" 
+					  placeholder="Nom de l'interlocuteur client" value="${customer}"/>
 			</div>
 			<label for="dev1">Developpeurs</label>
-			<div class="input-group">
-				<label for="dev1" class="sr-only">Développeur 1</label> 
-				<input 	id="dev1" name="idDeveloppers[]" type="text" 
+			<div class="input-group">				
+				#{list notNullDevelopers, as:'dev'}
+				<label for="dev${dev_index}" class="sr-only">Développeur ${dev_index}</label>								
+				<input 	id="dev${dev_index}" name="developers[]" type="text" 
 						class="form-control product-dev"
-						placeholder="Ajouter un développeur"/>
+						placeholder="Ajouter un développeur" value="${dev}"/>
+			    #{/list}
+			    <label for="" class="sr-only">Développeur </label>
+    			<input 	id="dev1" name="developers[]" type="text" 
+						class="form-control product-dev"
+						placeholder="Ajouter un développeur" value=""/>
 			</div>							
 	</div>
 </div>
-	<div class="row">
-		<div id="submit" class="col-md-12 col-xs-12 col-lg-12">			
+#{ifErrors}
+<div class="alert alert-danger">
+	Les champs suivants sont incorrects : 
+	#{errors}
+		 <label>${error},</label>
+	#{/errors}
+</div>
+#{/ifErrors}
+<div class="row">
+		<div id="submit" class="col-md-4 col-md-offset-4 col-xs-offset-4 col-xs-4 col-lg-offset-4 col-lg-4">			
 			<input type="submit" class="btn-lg btn btn-success"
 				value="Nouveau produit" />
 		</div>
 	</div>
-</form>
+#{/form}
 
-#{script 'jquery-ui.min.js' /} #{script 'create.js' /}
+#{script 'jquery-ui.min.js' /} #{script 'product-create.js' /}
