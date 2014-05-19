@@ -81,11 +81,15 @@ public class Product extends Controller {
 		
 		
 		/*Check that customer, developers, and scrumMaster exist in the DB */		
-		models.ScrumMaster dbScrumMaster = ScrumMaster.getByEmail(scrumMaster);
+		//models.ScrumMaster dbScrumMaster = ScrumMaster.getByEmail(scrumMaster);
+		models.User dbScrumMaster = models.User.getByEmail(scrumMaster);
+
 		if(dbScrumMaster == null) {
 			validation.addError("scrumMaster", "le scrum master n'existe pas");
 		}
-		models.Customer dbCustomer = Customer.getByEmail(customer);
+		
+		//models.Customer dbCustomer = Customer.getByEmail(customer);
+		models.User dbCustomer = models.User.getByEmail(customer);
 		if(dbCustomer == null) {
 			validation.addError("scrumMaster", "le client n'existe pas");
 		}
@@ -118,12 +122,13 @@ public class Product extends Controller {
 		Team team = new Team(teamName, created);
 		
 		for(String d : notNullDevelopers){
-			Developer dev = (Developer) models.User.getByEmail(d);
+			//Developer dev = (Developer) models.User.getByEmail(d);
+			models.User dev = models.User.getByEmail(d);
 			team.addMember(dev);
 		}
 		
-		ProductOwner productOwner = ProductOwner.getByEmail(session.get("username"));
-			
+		//ProductOwner productOwner = ProductOwner.getByEmail(session.get("username"));
+		models.User productOwner = models.User.getByEmail(session.get("username"));
 		if(notNullDevelopers.isEmpty()) {
 			team = Team.getByname(teamName);
 		}
@@ -134,8 +139,8 @@ public class Product extends Controller {
 		}
 		
 		models.Product.register(name, created, description, sprintDuration, 
-				team, dbScrumMaster, productOwner, dbCustomer);
-		
+						team, dbScrumMaster, productOwner, dbCustomer);
+				
 		redirect("/Application/dashboard");	    	 
 	}
 }

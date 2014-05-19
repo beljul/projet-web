@@ -24,9 +24,9 @@ public class ProductTest extends UnitTest {
 		Date created = new Date(utilDate.getTime());
 		
 		Team team = new Team("TeamRocket", created);
-		ScrumMaster scrumMaster = new ScrumMaster("white", "walter", "walter.white@gmail.com", "rootroot");
-		ProductOwner productOwner = new ProductOwner("pinkman", "jessie", "jessie.pinkman@gmail.com", "rootroot");
-		Customer customer = new Customer("junkie", "noname", "junkie.42@gmail.com", "rootroot");
+		User scrumMaster = new User("white", "walter", "walter.white@gmail.com", "rootroot");
+		User productOwner = new User("pinkman", "jessie", "jessie.pinkman@gmail.com", "rootroot");
+		User customer = new User("junkie", "noname", "junkie.42@gmail.com", "rootroot");
 		
 		Product pSuccess = Product.register(name, created, description, sprintDuration,
 											team, scrumMaster, productOwner, customer);

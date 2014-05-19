@@ -34,7 +34,7 @@ public class Team extends Model {
 	}
 	
 	public boolean addMember(User u) {
-		if(u.isCustomer()) return false;
+		//if(u.isCustomer()) return false;
 		return this.members.add(u);
 	}
 	

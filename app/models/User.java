@@ -7,16 +7,19 @@ import javax.persistence.*;
 import net.sf.cglib.transform.impl.AddDelegateTransformer;
 import play.db.jpa.*;
 
-@DiscriminatorColumn(
-    name="type",
-    discriminatorType=DiscriminatorType.STRING)
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+//@DiscriminatorColumn(
+//    name="type",
+//    discriminatorType=DiscriminatorType.STRING)
+//@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @Entity 
 public class User extends Model {
 	private String name;
 	private String firstName;
 	private String email;
 	private String password;
+	
+	@OneToMany(mappedBy = "idRole.user")
+	private Set<Role> roles = new HashSet<Role>();
 	
 	public User(String name, String firstName, String email, String password) {
 		super();
@@ -49,9 +52,9 @@ public class User extends Model {
 		return user;
 	}
 	
-	public boolean isCustomer() {
+	/*public boolean isCustomer() {
 		return false;
-	}
+	}*/
 
 	public String getEmail() {
 		return email;
@@ -66,4 +69,11 @@ public class User extends Model {
 		this.email = email;
 	}
 
+	public Set<Role> getRoles() {
+        return this.roles;
+	}
+	
+	public void setRoles(Set<Role> r) {
+	        this.roles = r;
+	}
 }
