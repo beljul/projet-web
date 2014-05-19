@@ -32,7 +32,7 @@ public class User extends Controller {
 	    	 //Record new user
 	    	 models.User.register(email, name, firstname, firstPassword, secondPassword);
 	    	 //Connect the user 
-	    	 session.put("username", name);
+	    	 session.put("username", email);
 	    	 redirect("/Application/dashboard");	    	 
 	         //renderTemplate("Application/dashboard.html",name,email,firstname,firstPassword,secondPassword);
 	     }
