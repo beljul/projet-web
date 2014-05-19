@@ -34,7 +34,7 @@ public class Team extends Model {
 	}
 	
 	public boolean addMember(User u) {
-		//if(u.isCustomer()) return false;
+		//if(u.isCustomer()) return false;	
 		return this.members.add(u);
 	}
 	
@@ -42,6 +42,9 @@ public class Team extends Model {
 		Team team = new Team(name, created);
 		team.save();
 		return team;
+	}
+	public void register(){
+		this.save();
 	}
 	
 	public static Team getByname(String name) {

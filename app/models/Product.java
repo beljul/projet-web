@@ -34,7 +34,7 @@ public class Product extends Model {
 	private Set<Role> roles = new HashSet<Role>();
 	
 	public Product(String name, Date created, String description, int sprintDuration, Team team,
-			User dbScrumMaster, User productOwner2, User dbCustomer) {
+			User dbScrumMaster, User productOwner, User dbCustomer) {
 		super();
 		this.name = name;
 		this.created = created;
@@ -42,7 +42,7 @@ public class Product extends Model {
 		this.sprintDuration = sprintDuration;
 		this.team = team;
 		this.scrumMaster = dbScrumMaster;
-		this.productOwner = productOwner2;
+		this.productOwner = productOwner;
 		this.customer = dbCustomer;
 		this.skills = new HashSet<Skill>();
 	}

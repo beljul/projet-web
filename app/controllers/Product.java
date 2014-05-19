@@ -119,8 +119,7 @@ public class Product extends Controller {
 		java.util.Calendar cal = java.util.Calendar.getInstance();
 		java.util.Date utilDate = cal.getTime();
 		Date created = new Date(utilDate.getTime());		
-		Team team = new Team(teamName, created);
-		
+		Team team = new Team("team of product " + name, created);
 		for(String d : notNullDevelopers){
 			//Developer dev = (Developer) models.User.getByEmail(d);
 			models.User dev = models.User.getByEmail(d);
@@ -137,7 +136,7 @@ public class Product extends Controller {
 			team.addMember(dbScrumMaster);
 			team.addMember(dbCustomer);
 		}
-		
+		team.register();
 		models.Product.register(name, created, description, sprintDuration, 
 						team, dbScrumMaster, productOwner, dbCustomer);
 				

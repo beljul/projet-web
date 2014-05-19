@@ -1,44 +1,5 @@
 #{fixture delete:'all'/}
 #{fixture load:"data.yml"/}
 #{selenium 'Product register'}
-	clearSession()
-	open('/')
-	
-	assertTextPresent('Sign up')	open('/')
-	
-	assertTextPresent('Sign up')
-	assertTextPresent('Email')
-	assertTextPresent('Name')
-	assertTextPresent('First name')
-	assertTextPresent('Password')
-	assertTextPresent('Password Verification')
-	
-	type('email', 'walter.white@gmail.com')
-	type('name', 'white')
-	type('firstname', 'walter')
-	type('firstPassword', 'rootroot')
-	type('secondPassword', 'rootroot')
-	
-	clickAndWait('signup')
-	
-	assertTextPresent('Log out')
-	
-	clickAndWait('logout')
-	assertTextPresent('Email')
-	assertTextPresent('Name')
-	assertTextPresent('First name')
-	assertTextPresent('Password')
-	assertTextPresent('Password Verification')
-	
-	type('email', 'walter.white@gmail.com')
-	type('name', 'white')
-	type('firstname', 'walter')
-	type('firstPassword', 'rootroot')
-	type('secondPassword', 'rootroot')
-	
-	clickAndWait('signup')
-	
-	assertTextPresent('Log out')
-	
-	clickAndWait('logout')
+
 #{/selenium}
