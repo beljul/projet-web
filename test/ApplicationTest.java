@@ -10,7 +10,7 @@ public class ApplicationTest extends FunctionalTest {
 
 	@Before
 	public void setUp() {
-	    Fixtures.deleteAll();
+//	    Fixtures.deleteAll();
 	}
 	
     @Test
