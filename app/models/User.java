@@ -5,6 +5,7 @@ import java.util.*;
 import javax.persistence.*;
 
 import net.sf.cglib.transform.impl.AddDelegateTransformer;
+import play.data.validation.Required;
 import play.db.jpa.*;
 
 //@DiscriminatorColumn(
@@ -13,9 +14,13 @@ import play.db.jpa.*;
 //@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @Entity 
 public class User extends Model {
+	@Required
 	private String name;
+	@Required
 	private String firstName;
+	@Required
 	private String email;
+	@Required
 	private String password;
 	
 	@OneToMany(mappedBy = "idRole.user")
