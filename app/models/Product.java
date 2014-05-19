@@ -3,6 +3,7 @@ package models;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -30,8 +31,8 @@ public class Product extends Model {
 	@ManyToMany
 	private Set<Skill> skills;
 	
-	@OneToMany(mappedBy = "idRole.product")
-	private Set<Role> roles = new HashSet<Role>();
+	@OneToMany
+	private Map<Role, User> users;
 	
 	public Product(String name, Date created, String description, int sprintDuration, Team team,
 			User dbScrumMaster, User productOwner, User dbCustomer) {
@@ -45,6 +46,7 @@ public class Product extends Model {
 		this.productOwner = productOwner;
 		this.customer = dbCustomer;
 		this.skills = new HashSet<Skill>();
+		this.users = new HashMap<Role, User>();
 	}
 	
 	public boolean addSkill(Skill s) {
@@ -59,11 +61,8 @@ public class Product extends Model {
 		return p;
 	}
 	
-	public Set<Role> getRoles() {
-        return this.roles;
-	}
-	public void setRoles(Set<Role> r) {
-	        this.roles = r;
+	public User addRole(Role role, User user) {
+		return this.users.put(role, user);
 	}
 	
 }

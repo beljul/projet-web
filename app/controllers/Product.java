@@ -11,6 +11,7 @@ import org.h2.upgrade.DbUpgrade;
 import models.Customer;
 import models.Developer;
 import models.ProductOwner;
+import models.Role;
 import models.ScrumMaster;
 import models.Team;
 import play.mvc.Controller;
@@ -43,6 +44,7 @@ public class Product extends Controller {
 		validation.required(developers).message("Au moins un developpeur doit être spécifié");
 		
 	}
+	
 	private static void registerConsistencies(String name, String description, 
 			  									Integer sprintDuration, String scrumMaster,
 			  									String customer, Set<String> developers,
@@ -52,6 +54,7 @@ public class Product extends Controller {
 		validation.range(sprintDuration, 1, 6)
 				  .message("un sprint doit durer entre 1 et 6 semaines");
 	}
+	
 	public static void register(String name, String description, 
 								  Integer sprintDuration, String scrumMaster,
 								  String customer, Set<String> developers,
@@ -120,15 +123,17 @@ public class Product extends Controller {
 		java.util.Date utilDate = cal.getTime();
 		Date created = new Date(utilDate.getTime());		
 		Team team = new Team("team of product " + name, created);
+		Set<models.User> devs = new HashSet<models.User>();
 		for(String d : notNullDevelopers){
 			//Developer dev = (Developer) models.User.getByEmail(d);
 			models.User dev = models.User.getByEmail(d);
+			devs.add(dev);
 			team.addMember(dev);
 		}
 		
 		//ProductOwner productOwner = ProductOwner.getByEmail(session.get("username"));
 		models.User productOwner = models.User.getByEmail(session.get("username"));
-		if(notNullDevelopers.isEmpty()) {
+		if(notNullDevelopers.isEmpty()) { // Pas de devs saisis
 			team = Team.getByname(teamName);
 		}
 		else {				
@@ -136,10 +141,42 @@ public class Product extends Controller {
 			team.addMember(dbScrumMaster);
 			team.addMember(dbCustomer);
 		}
+		
 		team.register();
-		models.Product.register(name, created, description, sprintDuration, 
-								team, dbScrumMaster, productOwner, dbCustomer);
-				
+
+		models.Product product = models.Product.register(name, created, description, sprintDuration, 
+						team, dbScrumMaster, productOwner, dbCustomer);
+		
+		team.addProduct(product);
+		team.register();
+
+		// Adding roles
+		Role r = new ProductOwner();
+		r.add(productOwner, product);
+		productOwner.addRole(r, product);
+		product.addRole(r, productOwner);
+		r.save();
+
+		r = new ScrumMaster();
+		r.add(dbScrumMaster, product);
+		dbScrumMaster.addRole(r, product);
+		product.addRole(r, dbScrumMaster);
+		r.save();
+
+		r = new Customer();
+		r.add(dbCustomer, product);
+		dbCustomer.addRole(r, product);
+		product.addRole(r, dbCustomer);
+		r.save();
+
+		for (models.User  dev: devs) {
+			r = new Developer();
+			r.add(dev, product);
+			dev.addRole(r, product);
+			product.addRole(r, dev);
+			r.save();
+		}
+
 		redirect("/Application/dashboard");	    	 
 	}
 }
