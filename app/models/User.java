@@ -23,6 +23,8 @@ public class User extends Model {
 	@ManyToMany
 	private Map<Role, Product> products;
 	
+	//private Set<Team> teams;
+	
 	public User(String name, String firstName, String email, String password) {
 		super();
 		this.name = name;
