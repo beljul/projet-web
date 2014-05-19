@@ -14,17 +14,11 @@ import play.db.jpa.*;
 //@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @Entity 
 public class User extends Model {
-	@Column(name="name")
-	@Lob
+
+
 	private String name;
-	@Column(name="firstName")
-	@Lob
 	private String firstName;
-	@Column(name="email")
-	@Lob
 	private String email;
-	@Column(name="password")
-	@Lob
 	private String password;
 	
 	@OneToMany(mappedBy = "idRole.user")
