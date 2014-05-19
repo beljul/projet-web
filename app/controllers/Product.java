@@ -145,7 +145,7 @@ public class Product extends Controller {
 		}
 		
 		team.register();
-
+		
 		models.Product product = models.Product.register(name, created, description, sprintDuration, 
 						team, dbScrumMaster, productOwner, dbCustomer);
 		
