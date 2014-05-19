@@ -1,0 +1,27 @@
+#{extends 'main.html' /} 
+#{set title:'Liste produits' /}
+#{stylesheet 'create.css' /}
+<h1 class="page-header">Liste de mes produits</h1>
+
+<table class="table table-bordered">
+  		<thead>
+  			<tr>
+  				<th>Nom</th>
+  				<th>Description</th>
+  				<th>Date de création</th>
+  				<th>Product Owned</th>
+  			</tr>
+  		</thead>
+  		<tbody>
+  			#{list products, as:'p'}
+  			<tr>
+  				<td>${p.name}</td>
+  				<td>${p.description}</td>
+  				<td>${p.created}</td>
+  				<td>${p.productOwner.email}</td>
+  			</tr>
+  			#{/list}
+  		</tbody>
+</table>
+				
+#{script 'jquery-ui.min.js' /} #{script 'product-create.js' /}

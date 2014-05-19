@@ -3,6 +3,7 @@ package models;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -16,7 +17,7 @@ discriminatorType=DiscriminatorType.STRING)
 public class Role extends Model {
 	
 	@ManyToMany
-	Map<User, Product> products;
+	private Map<User, Product> products;
 	
 	public Role() {
 		super();
@@ -25,5 +26,9 @@ public class Role extends Model {
 
 	public Product add(User user, Product product) {
 		return this.products.put(user, product);
+	}
+
+	public Map<User, Product> getProducts() {
+		return products;
 	}
 }
