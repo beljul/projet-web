@@ -17,9 +17,11 @@ public class Application extends Controller {
     
     @Before
     static void getUserInfo() {
-    	models.User connected = models.User.getByEmail(session.get("username"));
-    	Collection<Product> products = connected.getProducts().values();
-    	renderArgs.put("products", products);       
+    	if(!session.isEmpty()) {
+    		models.User connected = models.User.getByEmail(session.get("username"));
+    		Collection<Product> products = connected.getProducts().values();    	
+    		renderArgs.put("products", products);
+    	}
     }
     
     public static void dashboard(){    	
