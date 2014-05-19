@@ -15,14 +15,13 @@ import play.db.jpa.*;
 @Entity 
 public class User extends Model {
 
-
 	private String name;
 	private String firstName;
 	private String email;
 	private String password;
 	
-	@OneToMany(mappedBy = "idRole.user")
-	private Set<Role> roles = new HashSet<Role>();
+	@ManyToMany
+	private Map<Role, Product> products;
 	
 	public User(String name, String firstName, String email, String password) {
 		super();
@@ -30,6 +29,7 @@ public class User extends Model {
 		this.firstName = firstName;
 		this.email = email;
 		this.password = password;
+		this.products = new HashMap<Role, Product>();
 	}
 	
 	public static User connect(String email, String password) {
@@ -72,11 +72,8 @@ public class User extends Model {
 		this.email = email;
 	}
 
-	public Set<Role> getRoles() {
-        return this.roles;
+	public Product addRole(Role role, Product product) {
+		return this.products.put(role, product);
 	}
-	
-	public void setRoles(Set<Role> r) {
-	        this.roles = r;
-	}
+
 }

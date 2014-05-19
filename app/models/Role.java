@@ -1,6 +1,8 @@
 package models;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.persistence.*;
 
@@ -12,59 +14,16 @@ discriminatorType=DiscriminatorType.STRING)
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @Entity
 public class Role extends Model {
-	 
-	@Embeddable
-	public class RoleId implements Serializable {
-	    private static final long serialVersionUID = 1L;
-	     
-	    @ManyToOne
-	    @JoinColumn(name = "id")
-	    private User user;
-
-	    @ManyToOne
-	    @JoinColumn(name = "id")
-	    private Product product;
-
-		public User getUser() {
-			return user;
-		}
-
-		public void setUser(User user) {
-			this.user = user;
-		}
-
-		public Product getProduct() {
-			return product;
-		}
-
-		public void setProduct(Product product) {
-			this.product = product;
-		}   
-	     
-	}
 	
-	@Id
-    RoleId idRole;
-	public RoleId getRoleID() {
-		return idRole;
-	}
+	@ManyToMany
+	Map<User, Product> products;
 	
-    private String name;
-    
-	public String getName() {
-		return name;
+	public Role() {
+		super();
+		this.products = new HashMap<User, Product>();
 	}
-	
-	public void setName(String name) {
-		this.name = name;
+
+	public Product add(User user, Product product) {
+		return this.products.put(user, product);
 	}
-	
-	public User getUser() {
-		return idRole.user;
-	}
-	
-	public Product getProduct() {
-		return idRole.product;
-	}
-    
 }

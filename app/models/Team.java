@@ -50,5 +50,12 @@ public class Team extends Model {
 	public static Team getByname(String name) {
 		return find("byName", name).first();
 	}
-	
+
+	public Set<User> getMembers() {
+		return members;
+	}
+
+	public void setMembers(Set<User> members) {
+		this.members = members;
+	}
 }
