@@ -4,6 +4,7 @@ import java.util.*;
 
 import javax.persistence.*;
 
+import controllers.Product;
 import net.sf.cglib.transform.impl.AddDelegateTransformer;
 import play.data.validation.Required;
 import play.db.jpa.*;

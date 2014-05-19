@@ -138,7 +138,7 @@ public class Product extends Controller {
 		}
 		team.register();
 		models.Product.register(name, created, description, sprintDuration, 
-						team, dbScrumMaster, productOwner, dbCustomer);
+								team, dbScrumMaster, productOwner, dbCustomer);
 				
 		redirect("/Application/dashboard");	    	 
 	}
