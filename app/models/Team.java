@@ -18,7 +18,7 @@ public class Team extends Model {
 	@OneToMany
 	private Set<Product> products;
 
-	@OneToMany
+	@ManyToMany
 	private Set<User> members;
 	
 	public Team(String name, Date created) {
