@@ -47,7 +47,9 @@ public class User extends Model {
 	public static List<User> getByBeginOfEmail(String email) {
 		return find("email like ?", email + "%").fetch(5);
 	}
-	
+	public List<Product> getLastProducts(){
+		return null;
+	}
 	public static User register(String email, String name, String firstname, 
 								  String password, String secondPassword) {
 		models.User user = new models.User(name, firstname, email, password);

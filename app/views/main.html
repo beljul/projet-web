@@ -38,9 +38,9 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produits<b class="caret"></b></a>
                   <ul class="dropdown-menu">
                   	<li class="dropdown-header">Mes trois derniers produits</li>
-                    <li><a href="#">Product 1</a></li>
-                    <li><a href="#">Product 2</a></li>
-                    <li><a href="#">Product 3</a></li>
+                  	#{list products, as:'p'}
+					<li><a href="#">${p}</a></li>
+			    	#{/list}
                     <li class="divider"></li>
                     <li class="dropdown-header">Gérer mes produits</li>                    
                     <li><a href="@{Product.create}">Créer un nouveau produit</a></li>
