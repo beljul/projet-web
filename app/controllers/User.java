@@ -37,6 +37,7 @@ public class User extends Controller {
 	         //renderTemplate("Application/dashboard.html",name,email,firstname,firstPassword,secondPassword);
 	     }
 	}
+
 	private static class JsonSearchItem {
 		private String label;
 		private String name;

@@ -2,12 +2,14 @@
 # and then load them using Fixtures.load("data.yml")
 # Initial data (bootstrap)
   
-# Initial data (bootstrap)
-
-  
 User(bob):
-    email:          bob@gmail.com
     password:       secret
-    firstName:      Bob
+    email:          bob@gmail1.com    
+    firstNume:      Bob
     name:           true
     
+User(bill):
+    password:       secret
+    email:          bob@gmail1.com42    
+    firstNume:      Bob
+    name:           true
