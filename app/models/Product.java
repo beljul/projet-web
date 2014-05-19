@@ -89,4 +89,12 @@ public class Product extends Model {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public static Product getByName(String name) {
+		return find("byName", name).first();
+	}
+
+	public static Product getById(Long id) {
+		return findById(id);
+	}
 }

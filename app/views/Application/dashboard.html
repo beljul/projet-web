@@ -23,6 +23,13 @@
           </ul>
         </div>
         <div class="col-sm-9 col-md-10 main">
+          <ol class="breadcrumb">
+	          #{if session.productName}
+	          	<li><a href="#">${session.productName}</a></li>
+	          #{/if}
+	          	<li><a href="#">Release</a></li>
+	          	<li class="active">Sprint</li>
+          </ol>
           <h2 class="page-header">Tableau des tâches</h2>
           <div class=container-fluid>
           		<div class="scrum-cols row">

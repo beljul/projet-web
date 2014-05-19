@@ -188,4 +188,10 @@ public class Product extends Controller {
 		Collection<models.Product> products = user.getProducts().values();
 		render(email, products);
 	}
+	
+	public static void setCurrentProduct(Long id) {
+		models.Product p = models.Product.getById(id);
+		session.put("productName", p.getName());
+		redirect("/Application/dashboard");	    	 
+	}
 }
