@@ -1,7 +1,9 @@
 package controllers;
 
 import java.sql.Date;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.mail.Session;
@@ -178,5 +180,12 @@ public class Product extends Controller {
 		}
 
 		redirect("/Application/dashboard");	    	 
+	}
+	
+	public static void show() {
+		String email = session.get("username");
+		models.User user = models.User.getByEmail(email);
+		Collection<models.Product> products = user.getProducts().values();
+		render(email, products);
 	}
 }

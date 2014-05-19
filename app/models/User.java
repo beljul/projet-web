@@ -74,8 +74,15 @@ public class User extends Model {
 		this.email = email;
 	}
 
+	public Map<Role, Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(Map<Role, Product> products) {
+		this.products = products;
+	}
+
 	public Product addRole(Role role, Product product) {
 		return this.products.put(role, product);
 	}
-
 }
