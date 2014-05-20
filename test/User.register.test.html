@@ -1,64 +1,3 @@
-#{selenium 'Test register'}
-	clearSession()
-	open('/')
-	
-	assertTextPresent('Sign up')
-	assertTextPresent('Email')
-	assertTextPresent('Name')
-	assertTextPresent('First name')
-	assertTextPresent('Password')
-	assertTextPresent('Password Verification')
-	
-	type('email', 'walter.white@gmail.com')
-	type('name', 'white')
-	type('firstname', 'walter')
-	type('firstPassword', 'rootroot')
-	type('secondPassword', 'rootroot')
-	
-	clickAndWait('signup')
-		open('/')
-	
-	assertTextPresent('Sign up')
-	assertTextPresent('Email')
-	assertTextPresent('Name')
-	assertTextPresent('First name')
-	assertTextPresent('Password')
-	assertTextPresent('Password Verification')
-	
-	type('email', 'walter.white@gmail.com')
-	type('name', 'white')
-	type('firstname', 'walter')
-	type('firstPassword', 'rootroot')
-	type('secondPassword', 'rootroot')
-	
-	clickAndWait('signup')
-	
-	assertTextPresent('Log out')
-	
-	clickAndWait('logout')
-	assertTextPresent('Log out')
-	
-	clickAndWait('logout')
-#{/selenium}
-
-#{selenium 'Test connect'}
-	clearSession()
-	open('/')
-	
-	assertTextPresent('Sign in')
-	assertTextPresent('E-mail')
-	assertTextPresent('Password')
-	
-	type('username', 'walter.white@gmail.com')
-	type('password', 'rootroot')
-	
-	clickAndWait('signin')
-	
-	assertTextPresent('Log out')
-	
-	clickAndWait('logout')
-#{/selenium}
-
 #{selenium 'Test fail pwd 1'}
 	clearSession()
 	open('/')
@@ -321,4 +260,49 @@
 	clickAndWait('signup')
 	
 	assertTextPresent('The following fields are invalid')
+#{/selenium}
+
+#{selenium 'Test register'}
+	clearSession()
+	open('/')
+	
+	assertTextPresent('Sign up')
+	assertTextPresent('Email')
+	assertTextPresent('Name')
+	assertTextPresent('First name')
+	assertTextPresent('Password')
+	assertTextPresent('Password Verification')
+	
+	type('email', 'walter.white@gmail.com')
+	type('name', 'white')
+	type('firstname', 'walter')
+	type('firstPassword', 'rootroot')
+	type('secondPassword', 'rootroot')
+	
+	clickAndWait('signup')
+	open('/')
+	
+	assertTextPresent('Welcome walter.white@gmail.com !')
+			
+	clickAndWait('logout')
+	
+	assertTextPresent('Sign in')
+#{/selenium}
+
+#{selenium 'Test connect'}
+	clearSession()
+	open('/')
+	
+	assertTextPresent('Sign in')
+	assertTextPresent('E-mail')
+	assertTextPresent('Password')
+	
+	type('username', 'walter.white@gmail.com')
+	type('password', 'rootroot')
+	
+	clickAndWait('signin')
+	
+	assertTextPresent('Log out')
+	
+	clickAndWait('logout')
 #{/selenium}
