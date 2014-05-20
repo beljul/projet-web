@@ -10,7 +10,7 @@ public class UserTest extends UnitTest {
 	@Test
 	public void connect() {
 		String pwd = "bob";
-		User sm = new ScrumMaster("leponge", "bob", 
+		User sm = new User("leponge", "bob", 
 							"bob.leponge@gmail.com", pwd);
 		sm.save();
 		

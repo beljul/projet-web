@@ -3,6 +3,8 @@ package models;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -21,27 +23,31 @@ public class Product extends Model {
 	private Team team;
 	
 	@ManyToOne
-	private ScrumMaster scrumMaster;
+	private User scrumMaster;
 	@ManyToOne
-	private ProductOwner productOwner;
+	private User productOwner;
 	@ManyToOne
-	private Customer customer;
+	private User customer;
 	
 	@ManyToMany
 	private Set<Skill> skills;
-
+	
+	@OneToMany
+	private Map<Role, User> users;
+	
 	public Product(String name, Date created, String description, int sprintDuration, Team team,
-			ScrumMaster scrumMaster, ProductOwner productOwner, Customer customer) {
+			User dbScrumMaster, User productOwner, User dbCustomer) {
 		super();
 		this.name = name;
 		this.created = created;
 		this.description = description;
 		this.sprintDuration = sprintDuration;
 		this.team = team;
-		this.scrumMaster = scrumMaster;
+		this.scrumMaster = dbScrumMaster;
 		this.productOwner = productOwner;
-		this.customer = customer;
+		this.customer = dbCustomer;
 		this.skills = new HashSet<Skill>();
+		this.users = new HashMap<Role, User>();
 	}
 	
 	public boolean addSkill(Skill s) {
@@ -49,11 +55,46 @@ public class Product extends Model {
 	}
 	
 	public static Product register(String name, Date created, String description, int sprintDuration, 
-			Team team, ScrumMaster scrumMaster, ProductOwner productOwner,
-			Customer customer) {
-		Product p = new Product(name, created, description, sprintDuration, team, scrumMaster, productOwner, customer);
+			Team team, User dbScrumMaster, User productOwner2,
+			User dbCustomer) {
+		Product p = new Product(name, created, description, sprintDuration, team, dbScrumMaster, productOwner2, dbCustomer);
 		p.save();
 		return p;
 	}
 	
+	public User addRole(Role role, User user) {
+		return this.users.put(role, user);
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public static Product getByName(String name) {
+		return find("byName", name).first();
+	}
+
+	public static Product getById(Long id) {
+		return findById(id);
+	}
 }

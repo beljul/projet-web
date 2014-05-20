@@ -18,7 +18,12 @@ public class Team extends Model {
 	@OneToMany
 	private Set<Product> products;
 
-	@OneToMany
+//	@OneToMany(mappedBy="teams")
+	@ManyToMany 
+	@JoinTable( name="Team_User", 
+			joinColumns={@JoinColumn(name="Teams_ID", referencedColumnName="ID")}, 
+			inverseJoinColumns={@JoinColumn(name="Users_ID", referencedColumnName="ID")})
+
 	private Set<User> members;
 	
 	public Team(String name, Date created) {
@@ -34,7 +39,7 @@ public class Team extends Model {
 	}
 	
 	public boolean addMember(User u) {
-		if(u.isCustomer()) return false;
+		//if(u.isCustomer()) return false;	
 		return this.members.add(u);
 	}
 	
@@ -43,9 +48,19 @@ public class Team extends Model {
 		team.save();
 		return team;
 	}
+	public void register(){
+		this.save();
+	}
 	
 	public static Team getByname(String name) {
 		return find("byName", name).first();
 	}
-	
+
+	public Set<User> getMembers() {
+		return members;
+	}
+
+	public void setMembers(Set<User> members) {
+		this.members = members;
+	}
 }

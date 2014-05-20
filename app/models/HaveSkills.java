@@ -12,9 +12,9 @@ public class HaveSkills extends Model {
 	private Skill skill;
 	
 	@ManyToOne
-	private Developer developer;
+	private User developer;
 
-	public HaveSkills(int level, Skill skill, Developer developer) {
+	public HaveSkills(int level, Skill skill, User developer) {
 		super();
 		this.level = level;
 		this.skill = skill;

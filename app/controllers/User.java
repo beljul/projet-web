@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import play.mvc.Controller;
@@ -17,7 +18,7 @@ public class User extends Controller {
 	    validation.required("password", firstPassword);
 	    validation.minSize(firstPassword, 6);
 	    validation.required("password check",secondPassword);
-	    validation.email(email);	  
+	    validation.email(email);  
 	    play.data.validation.Error e = validation.equals("password", firstPassword, "password verif", secondPassword).error;
 
 	     if(validation.hasErrors()) {
@@ -31,21 +32,31 @@ public class User extends Controller {
 	    	 //Record new user
 	    	 models.User.register(email, name, firstname, firstPassword, secondPassword);
 	    	 //Connect the user 
-	    	 session.put("username", name);
+	    	 session.put("username", email);
 	    	 redirect("/Application/dashboard");	    	 
 	         //renderTemplate("Application/dashboard.html",name,email,firstname,firstPassword,secondPassword);
 	     }
 	}
-	
-	public static void jsonSearch(String email) {
-		List<models.User> users = models.User.getByBeginOfEmail(email);
-		String jsonString = new String("[ ");
-		for (models.User user : users) {
-			jsonString += "\"" + user.getEmail() + "\",";
+
+	private static class JsonSearchItem {
+		private String label;
+		private String name;
+		private long value;		
+		private JsonSearchItem(String label, String name, long value){
+			this.label = label;
+			this.value = value;
+			this.name = name;
 		}
-		jsonString = jsonString.substring(0, jsonString.length()-1);
-		jsonString += " ]";
-		renderJSON(jsonString);
+	};	
+	public static void jsonSearch(String term) {
+		List<models.User> users = models.User.getByBeginOfEmail(term);
+		List<JsonSearchItem> items = new ArrayList<JsonSearchItem>();		
+		for (models.User user : users) {
+			String name = "(" + user.getFirstName() + " " + user.getName() + ")";
+			JsonSearchItem jsi = new JsonSearchItem(user.getEmail(), name, user.getId());
+			items.add(jsi);
+		}		
+		renderJSON(items);
 	}
 
 }
