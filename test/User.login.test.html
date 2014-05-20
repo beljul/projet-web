@@ -1,0 +1,26 @@
+#{selenium 'Test connect'}
+	clearSession()
+	open('/')
+	### Test that the user can log in
+	assertTextPresent('Sign in')
+	assertTextPresent('E-mail')
+	assertTextPresent('Password')
+	
+	type('username', 'bob1@gmail.com')
+	type('password', 'bobbob')
+	
+	clickAndWait('signin')
+	
+	assertTextPresent('Welcome bob1@gmail.com')
+	assertTextPresent('Log out')
+		
+#{/selenium}
+
+#{selenium 'Test logout'}
+	### The previous use is already logged
+	assertTextPresent('Welcome bob1@gmail.com')
+		
+	clickAndWait('logout')
+	
+	assertTextPresent('Sign in')
+#{/selenium}
