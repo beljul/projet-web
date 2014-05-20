@@ -194,4 +194,5 @@ public class Product extends Controller {
 		session.put("productName", p.getName());
 		redirect("/Application/dashboard");	    	 
 	}
+
 }

@@ -23,7 +23,6 @@ public class Team extends Model {
 	@JoinTable( name="Team_User", 
 			joinColumns={@JoinColumn(name="Teams_ID", referencedColumnName="ID")}, 
 			inverseJoinColumns={@JoinColumn(name="Users_ID", referencedColumnName="ID")})
-
 	private Set<User> members;
 	
 	public Team(String name, Date created) {
