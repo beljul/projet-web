@@ -21,7 +21,7 @@ public class Application extends Controller {
     		models.User connected = models.User.getByEmail(session.get("username"));
     		System.out.println(session.get("username"));
     		System.out.println("********************" + connected);
-    		if(connected.getProducts() != null)  {
+    		if(connected != null && connected.getProducts() != null)  {
     			Collection<Product> products = connected.getProducts().values();    	
     			renderArgs.put("products", products);
     		}
