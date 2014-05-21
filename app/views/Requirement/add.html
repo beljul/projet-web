@@ -1,68 +1,50 @@
 #{extends 'main.html' /} 
 #{set title:'Ajouter exigence' /}
 #{stylesheet 'create.css' /}
+#{stylesheet 'requirement-add.css' /}
 <h1 class="page-header">Ajouter une exigence à : ${session.productName}</h1>
 #{form @Requirement.register()}
 	<div class="row">
-		<div class="col-md-6 col-xs-10 col-md-offset-1 col-xs-offset-1 col-lg-offset-1">		
+		<div class="col-lg-4">
 			<label for="req1">Exigences</label>
-			<div class="input-group">				
-				#{list notNullRequirements, as:'req'}
-				<label for="dev${dev_index}" class="sr-only">Exigence ${dev_index}</label>								
-				<input 	id="dev${dev_index}" name="developers[]" type="text" 
-						class="form-control requirement-req"
-						placeholder="Ajouter une exigence" value="${req}"/>
-				<div class="input-group">				
-				<label for="priority">Priorité</label>
-				<select name="priority" class="form-control input-lg" id="req-priority">
-					<option selected="selected">1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
-				</select>
-				<label for="duration">Durée</label>
-				<select name="duration" class="form-control input-lg" id="req-duration">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option selected="selected">4</option>
-					<option>5</option>
-					<option>6</option>
-					<option>7</option>
-				</select>
-				</div>
-			    #{/list}
-			    <label for="" class="sr-only">Exigence </label>
-				<input 	id="req1" name="requirements[]" type="text" 
-						class="form-control requirement-req"
-						placeholder="Ajouter une exigence" value=""/>
-				<div class="input-group">				
-				<label for="priority">Priorité</label>
-				<select name="priority" class="form-control input-lg" id="req-priority">
-					<option selected="selected">1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
-				</select>
-				<label for="duration">Durée</label>
-				<select name="duration" class="form-control input-lg" id="req-duration">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option selected="selected">4</option>
-					<option>5</option>
-					<option>6</option>
-					<option>7</option>
-				</select>
-				</div>
-			</div>							
+		</div>		
+		<div class="col-lg-4">
+			<label for="priority">Priorité</label>
+		</div>				
+		<div class="col-lg-4">
+			<label for="duration">Durée</label>
 		</div>
 		
-	</div>
+	</div>	
 	<div class="row">
-		<div id="submit" class="col-md-1 col-md-offset-1 col-xs-offset-1 col-xs-1 col-lg-offset-1 col-lg-1">			
+		<div class="col-lg-4">
+			<input 	id="req1" name="requirements[]" type="text" 
+						class="form-control requirement-req"
+						placeholder="Ajouter une exigence" value=""/>
+		</div>
+		<div class="col-lg-4">
+				<select disabled="disabled" name="priority" class="slider-priority form-control input-xs" id="req-priority-1">
+					<option selected="selected">1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select>
+		</div>
+		<div class="col-lg-4">
+			<select name="duration" class="slider-duration form-control input-xs" id="req-duration-1">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option selected="selected">4</option>
+					<option>5</option>
+					<option>6</option>
+					<option>7</option>
+				</select>
+		</div>				
+	</div>										
+	<div class="row">
+		<div id="submit" class="col-lg-12">			
 			<input type="submit" class="btn-lg btn btn-success"
 				value="Nouvelles exigences" />
 		</div>
