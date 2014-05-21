@@ -32,18 +32,18 @@ $('form').on("keydown",'input.requirement-req',function(e){
 							}
 							});
 			select1.change(function() {
-				console.log()
 				slider1.slider("value", this.selectedIndex + 1);
 			});
-			var slider2 = $("<div id=\"slider" + reqCounters + "2\" class=\"slider\"></div>").insertAfter(select2).slider( {
-				min : 1,
-				max : 5,	
-				range : "min",
-				value : select2[0].selectedIndex + 1,
-				slide : function(event, ui) {
-					select2[0].selectedIndex = ui.value - 1;
-				}
-			});
+			var slider2 = $("<div id=\"slider" + reqCounters + "2\" class=\"slider\"></div>")
+							.insertAfter(select2).slider( {
+								min : 1,
+								max : 5,	
+								range : "min",
+								value : select2[0].selectedIndex + 1,
+								slide : function(event, ui) {
+									select2[0].selectedIndex = ui.value - 1;
+								}
+							});
 			select2.change(function() {
 				slider2.slider("value", this.selectedIndex + 1);
 			});
