@@ -32,8 +32,8 @@ public class Product extends Model {
 	@ManyToMany
 	private Set<Skill> skills;
 	
-	@OneToMany
-	private Map<Role, User> users;
+//	@OneToMany
+//	private Map<Role, User> users;
 	
 	public Product(String name, Date created, String description, int sprintDuration, Team team,
 			User dbScrumMaster, User productOwner, User dbCustomer) {
@@ -47,7 +47,7 @@ public class Product extends Model {
 		this.productOwner = productOwner;
 		this.customer = dbCustomer;
 		this.skills = new HashSet<Skill>();
-		this.users = new HashMap<Role, User>();
+//		this.users = new HashMap<Role, User>();
 	}
 	
 	public boolean addSkill(Skill s) {
@@ -62,9 +62,9 @@ public class Product extends Model {
 		return p;
 	}
 	
-	public User addRole(Role role, User user) {
-		return this.users.put(role, user);
-	}
+//	public User addRole(Role role, User user) {
+////		return this.users.put(role, user);
+//	}
 
 	public String getName() {
 		return name;

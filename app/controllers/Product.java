@@ -156,26 +156,26 @@ public class Product extends Controller {
 		Role r = new ProductOwner();
 		r.add(productOwner, product);
 		productOwner.addRole(r, product);
-		product.addRole(r, productOwner);
+//		product.addRole(r, productOwner);
 		r.save();
 
 		r = new ScrumMaster();
 		r.add(dbScrumMaster, product);
 		dbScrumMaster.addRole(r, product);
-		product.addRole(r, dbScrumMaster);
+//		product.addRole(r, dbScrumMaster);
 		r.save();
 
 		r = new Customer();
 		r.add(dbCustomer, product);
 		dbCustomer.addRole(r, product);
-		product.addRole(r, dbCustomer);
+//		product.addRole(r, dbCustomer);
 		r.save();
 
 		for (models.User  dev: devs) {
 			r = new Developer();
 			r.add(dev, product);
 			dev.addRole(r, product);
-			product.addRole(r, dev);
+//			product.addRole(r, dev);
 			r.save();
 		}
 
@@ -194,4 +194,5 @@ public class Product extends Controller {
 		session.put("productName", p.getName());
 		redirect("/Application/dashboard");	    	 
 	}
+
 }
