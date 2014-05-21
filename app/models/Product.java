@@ -19,6 +19,9 @@ public class Product extends Model {
 	private String description;
 	private int sprintDuration;
 	
+	@OneToMany
+	private Set<Requirement> requirements;
+	
 	@ManyToOne
 	private Team team;
 	
@@ -96,5 +99,8 @@ public class Product extends Model {
 
 	public static Product getById(Long id) {
 		return findById(id);
+	}
+	public Set<Requirement> getRequirements(){
+		return this.requirements;
 	}
 }
