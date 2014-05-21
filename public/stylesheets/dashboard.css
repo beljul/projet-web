@@ -10,3 +10,7 @@ div.scrum-col:last-child {
 	border-width:0 1px 0 1px;
 	border-style:solid;
 }
+a.glyphicon.disabled {
+	color:lightgrey;
+	cursor:text;
+}
