@@ -28,7 +28,26 @@ public class Application extends Controller {
     	}
     }
     
-    public static void dashboard(){    	
-    	render();
+    public static void dashboard(){
+    	String email = session.get("username");
+    	String emailPO = new String();
+    	
+    	if (session.get("productName") != null) {
+	    	String productName = session.get("productName");
+	    	Product product = models.Product.getByName(productName);
+	    	emailPO = product.getProductOwner().getEmail();
+    	}
+    	
+    	String isNotPO= new String();
+    	if(!email.equals(emailPO)) {
+    		System.out.println("disable");
+    		isNotPO = "disabled";
+    	}
+    	else {
+    		System.out.println("down");
+    		isNotPO = "";
+    	}
+    	
+    	render(isNotPO);
     }
 }

@@ -103,4 +103,11 @@ public class Product extends Model {
 	public Set<Requirement> getRequirements(){
 		return this.requirements;
 	}
+	public User getProductOwner() {
+		return productOwner;
+	}
+
+	public void setProductOwner(User productOwner) {
+		this.productOwner = productOwner;
+	}	
 }
