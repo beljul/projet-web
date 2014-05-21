@@ -97,4 +97,14 @@ public class Product extends Model {
 	public static Product getById(Long id) {
 		return findById(id);
 	}
+
+	public User getProductOwner() {
+		return productOwner;
+	}
+
+	public void setProductOwner(User productOwner) {
+		this.productOwner = productOwner;
+	}
+	
+	
 }
