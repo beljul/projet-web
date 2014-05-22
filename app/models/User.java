@@ -24,6 +24,8 @@ public class User extends Model {
 	private Map<Role, Product> products;
 	
 	//private Set<Team> teams;
+	@OneToMany
+	private Set<Document> documents;
 	
 	public User(String name, String firstName, String email, String password) {
 		super();

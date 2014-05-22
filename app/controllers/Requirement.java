@@ -6,7 +6,9 @@ import java.util.Collection;
 import java.util.Set;
 
 import play.mvc.Controller;
+import play.mvc.With;
 
+@With(Secure.class)
 public class Requirement extends Controller {
 	
 	public static void add() {

@@ -22,6 +22,9 @@ public class Product extends Model {
 	@OneToMany
 	private Set<Requirement> requirements;
 	
+	@OneToMany
+	private Set<Version> releases;
+	
 	@ManyToOne
 	private Team team;
 	
@@ -109,5 +112,9 @@ public class Product extends Model {
 
 	public void setProductOwner(User productOwner) {
 		this.productOwner = productOwner;
-	}	
+	}
+	
+	public boolean addRelease(Version r) {
+		return this.releases.add(r);
+	}
 }

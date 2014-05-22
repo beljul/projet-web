@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import play.mvc.Controller;
+import play.mvc.With;
 
+@With(Secure.class)
 public class User extends Controller {
 
 	public static void register(String email, String name, String firstname, 
