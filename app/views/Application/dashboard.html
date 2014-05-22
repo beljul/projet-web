@@ -1,41 +1,25 @@
-#{extends 'main.html' /}
+#{extends 'dashboard.html' /}
 #{set title:'My dashboard' /}
 #{stylesheet 'dashboard.css' /}
 #{script 'jquery-ui.min.js' /}
 #{stylesheet 'sticker.css' /}
 
-<div class="container-fluid">
-      <div class="row">
-        <div id="navigation" class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-          	<li><a class="glyphicon glyphicon-th" href="#"> Tableau des taches</a></li>
-            <li><a class="active glyphicon glyphicon-tasks" href="#"> Ajouter une tache</a></li>
-            <li><a class="glyphicon glyphicon-eye-open" href="#"> Consulter rapport</a></li>
-            <li><a class="glyphicon glyphicon-sort" href="#"> Changer la priorité des exigences</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li class="${isNotPO}"><a class="glyphicon glyphicon-file" href="@{Requirement.add}"> Ajouter une exigence</a></li>
-            <li><a class="glyphicon glyphicon-map-marker"href=""> Associer une exigence à ce sprint</a></li>
-            <li><a class="glyphicon glyphicon-pencil" href=""> Ecrire un rapport</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a class="glyphicon glyphicon-stats" href=""> Statistiques</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-9 col-md-10 main">
-          <ol class="breadcrumb">
-	          #{if session.productName}
-	          	<li><a href="#">${session.productName}</a></li>
-	          #{/if}
-	          	<li><a href="#">Release</a></li>
-	          	<li class="active">Sprint</li>
-          </ol>
           <h2 class="page-header">Tableau des tâches</h2>
           <div class=container-fluid>
           		<div class="scrum-cols row">
-          			<div class="scrum-col col-md-3">A faire<div class="sticker sticker-yellow">Finir le css  <span class="badge">42</span></div><div class="sticker sticker-yellow">Finir le css  <span class="badge">42</span></div></div>          			
-          			<div class="scrum-col col-md-3">En cours<div class="sticker sticker-blue">Finir le css</div></div>
-          			<div class="scrum-col col-md-3">A vérifier<div class="sticker sticker-orange">Finir le css</div></div>
+          			<div class="scrum-col col-md-3">A faire
+          				<div class="sticker sticker-yellow">
+          					Finir le css  <span class="badge">42</span>
+          				</div>
+          				<div class="sticker sticker-yellow">
+          					Finir le css  <span class="badge">42</span>
+          				</div></div>          			
+          			<div class="scrum-col col-md-3">
+          				En cours<div class="sticker sticker-blue">Finir le css</div>
+          			</div>
+          			<div class="scrum-col col-md-3">
+          				A vérifier
+          				<div class="sticker sticker-orange">Finir le css</div></div>
           			<div class="scrum-col col-md-3">Fait<div class="sticker sticker-green">Finir le css</div></div>
           		</div>
           </div>

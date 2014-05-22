@@ -9,7 +9,7 @@ import play.mvc.Controller;
 import play.mvc.With;
 
 @With(Secure.class)
-public class Requirement extends Controller {
+public class Requirement extends WrapperController {
 	
 	public static void add() {
 		render();
