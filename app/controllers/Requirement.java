@@ -28,6 +28,7 @@ public class Requirement extends Controller {
 		Date created = new Date(utilDate.getTime());
 		
 		for (int i = 0; i < requirements.size(); i++) {
+			System.out.println(requirements.toArray()[i]);
 			models.Requirement req = new models.Requirement((String)requirements.toArray()[i], 
 											created, (Integer)priority.toArray()[i], (Integer)duration.toArray()[i]);
 			req.setProduct(product);
