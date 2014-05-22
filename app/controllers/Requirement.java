@@ -5,12 +5,22 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 
+import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.With;
 
 @With(Secure.class)
 public class Requirement extends WrapperController {
 	
+	@Before
+	static void checkProductIsSelected(){
+		String productName = session.get("productName");
+		if(productName == null){
+			flash.put("message", "Veuillez d'abord sélectionner un produit");
+			flash.put("messageStyle", "error");
+			redirect("/Application/dashboard");
+		}
+	}
 	public static void add() {
 		render();
 	}

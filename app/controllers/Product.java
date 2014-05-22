@@ -192,9 +192,16 @@ public class Product extends WrapperController {
 		render(email, products);
 	}
 	
+	/**
+	 * Set the current produt to the given one
+	 * @param id	
+	 */
 	public static void setCurrentProduct(Long id) {
 		models.Product p = models.Product.getById(id);
 		session.put("productName", p.getName());
+		flash.put("message", "Nouveau produit courant : " + p.getName());
+		flash.put("messageStyle", "information");
+//		flash.put("messageWindow", "true");
 		redirect("/Application/dashboard");	    	 
 	}
 
