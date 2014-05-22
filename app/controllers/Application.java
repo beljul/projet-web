@@ -17,6 +17,7 @@ public class Application extends WrapperController {
       
     public static void dashboard(){
     	String email = session.get("username");
+    	email = session.get("username");
     	String emailPO = new String();
     	
     	if (session.get("productName") != null) {

@@ -181,7 +181,8 @@ public class Product extends WrapperController {
 //			product.addRole(r, dev);
 			r.save();
 		}
-		flash.put("validation", "Votre produit a bien été enregistré");
+		flash.put("message", "Le produit " + name + " a été créé");
+		flash.put("messageStyle", "validation");
 		redirect("/Application/dashboard");	    	 
 	}
 	

@@ -29,7 +29,8 @@
 	type('description', 'fake description')
 	type('scrum-master', 'bob4@gmail.com')
 	type('customer', 'bob2@gmail.com')
-	type('dev1', 'bob3@gmail.com')	
+	type('dev1', 'bob3@gmail.com')
+	clickAndWait('new-product-submit')	
 	assertTextPresent('le produit doit être alphanumérique')	
 #{/selenium}
 
@@ -38,6 +39,17 @@
 	type('description','Methamphetamine market')
 	type('scrum-master','idontexist@mail.com')
 	type('customer','neitherdoi@mail.com')
+	clickAndWait('new-product-submit')
 	assertTextPresent('le scrum master n'existe pas')
 	assertTextPresent('le client n'existe pas')
+#{/selenium}
+
+#{selenium 'A valid insertionInconsistency values specifies'}
+	type('name', 'PollosHermanos')
+	type('description','Methamphetamine market')
+	type('scrum-master','bob4@gmail.com')
+	type('customer','bob2@gmail.com')
+	type('dev1','bob3@gmail.com')
+	clickAndWait('new-product-submit')
+	assertTextPresent('Le produit PollosHermanos a été créé')	
 #{/selenium}
