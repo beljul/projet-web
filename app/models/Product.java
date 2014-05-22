@@ -18,7 +18,7 @@ public class Product extends Model {
 	private Date created;
 	private String description;
 	private int sprintDuration;
-	
+
 	@OneToMany
 	private Set<Requirement> requirements;
 	
@@ -112,6 +112,14 @@ public class Product extends Model {
 
 	public void setProductOwner(User productOwner) {
 		this.productOwner = productOwner;
+	}
+	
+	public int getSprintDuration() {
+		return sprintDuration;
+	}
+
+	public void setSprintDuration(int sprintDuration) {
+		this.sprintDuration = sprintDuration;
 	}
 	
 	public boolean addRelease(Version r) {

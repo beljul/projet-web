@@ -24,6 +24,7 @@ public class Requirement extends WrapperController {
 	public static void add() {
 		render();
 	}
+	
 	public static void order(){
 		String productName = session.get("productName");
 		System.out.println("++++" + productName);
@@ -40,7 +41,7 @@ public class Requirement extends WrapperController {
 		java.util.Calendar cal = java.util.Calendar.getInstance();
 		java.util.Date utilDate = cal.getTime();
 		Date created = new Date(utilDate.getTime());
-		System.out.println("****" + priority.size());
+
 		for (int i = 0; i < requirements.size(); i++) {
 			System.out.println(requirements.toArray()[i]);			
 			models.Requirement req = new models.Requirement((String)requirements.get(i), 
