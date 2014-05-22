@@ -1,6 +1,7 @@
 package controllers;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 
@@ -19,18 +20,20 @@ public class Requirement extends Controller {
 		Collection<models.Requirement> r = product.getRequirements();
 		render(r);
 	}
-	public static void register(Set<String> requirements, Set<Integer> priority, Set<Integer> duration) {
+	
+	public static void register(ArrayList<String> requirements, ArrayList<Integer> priority, ArrayList<Integer> duration) {
 		String productName = session.get("productName");
 		models.Product product = models.Product.getByName(productName);
 		
 		java.util.Calendar cal = java.util.Calendar.getInstance();
 		java.util.Date utilDate = cal.getTime();
 		Date created = new Date(utilDate.getTime());
-		
+		System.out.println("****" + priority.size());
 		for (int i = 0; i < requirements.size(); i++) {
-			System.out.println(requirements.toArray()[i]);
-			models.Requirement req = new models.Requirement((String)requirements.toArray()[i], 
-											created, (Integer)priority.toArray()[i], (Integer)duration.toArray()[i]);
+			System.out.println(requirements.toArray()[i]);			
+			models.Requirement req = new models.Requirement((String)requirements.get(i), 
+											created, (Integer)priority.get(i), 
+											(Integer)duration.get(i));
 			req.setProduct(product);
 			req.register();
 		}
