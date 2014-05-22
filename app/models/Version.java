@@ -1,6 +1,7 @@
 package models;
 
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -26,12 +27,29 @@ public class Version extends Model {
 		super();
 		this.name = name;
 		this.date = date;
+		this.sprints = new HashSet<Sprint>();
 	}
 
 	public void register() {
 		this.save();
 	}
 	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
 	public void setProduct(Product product) {
 		this.product = product;
 	}
