@@ -5,7 +5,7 @@ import java.util.List;
 
 import play.mvc.Controller;
 
-public class User extends Controller {
+public class User extends WrapperController {
 
 	public static void register(String email, String name, String firstname, 
 								String firstPassword, String secondPassword) {		
@@ -32,8 +32,9 @@ public class User extends Controller {
 	    	 //Record new user
 	    	 models.User.register(email, name, firstname, firstPassword, secondPassword);
 	    	 //Connect the user 
-	    	 session.put("username", email);
-	    	 redirect("/Application/dashboard");	    	 
+	    	 session.put("username", email);	    	 
+	    	 redirect("/Application/dashboard");
+	    	 
 	         //renderTemplate("Application/dashboard.html",name,email,firstname,firstPassword,secondPassword);
 	     }
 	}

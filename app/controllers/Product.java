@@ -18,7 +18,7 @@ import models.ScrumMaster;
 import models.Team;
 import play.mvc.Controller;
 
-public class Product extends Controller {
+public class Product extends WrapperController {
 
 	public static void create() {
 		render();
@@ -178,7 +178,7 @@ public class Product extends Controller {
 //			product.addRole(r, dev);
 			r.save();
 		}
-
+		flash.put("validation", "Votre produit a bien été enregistré");
 		redirect("/Application/dashboard");	    	 
 	}
 	

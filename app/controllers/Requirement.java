@@ -7,7 +7,7 @@ import java.util.Set;
 
 import play.mvc.Controller;
 
-public class Requirement extends Controller {
+public class Requirement extends WrapperController {
 	
 	public static void add() {
 		render();

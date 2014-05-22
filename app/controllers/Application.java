@@ -9,23 +9,12 @@ import models.*;
 import models.Product;
 
 @With(Secure.class)
-public class Application extends Controller {
+public class Application extends WrapperController {
 
     public static void index() {
         render();
     }
-    
-    @Before
-    static void getUserInfo() {
-    	if(!session.isEmpty()) {
-    		models.User connected = models.User.getByEmail(session.get("username"));
-    		if(connected != null && connected.getProducts() != null)  {
-    			Collection<Product> products = connected.getProducts().values();    	
-    			renderArgs.put("products", products);
-    		}
-    	}
-    }
-    
+      
     public static void dashboard(){
     	String email = session.get("username");
     	String emailPO = new String();
