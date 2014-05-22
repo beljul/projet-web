@@ -24,6 +24,12 @@ public class Requirement extends Model {
 		inverseJoinColumns={@JoinColumn(name="Product_ID", referencedColumnName="ID")})
 	private Product product;
 	
+	@ManyToMany
+	Set<Sprint> sprints;
+	
+	@OneToMany
+	private Set<Task> tasks;
+	
 	public Requirement(String content, Date created, Integer priority, Integer duration) {
 		this.content = content;
 		this.created = created;
