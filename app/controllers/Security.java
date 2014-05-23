@@ -10,7 +10,9 @@ public class Security extends Secure.Security {
 	static void onAuthenticated(){
 		flash.put("message", "Bienvenue sur scrumnch");
 		Application.dashboard();
+		
 	}
+	
 	static void onDisconnected() {
 	    redirect("/");
 	}
