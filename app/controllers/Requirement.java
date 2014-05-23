@@ -50,7 +50,8 @@ public class Requirement extends WrapperController {
 			req.setProduct(product);
 			req.register();
 		}
-		
+		flash.put("message", "Nouvelle(s) exigence(s) ajoutée(s)");
+		flash.put("messageStyle", "validation");
 		redirect("/Application/dashboard");
 	}
 }
