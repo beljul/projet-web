@@ -43,8 +43,8 @@
 	          #{if session.productName}
 	          	<li><a href="#">${session.productName}</a></li>
 	          #{/if}
-	          	<li><a href="#">Release</a></li>
-	          	<li class="active">Sprint</li>
+	          	<li><a href="#">${session.releaseName}</a></li>
+	          	<li><a href="#">${session.sprintName}</a></li>
           </ol>
 		  #{doLayout /}	
         </div>

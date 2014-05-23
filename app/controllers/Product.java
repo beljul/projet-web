@@ -201,6 +201,18 @@ public class Product extends WrapperController {
 	public static void setCurrentProduct(Long id) {
 		models.Product p = models.Product.getById(id);
 		session.put("productName", p.getName());
+		
+		models.Version release = p.getCurrentRelease();
+		if(release != null) {
+			session.put("releaseName", release.getName());
+			models.Sprint sprint = release.getCurrentSprint();
+			session.put("sprintName", "Sprint " + sprint.getId() + " - " + sprint.getCreated());
+		}
+		else {
+			session.put("releaseName", "");
+			session.put("sprintName", "");
+		}
+		
 		flash.put("message", "Nouveau produit courant : " + p.getName());
 		flash.put("messageStyle", "information");
 //		flash.put("messageWindow", "true");

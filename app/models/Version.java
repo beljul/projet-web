@@ -57,4 +57,16 @@ public class Version extends Model {
 	public boolean addSprint(Sprint s) {
 		return this.sprints.add(s);
 	}
+
+	public Sprint getCurrentSprint() {
+		java.util.Calendar cal = java.util.Calendar.getInstance();
+		java.util.Date utilDate = cal.getTime();
+		Date currentDate = new Date(utilDate.getTime());
+
+		return find("select sp "
+				+ 	"from Version v "
+				+ 	"inner join v.sprints sp "
+				+ 	"where sp.created <= ?  and v = ? "
+				+ 	"order by sp.created desc", currentDate, this).first();
+	}
 }

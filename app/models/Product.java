@@ -107,6 +107,7 @@ public class Product extends Model {
 	public Set<Requirement> getRequirements(){
 		return this.requirements;
 	}
+	
 	public User getProductOwner() {
 		return productOwner;
 	}
@@ -126,8 +127,19 @@ public class Product extends Model {
 	public boolean addRelease(Version r) {
 		return this.releases.add(r);
 	}
-	
+
 	public void register(){
 		this.save();
+	}
+	
+	public Version getCurrentRelease() {
+		java.util.Calendar cal = java.util.Calendar.getInstance();
+		java.util.Date utilDate = cal.getTime();
+		Date currentDate = new Date(utilDate.getTime());
+		return find("select real "
+				+ 	"from Product p "
+				+ 	"inner join p.releases real "
+				+ 	"where real.date <= ?  and p = ?"
+				+ 	"order by real.date desc", currentDate, this).first();
 	}
 }
