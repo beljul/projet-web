@@ -2,9 +2,12 @@
 #{set title:'Ordonner les exigences' /}
 #{stylesheet 'requirement-order.css' /}
 <h1 class="page-header">Ordonner les exigences de ${session.productName}</h1>
+<div class="row">
+	<input id="save-order" class="btn btn-success btn-lg" type="submit" value="Sauvegarder l'ordre"/>
+</div>
 <ul id="sortable">
-	#{list r, as:'requirements'}
-		<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>${requirements.content}</li>
+	#{list r, as:'requirement'}
+		<li data-id="${requirement.getId()}" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>${requirement.content}</li>
 	#{/list}
 </ul>		
 #{script 'jquery-ui.min.js' /} #{script 'requirement-order.js' /}
