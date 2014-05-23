@@ -19,6 +19,9 @@ $("input#save-order").on("click",function(){
 		beforeSend:function(){
 		}
 	})
+	.success(function(){
+		window.location.replace("/Application/dashboard");
+	})
 	.done(function(d) {
 		console.log(d);
 	})

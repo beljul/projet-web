@@ -126,4 +126,8 @@ public class Product extends Model {
 	public boolean addRelease(Version r) {
 		return this.releases.add(r);
 	}
+	
+	public void register(){
+		this.save();
+	}
 }

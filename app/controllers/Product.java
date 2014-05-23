@@ -207,8 +207,18 @@ public class Product extends WrapperController {
 		redirect("/Application/dashboard");	    	 
 	}
 	
-	public static void changeRequirementsOrder(Map<Integer,Integer> requirements){
-		renderJSON(requirements);
+	public static void changeRequirementsOrder(Map<Long,Integer> requirements){
+		models.Product curProd = models.Product.getByName(session.get("productName"));		
+		for(models.Requirement r : curProd.getRequirements()){						
+			if(requirements.containsKey(r.getId())) {			
+				r.setPriority(requirements.get(r.getId()));
+				r.register();
+			}
+		}
+		curProd.register();
+		flash.put("message", "Les exigences ont été réordonnées");
+		flash.put("messageStyle", "validation");		
+		//renderJSON(requirements);
 	}
 
 }
