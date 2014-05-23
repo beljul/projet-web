@@ -128,6 +128,10 @@ public class Product extends Model {
 		return this.releases.add(r);
 	}
 
+	public void register(){
+		this.save();
+	}
+	
 	public Version getCurrentRelease() {
 		java.util.Calendar cal = java.util.Calendar.getInstance();
 		java.util.Date utilDate = cal.getTime();

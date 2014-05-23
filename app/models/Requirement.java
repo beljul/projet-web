@@ -49,6 +49,9 @@ public class Requirement extends Model {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+	public void setPriority(Integer priority){
+		this.priority = priority;
+	}
 	
 	
 }
