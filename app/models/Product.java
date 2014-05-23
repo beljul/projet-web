@@ -13,13 +13,14 @@ import play.db.jpa.Model;
 
 @Entity
 public class Product extends Model {
-	
+	//rgret
 	private String name;
 	private Date created;
 	private String description;
 	private int sprintDuration;
 
 	@OneToMany
+	@OrderBy("priority ASC")
 	private Set<Requirement> requirements;
 	
 	@OneToMany

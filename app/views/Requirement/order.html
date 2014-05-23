@@ -5,9 +5,57 @@
 <div class="row">
 	<input id="save-order" class="btn btn-success btn-lg" type="submit" value="Sauvegarder l'ordre"/>
 </div>
-<ul id="sortable">
+<div class="row">
+<div class="col-md-2 col-md-offset-1">
+<h3>Priorité 1</h3>
+<ul data-priority="1" class="sortable" id="sortable">
 	#{list r, as:'requirement'}
-		<li data-id="${requirement.getId()}" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>${requirement.content}</li>
+		#{if requirement.priority == 1}		
+		<li data-id="${requirement.getId()}" class="ui-state-default">${requirement.content}</li>
+		#{/if}
+	#{/list}
+</ul>
+</div>
+<div class="col-md-2">
+<h3>Priorité 2</h3>
+<ul data-priority="2" class="sortable" id="sortable">
+	#{list r, as:'requirement'}
+		#{if requirement.priority == 2}		
+		<li data-id="${requirement.getId()}" class="ui-state-default">${requirement.content}</li>
+		#{/if}
+	#{/list}
+</ul>
+</div>
+<div class="col-md-2">
+<h3>Priorité 3</h3>
+<ul data-priority="3" class="sortable" id="sortable">
+	#{list r, as:'requirement'}
+		#{if requirement.priority == 3}		
+		<li data-id="${requirement.getId()}" class="ui-state-default">${requirement.content}</li>
+		#{/if}
+	#{/list}
+</ul>
+</div>
+<div class="col-md-2">
+<h3>Priorité 4</h3>
+<ul  data-priority="4" class="sortable" id="sortable">
+	#{list r, as:'requirement'}
+		#{if requirement.priority == 4}		
+		<li data-id="${requirement.getId()}" class="ui-state-default">${requirement.content}</li>
+		#{/if}
+	#{/list}
+</ul>
+</div>
+<div class="col-md-2">
+<h3>Priorité 5</h3>
+<ul  data-priority="5"  class="sortable" id="sortable">
+	#{list r, as:'requirement'}
+		#{if requirement.priority == 5}		
+		<li data-id="${requirement.getId()}" class="ui-state-default">${requirement.content}</li>
+		#{/if}
 	#{/list}
 </ul>		
+</div>
+</div>
+
 #{script 'jquery-ui.min.js' /} #{script 'requirement-order.js' /}
