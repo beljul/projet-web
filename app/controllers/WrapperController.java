@@ -16,8 +16,8 @@ public class WrapperController extends Controller {
     static void getUserInfo() {
     	if(!session.isEmpty()) {
     		models.User connected = models.User.getByEmail(session.get("username"));
-    		if(connected != null && connected.getProducts() != null)  {
-    			Collection<Product> products = connected.getProducts().values();    	
+    		if(connected != null && connected.getProducts() != null)  {    			
+    			Collection<Product> products = connected.getProducts().values();    			   			    	
     			renderArgs.put("products", products);
     		}
     	}

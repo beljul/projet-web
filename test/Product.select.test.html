@@ -1,0 +1,11 @@
+#{selenium 'Accessibility'}
+	clearSession()
+	open('/')
+	type('username', 'bob1@gmail.com')
+	type('password', 'bobbob')
+	
+	clickAndWait('signin')	
+	clickAndWait('change-product-1')
+	
+	assertTextPresent('Nouveau produit courant :')		
+#{/selenium}

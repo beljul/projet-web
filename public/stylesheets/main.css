@@ -10,32 +10,35 @@ form input[type="submit"] {
 	margin-top:1em;
 }
 
-/* Styles pour les messages flashs */
-div.flash-alert, div.flash-erreur, div.flash-information, div.flash-validation{
-/*     position:absolute; */
-/*     bottom:0px; */
-/*     left:0px; */
+/* Styles for flash messages*/
+div.flash {
     z-index:210892;
     width:100%;
     padding-left:5%;
     padding-top:20px;
-    height:55px;
-    -moz-border-radius:0px 0px 5px 5px;
+    padding-bottom:20px;    
+    border-radius:5px 5px 5px 5px;
     color: #FFF;
 }
-div.flash-alert{
+div.flash.window {
+	position:absolute;
+    bottom:0px;
+    left:0px;
+    border-radius:5px 5px 0px 0px;
+}
+div.flash.alert{
     background-color: #ff782b;/*Pour les navigateurs ne reconnaissant pas le dégradé*/
     background-image:-moz-linear-gradient(#ffc76f,#ff782b); 
 }
-div.flash-erreur{
+div.flash.error{
     background-color: #fe1611;/*Pour les navigateurs ne reconnaissant pas le dégradé*/
     background-image:-moz-linear-gradient(#ff8686,#fe1611);
 }
-div.flash-validation{
+div.flash.validation{
     background-color: #55ae3b;/*Pour les navigateurs ne reconnaissant pas le dégradé*/
     background-image:-moz-linear-gradient(#ace469,#55ae3b);
 }
-div.flash-information{
+div.flash.information{
     background-color: #0031e9;/*Pour les navigateurs ne reconnaissant pas le dégradé*/
     background-image:-moz-linear-gradient(#52a9ff,#0031e9);
 }
