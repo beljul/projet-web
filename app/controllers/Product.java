@@ -195,7 +195,7 @@ public class Product extends WrapperController {
 	}
 	
 	/**
-	 * Set the current produt to the given one
+	 * Set the current product to the given one
 	 * @param id	
 	 */
 	public static void setCurrentProduct(Long id) {
