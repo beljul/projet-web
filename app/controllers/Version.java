@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import models.Sprint;
 import play.mvc.With;
 
 @With(Secure.class)
@@ -41,6 +42,12 @@ public class Version extends WrapperController {
 		version.setProduct(product);
 		version.register();
 		
+		product.addRelease(version);
+		product.save();
+		Product.setCurrentProduct(product.getId());
+
+		flash.put("message", "La release " + release + " a été créée");
+		flash.put("messageStyle", "validation");
 		redirect("/Application/dashboard");
 	}
 }

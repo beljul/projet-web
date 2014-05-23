@@ -21,7 +21,7 @@
             	   class="glyphicon glyphicon-file" 
             	   href="@{Requirement.add}"> Ajouter des exigences </a>
             </li>
-            <li><a class="glyphicon glyphicon-file" href="#"> Ajouter une release</a></li>
+            <li><a class="glyphicon glyphicon-file" href="@{Version.add}"> Ajouter une release</a></li>
             <li><a  class="glyphicon glyphicon-map-marker"href=""> Associer une exigence à ce sprint</a></li>
             <li><a class="glyphicon glyphicon-pencil" href=""> Ecrire un rapport</a></li>
           </ul>
@@ -46,8 +46,8 @@
 	          #{if session.productName}
 	          	<li><a href="#">${session.productName}</a></li>
 	          #{/if}
-	          	<li><a href="#">Release</a></li>
-	          	<li class="active">Sprint</li>
+	          	<li><a href="#">${session.releaseName}</a></li>
+	          	<li><a href="#">${session.sprintName}</a></li>
           </ol>
 		  #{doLayout /}	
         </div>
