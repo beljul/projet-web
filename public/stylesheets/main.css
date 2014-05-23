@@ -4,7 +4,7 @@ body {
 h1.page-header,h2.page-header {
 	margin-top:0 ;
 }
-form input[type="submit"] {
+input[type="submit"], button{
 	display:block;
 	margin:auto;	
 	margin-top:1em;
