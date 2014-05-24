@@ -11,7 +11,7 @@ $("input#save-order").on("click",function(){
 	});
 	var listReq = new Object();
 	listReq["requirements"] = requirementsId; 
-	console.log(requirementsId);
+
 	$.ajax({
 		url: "/Product/changeRequirementsOrder",
 		type:"POST",
