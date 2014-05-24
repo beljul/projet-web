@@ -146,5 +146,18 @@ public class Product extends Model {
 	public Set<Version> getReleases() {
 		return releases;
 	}
+
+	public Team getTeam() {
+		return team;
+	}
+
+	public User getScrumMaster() {
+		return scrumMaster;
+	}
+
+	public User getCustomer() {
+		return customer;
+	}
+	
 	
 }

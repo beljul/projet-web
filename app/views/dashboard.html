@@ -8,7 +8,7 @@
 #{script 'dashboard.js' /}
 
 
-<div class="row">
+<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
 	<div id="navigation" class="col-sm-3 col-md-2 sidebar">
 		<ul class="nav nav-tabs" id="tabs">
 			<li class="active"><a href="#menu" data-toggle="tab">Menu</a></li>
@@ -19,14 +19,14 @@
 				<ul class="nav nav-sidebar">
 					<li><a class="glyphicon glyphicon-th"
 						href="@{Application.dashboard}"> Tableau des taches</a></li>
-					<li class="${isNotPO}"><a id="requirement-add"
+					<li class="${session.isNotPO}"><a id="requirement-add"
 						class="glyphicon glyphicon-paperclip" href="@{Requirement.add}">
 							Ajouter des exigences </a></li>
 					<li><a class="active glyphicon glyphicon-pushpin" href="#">
 							Ajouter une tache</a></li>
-					<li><a id="version-add" class="glyphicon glyphicon-bookmark" href="@{Version.add}">
+					<li class="${session.isNotPO}"><a id="version-add" class="glyphicon glyphicon-bookmark" href="@{Version.add}">
 							Ajouter une release</a></li>
-					<li><a id="requirement-order" class="glyphicon glyphicon-sort"
+					<li class="${session.isNotDev}"><a id="requirement-order" class="glyphicon glyphicon-sort"
 						href="@{Requirement.order}"> Changer la priorité des exigences</a>
 					</li>
 					<li><a class="glyphicon glyphicon-map-marker" href="">
