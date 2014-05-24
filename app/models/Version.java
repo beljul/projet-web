@@ -2,6 +2,7 @@ package models;
 
 import java.sql.Date;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ public class Version extends Model {
 	private Date date;
 	
 	@OneToMany
+	@OrderBy("created ASC")
 	private Set<Sprint> sprints;
 	
 	@ManyToOne(targetEntity = Product.class)
@@ -27,7 +29,7 @@ public class Version extends Model {
 		super();
 		this.name = name;
 		this.date = date;
-		this.sprints = new HashSet<Sprint>();
+		this.sprints = new LinkedHashSet<Sprint>();
 	}
 
 	public void register() {
@@ -69,4 +71,10 @@ public class Version extends Model {
 				+ 	"where sp.created <= ?  and v = ? "
 				+ 	"order by sp.created desc", currentDate, this).first();
 	}
+
+	public Set<Sprint> getSprints() {
+		return sprints;
+	}
+	
+	
 }
