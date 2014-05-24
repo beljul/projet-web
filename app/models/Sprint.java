@@ -63,4 +63,14 @@ public class Sprint extends Model {
 		this.finished = finished;
 	}
 	
+	static public Sprint getById(Long id) {
+		return find("byId", id).first();
+	}
+
+	@Override
+	public String toString() {
+		return "Sprint " + this.id + " - " + this.created;
+	}
+	
+	
 }

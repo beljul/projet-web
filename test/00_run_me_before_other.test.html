@@ -223,6 +223,14 @@
 	assertTextPresent('Nouvelle(s) exigence(s) ajoutée(s)')
 	
 	#Requirements : requirement2 - product2
+	clickAndWait('logout')
+	
+	clearSession()
+	type('username', 'bob2@gmail.com')
+	type('password', 'bobbob')
+	clickAndWait('signin')
+	assertTextPresent('Welcome bob2@gmail.com !')	
+	
 	clickAndWait('change-product-2')
 	assertTextPresent('Nouveau produit courant :')
 	

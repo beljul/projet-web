@@ -262,7 +262,7 @@ public class Product extends WrapperController {
 		if(release != null) {
 			session.put("releaseName", release.getName());
 			models.Sprint sprint = release.getCurrentSprint();
-			session.put("sprintName", "Sprint " + sprint.getId() + " - " + sprint.getCreated());
+			session.put("sprintName", sprint);
 		}
 		else {
 			session.put("releaseName", "");
@@ -280,9 +280,13 @@ public class Product extends WrapperController {
 			}
 		}
 		curProd.register();
-		flash.put("message", "Les exigences ont été réordonnées");
-		flash.put("messageStyle", "validation");		
+		HTMLFlash.contextual("Les exigences ont été réordonnées", HTMLFlash.VALIDATION, false);
 		//renderJSON(requirements);
+	}
+	
+	public static void setCurrentReleaseSprint(String releaseName, Long sprintID) {
+		session.put("releaseName", releaseName);
+		session.put("sprintName", models.Sprint.getById(sprintID));
 	}
 
 }

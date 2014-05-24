@@ -53,12 +53,12 @@
 				<div class="tree">
 					<ul>
 						#{list productContent.keySet(), as:'key'}
-						<li><span class="glyphicon glyphicon-bookmark">
+						<li><span class="glyphicon glyphicon-bookmark release" data-release="${key.name}">
 							${key.name}</span>
 							#{list productContent.get(key), as:'value'}
 							<ul>
 								<li title="${value.created}">
-									<span class="glyphicon glyphicon-road"> Sprint ${value_index}</span>
+									<span class="glyphicon glyphicon-road sprint" data-sprint="${value.id}" data-sprintCurID="${value_index}"> Sprint ${value_index}</span>
 								</li>
 							</ul>
 							#{/list}
@@ -74,8 +74,8 @@
 		<ol class="breadcrumb">
 			#{if session.productName}
 			<li><a href="#">${session.productName}</a></li> #{/if}
-			<li><a href="#">${session.releaseName}</a></li>
-			<li><a href="#">${session.sprintName}</a></li>
+			<li><a id="releaseSelected" href="#">${session.releaseName}</a></li>
+			<li><a id="sprintSelected" href="#">${session.sprintName}</a></li>
 		</ol>
 		#{doLayout /}
 	</div><!-- End of the scrum workspace -->
