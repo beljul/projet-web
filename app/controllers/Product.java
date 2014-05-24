@@ -234,6 +234,15 @@ public class Product extends WrapperController {
     	else {
     		session.put("isNotPO", "");
     	}
+    	
+    	// To verify if current user is the current product's scrum master
+    	if(!email.equals(emailSM)) {
+    		session.put("isNotSM", "disabled");
+    	}
+    	else {
+    		session.put("isNotSM", "");
+    	}
+    	
     	/* 
     	 * To verify is current user is a developer of current product
     	 * He has to be in the team

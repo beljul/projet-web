@@ -38,6 +38,7 @@ public class WrapperController extends Controller {
     	else {
     		session.put("isNotPO", "disabled");
     		session.put("isNotDev", "disabled");
+    		session.put("isNotSM", "disabled");
     	}
     	renderArgs.put("productContent", productContent);
     }    
