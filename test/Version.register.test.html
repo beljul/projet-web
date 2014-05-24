@@ -1,0 +1,33 @@
+#{selenium 'Accessibility'}
+	clearSession()
+	open('/')
+		
+	type('username', 'bob1@gmail.com')
+	type('password', 'bobbob')		
+	 	
+	clickAndWait('signin')
+	clickAndWait('change-product-1')	
+	clickAndWait('version-add')	
+	
+	assertTextPresent('Ajouter une release à')
+		
+#{/selenium}
+#{selenium 'No value specified'}
+	open('/')
+	clickAndWait('change-product-1')
+	clickAndWait('version-add')
+	clickAndWait('requirement-register')
+	verifyTextPresent('release (requis)')	
+#{/selenium}
+#{selenium 'Record the release'}
+	open('/')
+	clickAndWait('change-product-1')
+	clickAndWait('version-add')
+	type("name", "maRelease")
+	clickAndWait('requirement-register')
+	verifyTextPresent('La release maRealase a été créée')	
+#{/selenium}
+#{selenium 'The release appeares in the tree'}
+	open('/')	
+	verifyTextPresent('maRelease')	
+#{/selenium}

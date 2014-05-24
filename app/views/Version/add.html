@@ -8,36 +8,38 @@
 		<div class="input-group">
 			<label for="req1">Nom de la release</label> <input id="release"
 				name="release" type="text" class="form-control"
-				placeholder="Nom de la release" value="" />
+				placeholder="Nom de la release" value="${release}" />
 		</div>
 	</div>
 </div>
 <div class="row">
 	<div class="col-lg-6">
-		<label for="req1">Nombre de sprints</label> <select name="nbSprints"
+		<label for="req1">Nombre de sprints</label> 
+		<select name="nbSprints"
 			class="slider-nbSprints form-control input-xs" id="nbSprints">
-			<option>1</option>
-			<option>2</option>
-			<option selected="selected">3</option>
-			<option>4</option>
-			<option>5</option>
-			<option>6</option>
-			<option>7</option>
-			<option>8</option>
-			<option>9</option>
-			<option>10</option>
+			#{list items:1..10, as:'i'}
+				#{if i == nbSprints}
+					<option selected="selected">
+				#{/if}
+				#{else}
+					<option>
+				#{/else}
+    				${i}
+    			</option>
+			#{/list}
 		</select>
 	</div>
 </div>
 <div class="row">
 	<div id="submit" class="col-lg-12">
-		<input type="submit" class="btn-lg btn btn-success"
+		<input id="requirement-register" type="submit" class="btn-lg btn btn-success"
 			value="Nouvelle release" />
 	</div>
 </div>
 #{ifErrors}
 <div class="alert alert-danger">
-	The following fields are invalid : #{errors} <label>${error},</label>
+	The following fields are invalid : 
+	#{errors} <label>${error},</label>
 	#{/errors}
 </div>
 #{/ifErrors} #{/form}
