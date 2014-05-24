@@ -33,6 +33,7 @@ public class Version extends WrapperController {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(created);
 		
+		System.out.println("*****************************");
 		models.Version version = new models.Version(release, created);
 		for (int i = 0; i < nbSprints; i++) {
 			calendar.add(Calendar.DATE, sprintDuration);
@@ -43,7 +44,10 @@ public class Version extends WrapperController {
 			version.save();
 			sprint.register();
 			version.addSprint(sprint);
+			System.out.println(sprint.getCreated());
 		}
+		System.out.println("*****************************");
+
 		version.setProduct(product);
 		version.register();
 		

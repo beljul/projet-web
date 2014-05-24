@@ -142,4 +142,9 @@ public class Product extends Model {
 				+ 	"where real.date <= ?  and p = ?"
 				+ 	"order by real.date desc", currentDate, this).first();
 	}
+
+	public Set<Version> getReleases() {
+		return releases;
+	}
+	
 }

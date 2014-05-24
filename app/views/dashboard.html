@@ -3,8 +3,17 @@
 #{stylesheet 'dashboard.css' /}
 #{script 'jquery-ui.min.js' /}
 #{stylesheet 'sticker.css' /}
+#{stylesheet 'tree.css' /}
+#{script 'tree.js' /}
+#{script 'dashboard.js' /}
 
-<div class="container-fluid">
+<ul class="nav nav-tabs" id="tabs">
+	<li class="active"><a href="#menu" data-toggle="tab">Menu</a></li>
+	  <li><a href="#tree" data-toggle="tab">Arbre du produit</a></li>
+</ul>
+
+<div class="tab-content">
+<div class="tab-pane active" id="menu">
       <div class="row">
         <div id="navigation" class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
@@ -20,11 +29,11 @@
             	   class="glyphicon glyphicon-sort" 
             	   href="@{Requirement.order}"> Changer la priorité des exigences</a>
             </li>            
-            <li><a  class="glyphicon glyphicon-map-marker"href=""> Associer une exigence à ce sprint</a></li>
+            <li><a  class="glyphicon glyphicon-map-marker" href=""> Associer une exigence à ce sprint</a></li>
             <li><a class="glyphicon glyphicon-pencil" href=""> Ecrire un rapport</a></li>
             <li><a class="glyphicon glyphicon-eye-open" href="#"> Consulter rapport</a></li>                        
             <li><a class="glyphicon glyphicon-stats" href=""> Statistiques</a></li>
-          </ul>          
+          </ul>
           #{if flash.message}
             <!-- Flash messages -->
          	 #{ifnot flash.messageWindow}    		
@@ -48,6 +57,27 @@
           </ol>
 		  #{doLayout /}	
         </div>
-        #{script 'sticker.js' /}
       </div>
+</div>
+
+<div class="tab-pane" id="tree">
+#{if productContent}
+  <div class="tree well">
+  	<ul>
+      	#{list productContent.keySet(), as:'key'}
+      		<li>
+          		<span><i class="icon-folder-open"></i>${key.name}</span>
+          		#{list productContent.get(key), as:'value'}
+          			<ul>
+          				<li title="${value.created}">
+          					<span><i class="icon-minus-sign"></i>Sprint ${value.id}</span>
+          				</li>
+          			</ul>
+          		#{/list}
+      		</li>
+      	#{/list}
+  	</div>
+ #{/if} 
+</div>
+
 </div>
