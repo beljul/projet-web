@@ -16,7 +16,7 @@
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane active" id="menu">
-				<ul id="scrum-menu" class="nav nav-sidebar">
+				<ul class="nav nav-sidebar">
 					<li><a class="glyphicon glyphicon-th"
 						href="@{Application.dashboard}"> Tableau des taches</a></li>
 					<li class="${session.isNotPO}"><a id="requirement-add"
@@ -38,15 +38,6 @@
 					<li><a class="glyphicon glyphicon-stats" href="">
 							Statistiques</a></li>
 				</ul>
-				#{if flash.message}
-				<!-- Flash messages -->
-				#{ifnot flash.messageWindow}
-				<div id="message-flash"
-					class="flash ${flash.messageStyle} #{ifnot flash.messageClosable}auto-hide #{/ifnot}">
-					#{if flash.messageClosable} <a href="#" class="flash-close">x</a>
-					#{/if} ${flash.message}
-				</div>
-				#{/ifnot} #{/if}
 			</div><!-- End of menu tab -->
 			<div class="tab-pane" id="tree">
 				#{if productContent}
@@ -69,6 +60,15 @@
 				#{/if}
 			</div><!-- End of tree tab -->
 		</div><!-- End of the tab-content -->
+		#{if flash.message}
+		<!-- Flash messages -->
+		#{ifnot flash.messageWindow}
+		<div id="message-flash"
+			class="flash ${flash.messageStyle} #{ifnot flash.messageClosable}auto-hide #{/ifnot}">
+			#{if flash.messageClosable} <a href="#" class="flash-close">x</a>
+			#{/if} ${flash.message}
+		</div>
+		#{/ifnot} #{/if}
 	</div><!-- End of the navigation column -->
 	<div class="col-sm-9 col-md-10 main">
 		<ol class="breadcrumb">

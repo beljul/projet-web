@@ -8,20 +8,32 @@ $(function(){
  */
 function __HTMLFlash_initAnimation(ajax){
 	var flash;
-	if(ajax)
+	if(!ajax)
 		flash=$("div.flash");
 	else
 		flash=$("div.flash.ajax");
 	console.log(flash);
     if(flash.length > 0 ){
-        if(flash.hasClass("auto-hide"))
-            flash.hide().slideDown(1000).delay(5000).slideUp(1000);
+        if(flash.hasClass("auto-hide")){
+            flash.hide().slideDown(1000).delay(5000).slideUp({
+            	duration:1000,
+            	complete:function(){
+            				flash.remove();
+            			}
+            });                   
+        }
         else{
             flash.hide().slideDown(1000);
             flash.find('.flash-close').click(function(e){
                 e.preventDefault();
-                flash.slideUp(1000);
-            })
+                flash.slideUp({
+                	duration:1000,
+                	complete:function(){
+                		flash.remove();
+                	}
+                });
+                
+            });
        }
     }
 }
@@ -35,7 +47,7 @@ function __HTMLFlash_initAnimation(ajax){
  * @return
  */
 function HTMLFlash_contextual(message, style, closable){
-	__HTMLFlash_init(message, style, closable, window, $('ul#scrum-menu'));
+	__HTMLFlash_init(message, style, closable, window, $('#navigation'));
 }
 
 /**
@@ -60,11 +72,11 @@ function HTMLFlash_screen(message, style, closable){
  * @return
  */
 function __HTMLFlash_init(message, style, closable, window, subject) {
-	closable = closable===true?'':'auto-hide';
+	closableCSS = closable===true?'':'auto-hide';
 	window = window === true?'window':'';
 	var html =	'<div class="ajax flash ' + window + ' '
-					+ style + ' ' + closable + '">'
-    if(closable) {
+					+ style + ' ' + closableCSS + '">'
+    if(closable === true) {
     	html += '<a href="#" class="flash-close">x</a>';
     }	 
 	html += message + '</div>';

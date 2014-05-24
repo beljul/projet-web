@@ -4,15 +4,15 @@ public abstract class HTMLFlash {
 	/**
 	 * Definie message styles available
 	 */
-	public static final FlashStyle VALIDATION = FlashStyle.validation;
-	public static final FlashStyle ERROR = FlashStyle.error;
-	public static final FlashStyle WARNING = FlashStyle.warning;
-	public static final FlashStyle INFORMATION = FlashStyle.information;
+	public static final FlashStyle VALIDATION = FlashStyle.flashValidation;
+	public static final FlashStyle ERROR = FlashStyle.flashError;
+	public static final FlashStyle WARNING = FlashStyle.flashWarning;
+	public static final FlashStyle INFORMATION = FlashStyle.flashInformation;
 	public enum FlashStyle {
-		  validation,
-		  error,
-		  warning,
-		  information;	
+		  flashValidation,
+		  flashError,
+		  flashWarning,
+		  flashInformation;	
 		  public String toString() {
 			return this.name();			  
 		  }

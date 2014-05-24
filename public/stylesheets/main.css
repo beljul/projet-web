@@ -26,21 +26,21 @@ div.flash.window {
     left:0px;
     border-radius:5px 5px 0px 0px;
 }
-div.flash.alert{
+div.flash.flashAlert{
     background-color: #ff782b;/*Pour les navigateurs ne reconnaissant pas le dégradé*/
-    background-image:-moz-linear-gradient(#ffc76f,#ff782b); 
+    background-image:-moz-linear-gradient(#ffc76f,#FFA673); 
 }
-div.flash.error{
+div.flash.flashError{
     background-color: #fe1611;/*Pour les navigateurs ne reconnaissant pas le dégradé*/
     background-image:-moz-linear-gradient(#ff8686,#fe1611);
 }
-div.flash.validation{
+div.flash.flashValidation{
     background-color: #55ae3b;/*Pour les navigateurs ne reconnaissant pas le dégradé*/
     background-image:-moz-linear-gradient(#ace469,#55ae3b);
 }
-div.flash.information{
-    background-color: #0031e9;/*Pour les navigateurs ne reconnaissant pas le dégradé*/
-    background-image:-moz-linear-gradient(#52a9ff,#0031e9);
+div.flash.flashInformation{
+    background-color: #00B7E9;/*Pour les navigateurs ne reconnaissant pas le dégradé*/
+    background-image:-moz-linear-gradient(#52a9ff,#00B7E9);
 }
 a.flash-close{
     position:relative;
