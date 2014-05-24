@@ -12,7 +12,8 @@ import play.mvc.With;
 public class Version extends WrapperController {
 	
 	public static void add() {
-		render();
+		int nbSprints = 4;
+		render(nbSprints);
 	}
 	
 	public static void register(String release, Integer nbSprints) {
