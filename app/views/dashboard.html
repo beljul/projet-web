@@ -1,83 +1,82 @@
 #{extends 'main.html' /}
 #{set title:'My dashboard' /}
-#{stylesheet 'dashboard.css' /}
-#{script 'jquery-ui.min.js' /}
+#{stylesheet 'dashboard.css' /} 
+#{script 'jquery-ui.min.js' /} 
 #{stylesheet 'sticker.css' /}
-#{stylesheet 'tree.css' /}
+#{stylesheet 'tree.css' /} 
 #{script 'tree.js' /}
 #{script 'dashboard.js' /}
 
-<ul class="nav nav-tabs" id="tabs">
-	<li class="active"><a href="#menu" data-toggle="tab">Menu</a></li>
-	  <li><a href="#tree" data-toggle="tab">Arbre du produit</a></li>
-</ul>
 
-<div class="tab-content">
-<div class="tab-pane active" id="menu">
-      <div class="row">
-        <div id="navigation" class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-          	<li><a class="glyphicon glyphicon-th" href="@{Application.dashboard}"> Tableau des taches</a></li>
-            <li class="${isNotPO}">
-            	<a id="requirement-add"
-            	   class="glyphicon glyphicon-paperclip" 
-            	   href="@{Requirement.add}"> Ajouter des exigences </a>
-            </li>
-            <li><a class="active glyphicon glyphicon-pushpin" href="#"> Ajouter une tache</a></li>
-            <li><a class="glyphicon glyphicon-file" href="@{Version.add}"> Ajouter une release</a></li>
-            <li><a id="requirement-order"
-            	   class="glyphicon glyphicon-sort" 
-            	   href="@{Requirement.order}"> Changer la priorité des exigences</a>
-            </li>            
-            <li><a  class="glyphicon glyphicon-map-marker" href=""> Associer une exigence à ce sprint</a></li>
-            <li><a class="glyphicon glyphicon-pencil" href=""> Ecrire un rapport</a></li>
-            <li><a class="glyphicon glyphicon-eye-open" href="#"> Consulter rapport</a></li>                        
-            <li><a class="glyphicon glyphicon-stats" href=""> Statistiques</a></li>
-          </ul>
-          #{if flash.message}
-            <!-- Flash messages -->
-         	 #{ifnot flash.messageWindow}    		
-			<div id="message-flash" 
-				 class="flash ${flash.messageStyle} #{ifnot flash.messageClosable}auto-hide #{/ifnot}">
-				 #{if flash.messageClosable}
-				 <a href="#" class="flash-close">x</a>
-				 #{/if}
-				 ${flash.message}				 
-			</div>    	
-			#{/ifnot}
-    	  #{/if}
-        </div>
-        <div class="col-sm-9 col-md-10 main">
-          <ol class="breadcrumb">
-	          #{if session.productName}
-	          	<li><a href="#">${session.productName}</a></li>
-	          #{/if}
-	          	<li><a href="#">${session.releaseName}</a></li>
-	          	<li><a href="#">${session.sprintName}</a></li>
-          </ol>
-		  #{doLayout /}	
-        </div>
-      </div>
-</div>
-
-<div class="tab-pane" id="tree">
-#{if productContent}
-  <div class="tree well">
-  	<ul>
-      	#{list productContent.keySet(), as:'key'}
-      		<li>
-          		<span><i class="icon-folder-open"></i>${key.name}</span>
-          		#{list productContent.get(key), as:'value'}
-          			<ul>
-          				<li title="${value.created}">
-          					<span><i class="icon-minus-sign"></i>Sprint ${value.id}</span>
-          				</li>
-          			</ul>
-          		#{/list}
-      		</li>
-      	#{/list}
-  	</div>
- #{/if} 
-</div>
-
+<div class="row">
+	<div id="navigation" class="col-sm-3 col-md-2 sidebar">
+		<ul class="nav nav-tabs" id="tabs">
+			<li class="active"><a href="#menu" data-toggle="tab">Menu</a></li>
+			<li><a href="#tree" data-toggle="tab">Arbre produit</a></li>
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane active" id="menu">
+				<ul class="nav nav-sidebar">
+					<li><a class="glyphicon glyphicon-th"
+						href="@{Application.dashboard}"> Tableau des taches</a></li>
+					<li class="${isNotPO}"><a id="requirement-add"
+						class="glyphicon glyphicon-paperclip" href="@{Requirement.add}">
+							Ajouter des exigences </a></li>
+					<li><a class="active glyphicon glyphicon-pushpin" href="#">
+							Ajouter une tache</a></li>
+					<li><a class="glyphicon glyphicon-bookmark" href="@{Version.add}">
+							Ajouter une release</a></li>
+					<li><a id="requirement-order" class="glyphicon glyphicon-sort"
+						href="@{Requirement.order}"> Changer la priorité des exigences</a>
+					</li>
+					<li><a class="glyphicon glyphicon-map-marker" href="">
+							Associer une exigence à ce sprint</a></li>
+					<li><a class="glyphicon glyphicon-pencil" href=""> Ecrire
+							un rapport</a></li>
+					<li><a class="glyphicon glyphicon-eye-open" href="#">
+							Consulter rapport</a></li>
+					<li><a class="glyphicon glyphicon-stats" href="">
+							Statistiques</a></li>
+				</ul>
+				#{if flash.message}
+				<!-- Flash messages -->
+				#{ifnot flash.messageWindow}
+				<div id="message-flash"
+					class="flash ${flash.messageStyle} #{ifnot flash.messageClosable}auto-hide #{/ifnot}">
+					#{if flash.messageClosable} <a href="#" class="flash-close">x</a>
+					#{/if} ${flash.message}
+				</div>
+				#{/ifnot} #{/if}
+			</div><!-- End of menu tab -->
+			<div class="tab-pane" id="tree">
+				#{if productContent}
+				<div class="tree">
+					<ul>
+						#{list productContent.keySet(), as:'key'}
+						<li><span class="glyphicon glyphicon-bookmark">
+							${key.name}</span>
+							#{list productContent.get(key), as:'value'}
+							<ul>
+								<li title="${value.created}">
+									<span class="glyphicon glyphicon-road"> Sprint ${value_index}</span>
+								</li>
+							</ul>
+							#{/list}
+						</li>
+						#{/list}
+					</ul>
+				</div>
+				#{/if}
+			</div><!-- End of tree tab -->
+		</div><!-- End of the tab-content -->
+	</div><!-- End of the navigation column -->
+	<div class="col-sm-9 col-md-10 main">
+		<ol class="breadcrumb">
+			#{if session.productName}
+			<li><a href="#">${session.productName}</a></li> #{/if}
+			<li><a href="#">${session.releaseName}</a></li>
+			<li><a href="#">${session.sprintName}</a></li>
+		</ol>
+		#{doLayout /}
+	</div><!-- End of the scrum workspace -->
 </div>
