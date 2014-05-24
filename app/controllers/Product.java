@@ -27,6 +27,7 @@ public class Product extends WrapperController {
 	public static void create() {
 		render();
 	}
+	
 	/**
 	 * Check that all fields have been specified
 	 * @param name
@@ -215,6 +216,39 @@ public class Product extends WrapperController {
 		models.Product p = models.Product.getById(id);
 		session.put("productName", p.getName());
 		
+		String email = session.get("username");
+    	String emailPO = new String();
+    	String emailSM = new String();
+    	String emailCust = new String();
+    	Set<String> emailTeam = new HashSet<String>();
+    	emailPO = p.getProductOwner().getEmail();
+    	emailSM = p.getScrumMaster().getEmail();
+    	emailCust = p.getCustomer().getEmail();
+    	for (models.User user : p.getTeam().getMembers()) {
+    		emailTeam.add(user.getEmail());
+		}
+    	// To verify if current user is the current product's product owner
+    	if(!email.equals(emailPO)) {
+    		session.put("isNotPO", "disabled");
+    	}
+    	else {
+    		session.put("isNotPO", "");
+    	}
+    	/* 
+    	 * To verify is current user is a developer of current product
+    	 * He has to be in the team
+    	 * and he can't be the scrum master, product owner or customer in same time
+    	 */
+    	if(!emailTeam.contains(email) ||
+    	   email.equals(emailPO) ||
+    	   email.equals(emailSM) ||
+    	   email.equals(emailCust)) {
+    		session.put("isNotDev", "disabled");
+    	}
+    	else {
+    		session.put("isNotDev", "");
+    	}
+    	
 		models.Version release = p.getCurrentRelease();
 		if(release != null) {
 			session.put("releaseName", release.getName());

@@ -8,7 +8,7 @@ public class Security extends Secure.Security {
 		return models.User.connect(email, password) != null;
 	}			
 	static void onAuthenticated(){
-		flash.put("message", "Bienvenue sur scrumnch");
+		HTMLFlash.contextual("Bienvenue sur scrumnch", HTMLFlash.INFORMATION, false);
 		Application.dashboard();
 		
 	}

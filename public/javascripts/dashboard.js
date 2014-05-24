@@ -1,10 +1,10 @@
 $(function () {
-//	$('#tabs a:last').tab('show');
 	$('#tabs a').click(function (e) {
 		e.preventDefault();
 		$(this).tab('show');
-		//alert('coucou');
 	})
+	
+	$('li.disabled a').attr("href", "#");
 })
   
 
