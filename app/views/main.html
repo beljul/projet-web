@@ -23,7 +23,7 @@
         <!-- Flash messages -->
         #{if flash.messageWindow}    		
 		<div id="message-flash" 
-			 class="flash ${flash.messageStyle} #{ifnot flash.messageClosable}auto-hide #{/ifnot}">
+			 class="flash window ${flash.messageStyle} #{ifnot flash.messageClosable}auto-hide #{/ifnot}">
 			 #{if flash.messageClosable}
 			 <a href="#" class="flash-close">x</a>
 			 #{/if}

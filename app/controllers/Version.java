@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import models.Sprint;
+import play.libs.Crypto.HashType;
 import play.mvc.With;
 
 @With(Secure.class)
@@ -15,13 +16,17 @@ public class Version extends WrapperController {
 	}
 	
 	public static void register(String release, Integer nbSprints) {
-		System.out.println(release);
-		System.out.println(nbSprints);
+		validation.required(release);
+		validation.min(nbSprints, 1).message("Au moins 1 sprint par release");
+		validation.max(nbSprints, 10).message("Maximum 10 sprints par release");
+		if(validation.hasErrors()){
+			renderTemplate("Version/add.html",release, nbSprints);
+		}
 		String productName = session.get("productName");
 		models.Product product = models.Product.getByName(productName);
 		Integer sprintDuration = product.getSprintDuration();
 		
-		// Calcule de la date de début et de fin
+		// Build the end and the begin date of the release
 		java.util.Calendar cal = java.util.Calendar.getInstance();
 		java.util.Date utilDate = cal.getTime();
 		Date created = new Date(utilDate.getTime());
@@ -44,10 +49,12 @@ public class Version extends WrapperController {
 		
 		product.addRelease(version);
 		product.save();
-		Product.setCurrentProduct(product.getId());
-
-		flash.put("message", "La release " + release + " a été créée");
-		flash.put("messageStyle", "validation");
+		Product.__setCurrentProduct(product.getId());
+		
+		//Prepare a flash message for the next request
+		HTMLFlash.contextual("La release " + release + " a été créée",
+						 HTMLFlash.VALIDATION, false);
+		
 		redirect("/Application/dashboard");
 	}
 }

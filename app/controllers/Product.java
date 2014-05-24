@@ -196,9 +196,22 @@ public class Product extends WrapperController {
 	
 	/**
 	 * Set the current product to the given one
+	 * and initalize a HTML Flash message
 	 * @param id	
 	 */
 	public static void setCurrentProduct(Long id) {
+		models.Product p = Product.__setCurrentProduct(id);
+		HTMLFlash.contextual("Nouveau produit courant : " + p.getName(),
+							HTMLFlash.INFORMATION, false);
+		redirect("/Application/dashboard");	    	 
+	}
+	
+	/**
+	 * Perform the product change in the session variable
+	 * @param id
+	 * @return
+	 */
+	static models.Product __setCurrentProduct(Long id){
 		models.Product p = models.Product.getById(id);
 		session.put("productName", p.getName());
 		
@@ -212,11 +225,7 @@ public class Product extends WrapperController {
 			session.put("releaseName", "");
 			session.put("sprintName", "");
 		}
-		
-		flash.put("message", "Nouveau produit courant : " + p.getName());
-		flash.put("messageStyle", "information");
-//		flash.put("messageWindow", "true");
-		redirect("/Application/dashboard");	    	 
+		return p;
 	}
 	
 	public static void changeRequirementsOrder(Map<Long,Integer> requirements){

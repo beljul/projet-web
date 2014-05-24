@@ -19,7 +19,9 @@ public class User extends WrapperController {
 	    validation.required("password", firstPassword);
 	    validation.minSize(firstPassword, 6);
 	    validation.required("password check",secondPassword);
-	    validation.email(email);  
+	    validation.email(email);
+	    
+	    
 	    play.data.validation.Error e = validation.equals("password", firstPassword, "password verif", secondPassword).error;
 
 	     if(validation.hasErrors()) {

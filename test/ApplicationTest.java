@@ -8,10 +8,10 @@ import play.mvc.Http.*;
 
 public class ApplicationTest extends FunctionalTest {
 
-	@Before
-	public void setUp() {
-	    Fixtures.deleteAll();
-	}
+//	@Before
+//	public void setUp() {
+//	    Fixtures.deleteAll();
+//	}
 	
     @Test
     public void requireAuthentication() {
