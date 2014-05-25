@@ -76,6 +76,10 @@ public class Sprint extends Model {
 	public String toString() {
 		return "Sprint " + this.id + " - " + this.created;
 	}
+
+	public static Sprint getByCreated(Date created) {
+		return find("byCreated", created).first();
+	}
 	
 	
 }

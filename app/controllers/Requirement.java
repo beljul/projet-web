@@ -55,11 +55,21 @@ public class Requirement extends WrapperController {
 	}
 	
 	public static void assign() {
+		// Get requirements of current sprint
+		Set<models.Requirement> sprintRequirements;
+		if(!session.get("sprintId").isEmpty()) {
+			Long sprintId = Long.parseLong(session.get("sprintId"));
+			sprintRequirements = models.Sprint.getById(sprintId).getRequirements();
+		}
+		else {
+			sprintRequirements = new HashSet<models.Requirement>();
+		}
+		
 		// Get requirements of current product
 		String productName = session.get("productName");
 		models.Product product = models.Product.getByName(productName);
 		Set<models.Requirement> requirementsUnassigned = product.getRequirements();
-		
+
 		// Delete requirements if they are already assigned to a sprint
 		for (models.Version v : product.getReleases()) {
 			for (models.Sprint sp : v.getSprints()) {
@@ -67,6 +77,6 @@ public class Requirement extends WrapperController {
 			}
 		}
 		
-		render(requirementsUnassigned);
+		render(requirementsUnassigned, sprintRequirements);
 	}
 }

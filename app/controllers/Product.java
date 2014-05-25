@@ -263,10 +263,13 @@ public class Product extends WrapperController {
 			session.put("releaseName", release.getName());
 			models.Sprint sprint = release.getCurrentSprint();
 			session.put("sprintName", sprint);
+			session.put("sprintId", sprint.getId());
 		}
 		else {
 			session.put("releaseName", "");
 			session.put("sprintName", "");
+			session.put("sprintId", "");
+
 		}
 		return p;
 	}
@@ -286,6 +289,7 @@ public class Product extends WrapperController {
 	public static void setCurrentReleaseSprint(String releaseName, Long sprintID) {
 		session.put("releaseName", releaseName);
 		session.put("sprintName", models.Sprint.getById(sprintID));
+		session.put("sprintId", sprintID);
 	}
 
 }
