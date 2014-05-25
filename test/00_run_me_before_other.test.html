@@ -284,4 +284,23 @@
 	clickAndWait('valid-req')
 	assertTextPresent('Nouvelle(s) exigence(s) ajoutée(s)')
 	
+	# Release : AER1 - product1
+	clickAndWait('logout')
+	
+	clearSession()
+	type('username', 'bob1@gmail.com')
+	type('password', 'bobbob')
+	clickAndWait('signin')
+	assertTextPresent('Welcome bob1@gmail.com !')	
+	clickAndWait('change-product-1')
+	
+	clickAndWait('version-add')
+	type('release', 'AER1')
+	clickAndWait('version-register')
+	assertTextPresent('La release AER1 a été créée')
+	
+	clickAndWait('version-add')
+	type('release', 'AER2')
+	clickAndWait('version-register')
+	assertTextPresent('La release AER2 a été créée')
 #{/selenium}
