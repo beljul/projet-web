@@ -86,28 +86,6 @@
 	assertTextPresent('The following fields are invalid')
 #{/selenium}
 
-<!--#{selenium 'Test fail mail 2'}
-	clearSession()
-	open('/')
-	
-	assertTextPresent('Sign up')
-	assertTextPresent('Email')
-	assertTextPresent('Name')
-	assertTextPresent('First name')
-	assertTextPresent('Password')
-	assertTextPresent('Password Verification')
-	
-	type('email', '!walter#white~@gmail.com')
-	type('name', 'white')
-	type('firstname', 'walter')
-	type('firstPassword', 'rootroot')
-	type('secondPassword', 'rootroot')
-	
-	clickAndWait('signup')
-	
-	assertTextPresent('The following fields are invalid')
-#{/selenium}-->
-
 #{selenium 'Test fail mail 3'}
 	clearSession()
 	open('/')

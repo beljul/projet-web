@@ -1,4 +1,22 @@
-#{selenium 'Test connect'}
+#{fixture delete:'all', load:'data/user.yml'/}
+#{selenium 'Bad User login'}
+
+	clearSession()
+	open('/')
+	### Test that the user can log in
+	assertTextPresent('Sign in')
+	assertTextPresent('E-mail')
+	assertTextPresent('Password')
+	
+	type('username', 'bob1@gmail.com')
+	type('password', 'bob')
+	
+	clickAndWait('signin')
+	
+	assertTextPresent('Oops')		
+#{/selenium}
+#{selenium 'User login'}
+
 	clearSession()
 	open('/')
 	### Test that the user can log in

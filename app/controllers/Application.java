@@ -10,7 +10,7 @@ import models.Product;
 
 @With(Secure.class)
 public class Application extends WrapperController {
-
+//
     public static void index() {
         dashboard();
     }
