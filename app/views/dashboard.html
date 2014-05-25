@@ -74,8 +74,8 @@
 		<ol class="breadcrumb">
 			#{if session.productName}
 			<li><a href="#">${session.productName}</a></li> #{/if}
-			<li><a id="releaseSelected" href="#">${session.releaseName}</a></li>
-			<li><a id="sprintSelected" href="#">${session.sprintName}</a></li>
+			<li><a class="scrumch-curRelease" href="#">${session.releaseName}</a></li>
+			<li><a class="scrumch-curSprint" href="#">${session.sprintName}</a></li>
 		</ol>
 		#{doLayout /}
 	</div><!-- End of the scrum workspace -->
