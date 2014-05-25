@@ -1,13 +1,14 @@
-#{selenium 'Test fail pwd 1'}
+#{fixture delete:'all', load:'data/user.yml'/}
+#{selenium 'Fail password confirmation'}
 	clearSession()
 	open('/')
 	
-	assertTextPresent('Sign up')
-	assertTextPresent('Email')
-	assertTextPresent('Name')
-	assertTextPresent('First name')
-	assertTextPresent('Password')
-	assertTextPresent('Password Verification')
+	verifyTextPresent('Sign up')
+	verifyTextPresent('Email')
+	verifyTextPresent('Name')
+	verifyTextPresent('First name')
+	verifyTextPresent('Password')
+	verifyTextPresent('Password Verification')
 	
 	type('email', 'walter.white@gmail.com')
 	type('name', 'white')
@@ -17,19 +18,19 @@
 	
 	clickAndWait('signup')
 	
-	assertTextPresent('The following fields are invalid')
+	verifyTextPresent('The following fields are invalid')
 #{/selenium}
 
-#{selenium 'Test fail pwd 2'}
+#{selenium 'No password'}
 	clearSession()
 	open('/')
 	
-	assertTextPresent('Sign up')
-	assertTextPresent('Email')
-	assertTextPresent('Name')
-	assertTextPresent('First name')
-	assertTextPresent('Password')
-	assertTextPresent('Password Verification')
+	verifyTextPresent('Sign up')
+	verifyTextPresent('Email')
+	verifyTextPresent('Name')
+	verifyTextPresent('First name')
+	verifyTextPresent('Password')
+	verifyTextPresent('Password Verification')
 	
 	type('email', 'walter.white@gmail.com')
 	type('name', 'white')
@@ -39,19 +40,19 @@
 	
 	clickAndWait('signup')
 	
-	assertTextPresent('The following fields are invalid')
+	verifyTextPresent('The following fields are invalid')
 #{/selenium}
 
-#{selenium 'Test fail pwd 3'}
+#{selenium 'Password too short'}
 	clearSession()
 	open('/')
 	
-	assertTextPresent('Sign up')
-	assertTextPresent('Email')
-	assertTextPresent('Name')
-	assertTextPresent('First name')
-	assertTextPresent('Password')
-	assertTextPresent('Password Verification')
+	verifyTextPresent('Sign up')
+	verifyTextPresent('Email')
+	verifyTextPresent('Name')
+	verifyTextPresent('First name')
+	verifyTextPresent('Password')
+	verifyTextPresent('Password Verification')
 	
 	type('email', 'walter.white@gmail.com')
 	type('name', 'white')
@@ -61,19 +62,19 @@
 	
 	clickAndWait('signup')
 	
-	assertTextPresent('The following fields are invalid')
+	verifyTextPresent('The following fields are invalid')
 #{/selenium}
 
-#{selenium 'Test fail mail 1'}
+#{selenium 'Email failed 1'}
 	clearSession()
 	open('/')
 	
-	assertTextPresent('Sign up')
-	assertTextPresent('Email')
-	assertTextPresent('Name')
-	assertTextPresent('First name')
-	assertTextPresent('Password')
-	assertTextPresent('Password Verification')
+	verifyTextPresent('Sign up')
+	verifyTextPresent('Email')
+	verifyTextPresent('Name')
+	verifyTextPresent('First name')
+	verifyTextPresent('Password')
+	verifyTextPresent('Password Verification')
 	
 	type('email', 'walter.white.gmail.com')
 	type('name', 'white')
@@ -83,19 +84,19 @@
 	
 	clickAndWait('signup')
 	
-	assertTextPresent('The following fields are invalid')
+	verifyTextPresent('The following fields are invalid')
 #{/selenium}
 
-#{selenium 'Test fail mail 3'}
+#{selenium 'Email failed 2'}
 	clearSession()
 	open('/')
 	
-	assertTextPresent('Sign up')
-	assertTextPresent('Email')
-	assertTextPresent('Name')
-	assertTextPresent('First name')
-	assertTextPresent('Password')
-	assertTextPresent('Password Verification')
+	verifyTextPresent('Sign up')
+	verifyTextPresent('Email')
+	verifyTextPresent('Name')
+	verifyTextPresent('First name')
+	verifyTextPresent('Password')
+	verifyTextPresent('Password Verification')
 	
 	type('email', 'walter.white@gmail')
 	type('name', 'white')
@@ -105,19 +106,19 @@
 	
 	clickAndWait('signup')
 	
-	assertTextPresent('The following fields are invalid')
+	verifyTextPresent('The following fields are invalid')
 #{/selenium}
 
-#{selenium 'Test fail mail 4'}
+#{selenium 'Email failed 3 (no space)'}
 	clearSession()
 	open('/')
 	
-	assertTextPresent('Sign up')
-	assertTextPresent('Email')
-	assertTextPresent('Name')
-	assertTextPresent('First name')
-	assertTextPresent('Password')
-	assertTextPresent('Password Verification')
+	verifyTextPresent('Sign up')
+	verifyTextPresent('Email')
+	verifyTextPresent('Name')
+	verifyTextPresent('First name')
+	verifyTextPresent('Password')
+	verifyTextPresent('Password Verification')
 	
 	type('email', 'walter white@gmail.com')
 	type('name', 'white')
@@ -127,19 +128,19 @@
 	
 	clickAndWait('signup')
 	
-	assertTextPresent('The following fields are invalid')
+	verifyTextPresent('The following fields are invalid')
 #{/selenium}
 
-#{selenium 'Test fail names 1'}
+#{selenium 'number in firstname'}
 	clearSession()
 	open('/')
 	
-	assertTextPresent('Sign up')
-	assertTextPresent('Email')
-	assertTextPresent('Name')
-	assertTextPresent('First name')
-	assertTextPresent('Password')
-	assertTextPresent('Password Verification')
+	verifyTextPresent('Sign up')
+	verifyTextPresent('Email')
+	verifyTextPresent('Name')
+	verifyTextPresent('First name')
+	verifyTextPresent('Password')
+	verifyTextPresent('Password Verification')
 	
 	type('email', 'walter.white@gmail.com')
 	type('name', 'white')
@@ -149,19 +150,19 @@
 	
 	clickAndWait('signup')
 	
-	assertTextPresent('The following fields are invalid')
+	verifyTextPresent('The following fields are invalid')
 #{/selenium}
 
-#{selenium 'Test fail names 2'}
+#{selenium 'firstname special char'}
 	clearSession()
 	open('/')
 	
-	assertTextPresent('Sign up')
-	assertTextPresent('Email')
-	assertTextPresent('Name')
-	assertTextPresent('First name')
-	assertTextPresent('Password')
-	assertTextPresent('Password Verification')
+	verifyTextPresent('Sign up')
+	verifyTextPresent('Email')
+	verifyTextPresent('Name')
+	verifyTextPresent('First name')
+	verifyTextPresent('Password')
+	verifyTextPresent('Password Verification')
 	
 	type('email', 'walter.white@gmail.com')
 	type('name', 'white')
@@ -171,19 +172,19 @@
 	
 	clickAndWait('signup')
 	
-	assertTextPresent('The following fields are invalid')
+	verifyTextPresent('The following fields are invalid')
 #{/selenium}
 
-#{selenium 'Test fail names 3'}
+#{selenium 'Fail : space in firstname'}
 	clearSession()
 	open('/')
 	
-	assertTextPresent('Sign up')
-	assertTextPresent('Email')
-	assertTextPresent('Name')
-	assertTextPresent('First name')
-	assertTextPresent('Password')
-	assertTextPresent('Password Verification')
+	verifyTextPresent('Sign up')
+	verifyTextPresent('Email')
+	verifyTextPresent('Name')
+	verifyTextPresent('First name')
+	verifyTextPresent('Password')
+	verifyTextPresent('Password Verification')
 	
 	type('email', 'walter.white@gmail.com')
 	type('name', 'white')
@@ -193,19 +194,19 @@
 	
 	clickAndWait('signup')
 	
-	assertTextPresent('The following fields are invalid')
+	verifyTextPresent('The following fields are invalid')
 #{/selenium}
 
-#{selenium 'Test fail names 4'}
+#{selenium 'Fail : number in name'}
 	clearSession()
 	open('/')
 	
-	assertTextPresent('Sign up')
-	assertTextPresent('Email')
-	assertTextPresent('Name')
-	assertTextPresent('First name')
-	assertTextPresent('Password')
-	assertTextPresent('Password Verification')
+	verifyTextPresent('Sign up')
+	verifyTextPresent('Email')
+	verifyTextPresent('Name')
+	verifyTextPresent('First name')
+	verifyTextPresent('Password')
+	verifyTextPresent('Password Verification')
 	
 	type('email', 'walter.white@gmail.com')
 	type('name', 'white42')
@@ -215,19 +216,19 @@
 	
 	clickAndWait('signup')
 	
-	assertTextPresent('The following fields are invalid')
+	verifyTextPresent('The following fields are invalid')
 #{/selenium}
 
-#{selenium 'Test fail names 5'}
+#{selenium 'Fail : Special char in name'}
 	clearSession()
 	open('/')
 	
-	assertTextPresent('Sign up')
-	assertTextPresent('Email')
-	assertTextPresent('Name')
-	assertTextPresent('First name')
-	assertTextPresent('Password')
-	assertTextPresent('Password Verification')
+	verifyTextPresent('Sign up')
+	verifyTextPresent('Email')
+	verifyTextPresent('Name')
+	verifyTextPresent('First name')
+	verifyTextPresent('Password')
+	verifyTextPresent('Password Verification')
 	
 	type('email', 'walter.white@gmail.com')
 	type('name', 'wh#ite')
@@ -237,19 +238,37 @@
 	
 	clickAndWait('signup')
 	
-	assertTextPresent('The following fields are invalid')
+	verifyTextPresent('The following fields are invalid')
 #{/selenium}
-
+#{selenium 'Email already used'}
+	clearSession()
+	open('/')
+		
+	type('email', 'bob1@gmail.com')
+	type('name', 'bob')
+	type('firstname', 'bob')
+	type('firstPassword', 'bobbob')
+	type('secondPassword', 'bobbob')
+	
+	clickAndWait('signup')
+	open('/')
+	
+	verifyTextPresent('The following fields are invalid')
+			
+	clearSession()
+	
+	verifyTextPresent('Sign in')
+#{/selenium}
 #{selenium 'Test register'}
 	clearSession()
 	open('/')
 	
-	assertTextPresent('Sign up')
-	assertTextPresent('Email')
-	assertTextPresent('Name')
-	assertTextPresent('First name')
-	assertTextPresent('Password')
-	assertTextPresent('Password Verification')
+	verifyTextPresent('Sign up')
+	verifyTextPresent('Email')
+	verifyTextPresent('Name')
+	verifyTextPresent('First name')
+	verifyTextPresent('Password')
+	verifyTextPresent('Password Verification')
 	
 	type('email', 'walter.white@gmail.com')
 	type('name', 'white')
@@ -260,27 +279,9 @@
 	clickAndWait('signup')
 	open('/')
 	
-	assertTextPresent('Welcome walter.white@gmail.com !')
+	verifyTextPresent('Welcome walter.white@gmail.com !')
 			
 	clickAndWait('logout')
 	
-	assertTextPresent('Sign in')
-#{/selenium}
-
-#{selenium 'Test connect'}
-	clearSession()
-	open('/')
-	
-	assertTextPresent('Sign in')
-	assertTextPresent('E-mail')
-	assertTextPresent('Password')
-	
-	type('username', 'walter.white@gmail.com')
-	type('password', 'rootroot')
-	
-	clickAndWait('signin')
-	
-	assertTextPresent('Log out')
-	
-	clickAndWait('logout')
+	verifyTextPresent('Sign in')
 #{/selenium}
