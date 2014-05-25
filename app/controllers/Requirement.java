@@ -3,6 +3,7 @@ package controllers;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 import play.mvc.Before;
@@ -21,6 +22,7 @@ public class Requirement extends WrapperController {
 			redirect("/Application/dashboard");
 		}
 	}
+	
 	public static void add() {
 		render();
 	}
@@ -29,9 +31,7 @@ public class Requirement extends WrapperController {
 	}
 	public static void order(){
 		String productName = session.get("productName");
-		System.out.println("++++" + productName);
 		models.Product product = models.Product.getByName(productName);
-		System.out.println(product);
 		Collection<models.Requirement> r = product.getRequirements();
 		render(r);
 	}
@@ -55,5 +55,19 @@ public class Requirement extends WrapperController {
 		flash.put("message", "Nouvelle(s) exigence(s) ajoutée(s)");
 		flash.put("messageStyle", "validation");
 		redirect("/Application/dashboard");
+	}
+	
+	public static void getRequirementsUnassigned() {
+		String productName = session.get("productName");
+		models.Product product = models.Product.getByName(productName);
+		Set<models.Requirement> requirementsUnassigned = product.getRequirements();
+		
+		for (models.Version v : product.getReleases()) {
+			for (models.Sprint sp : v.getSprints()) {
+				requirementsUnassigned.removeAll(sp.getRequirements());
+			}
+		}
+		
+		render(requirementsUnassigned);
 	}
 }

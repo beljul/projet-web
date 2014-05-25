@@ -53,5 +53,7 @@ public class Requirement extends Model {
 		this.priority = priority;
 	}
 	
-	
+	public String getContent() {
+		return this.content;
+	}
 }
