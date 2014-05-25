@@ -24,7 +24,9 @@ public class Requirement extends WrapperController {
 	public static void add() {
 		render();
 	}
-	
+	public static void assign(){
+		render();
+	}
 	public static void order(){
 		String productName = session.get("productName");
 		System.out.println("++++" + productName);
