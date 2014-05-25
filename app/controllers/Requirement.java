@@ -61,7 +61,7 @@ public class Requirement extends WrapperController {
 			Long sprintId = Long.parseLong(session.get("sprintId"));
 			sprintRequirements = models.Sprint.getById(sprintId).getRequirements();
 		}
-		else {
+		else { // TODO: error page
 			sprintRequirements = new HashSet<models.Requirement>();
 		}
 		

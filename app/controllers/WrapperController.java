@@ -22,7 +22,7 @@ public class WrapperController extends Controller {
     		}
     	}
     	
-		Map<models.Version, Set<Sprint>> productContent = new LinkedHashMap<models.Version, Set<Sprint>>();
+		Map<models.Version, Set<models.Sprint>> productContent = new LinkedHashMap<models.Version, Set<models.Sprint>>();
     	Set<models.Version> releases = new LinkedHashSet<models.Version>();
     	
     	if(session.get("productName") != null) {
@@ -39,6 +39,7 @@ public class WrapperController extends Controller {
     		session.put("isNotPO", "disabled");
     		session.put("isNotDev", "disabled");
     		session.put("isNotSM", "disabled");
+    		session.put("isNotPOAndDev", "disabled");
     	}
     	renderArgs.put("productContent", productContent);
     }    

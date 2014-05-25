@@ -258,6 +258,13 @@ public class Product extends WrapperController {
     		session.put("isNotDev", "");
     	}
     	
+    	if(!session.get("isNotPO").equals("") && !session.get("isNotDev").equals("")) {
+    		session.put("isNotPOAndDev", "disabled");
+    	}
+    	else {
+    		session.put("isNotPOAndDev", "");
+    	}
+    	
 		models.Version release = p.getCurrentRelease();
 		if(release != null) {
 			session.put("releaseName", release.getName());

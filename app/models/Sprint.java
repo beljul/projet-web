@@ -77,9 +77,7 @@ public class Sprint extends Model {
 		return "Sprint " + this.id + " - " + this.created;
 	}
 
-	public static Sprint getByCreated(Date created) {
-		return find("byCreated", created).first();
+	public boolean addRequirement(Requirement r) {
+		return this.requirements.add(r);
 	}
-	
-	
 }
