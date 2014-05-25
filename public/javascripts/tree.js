@@ -35,8 +35,8 @@ $(function () {
 			data:currentReleaseSprint
 		})
 		.success(function(){
-			$('#releaseSelected').text(currentReleaseSprint["releaseName"]);
-			$('#sprintSelected').text('Sprint ' + sprint.attr('data-sprintCurID') + ' - ' + sprint.parent().attr('title'));
+			$('#releaseSelected,.scrumch-curRelease').text(currentReleaseSprint["releaseName"]);
+			$('#sprintSelected,.scrumch-curSprint').text('Sprint ' + sprint.attr('data-sprintCurID') + ' - ' + sprint.parent().attr('title'));
 			HTMLFlash_contextual("Release et sprint mis à jour", "flashInformation", false);
 		})
 		.done(function(d) {

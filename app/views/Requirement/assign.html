@@ -1,0 +1,31 @@
+#{extends 'dashboard.html' /} 
+#{set title:'Assigner l\'exigence' /}
+#{stylesheet 'requirement-assign.css' /}
+<h2 class="page-header">
+<span class="glyphicon glyphicon-"></span>
+ Exigences pour <span class="scrumch-curSprint">${session.sprintName}</span> de ${session.productName}
+</h2>
+<div class="row">
+	<input id="save-assign" class="btn btn-success btn-lg" type="submit" value="Sauvegarder"/>
+</div>
+<div class="row">
+	<div class="col-lg-6">
+		<h3><span class="glyphicon glyphicon-paperclip"></span> Exigences disponnibles</h3>
+		<ul class="sortable" id="requirement-available">			
+		#{list requirementsUnassigned, as:'r'}		
+		<li data-id="${r.getId()}" class="ui-state-default">${r.content}</li>		
+		#{/list}
+		</ul>
+	</div>
+	<div class="col-lg-6">
+		<h3><span class="glyphicon glyphicon-road"></span> Exigences du sprint</h3>
+		<ul  class="sortable" id="requirement-sprint">			
+			<li data-id="" class="ui-state-default">df</li>		
+			<li data-id="" class="ui-state-default">d</li>
+			<li data-id="" class="ui-state-default">f</li>
+		</ul>
+	</div>
+</div>
+
+#{script 'jquery-ui.min.js' /} 
+#{script 'requirement-assign.js' /}

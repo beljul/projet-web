@@ -26,7 +26,6 @@ public class Requirement extends WrapperController {
 	public static void add() {
 		render();
 	}
-	
 	public static void order(){
 		String productName = session.get("productName");
 		models.Product product = models.Product.getByName(productName);
@@ -55,7 +54,7 @@ public class Requirement extends WrapperController {
 		redirect("/Application/dashboard");
 	}
 	
-	public static void getRequirementsUnassigned() {
+	public static void assign() {
 		// Get requirements of current product
 		String productName = session.get("productName");
 		models.Product product = models.Product.getByName(productName);
