@@ -6,9 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import play.mvc.Controller;
+import play.mvc.With;
 
-public class Sprint extends Controller {
+@With(Secure.class)
+public class Sprint extends WrapperController {
 	
 	public static void addRequirements (Set<Long> requirements) {
 		Long sprintId = Long.parseLong(session.get("sprintId"));
@@ -45,13 +46,7 @@ public class Sprint extends Controller {
 		// A définir dans une méthode ?
 		String productName = session.get("productName");
 		models.Product product = models.Product.getByName(productName);
-		Set<models.Requirement> requirementsUnassigned = product.getRequirements();
-
-		for (models.Version v : product.getReleases()) {
-			for (models.Sprint sp : v.getSprints()) {
-				requirementsUnassigned.removeAll(sp.getRequirements());
-			}
-		}
+		Set<models.Requirement> requirementsUnassigned = product.getRequirementsUnassigned();
 		
 		List<JsonSearchItem> requirementsAvailable = new ArrayList<JsonSearchItem>();		
 		for (models.Requirement requirement : requirementsUnassigned) {

@@ -158,6 +158,16 @@ public class Product extends Model {
 	public User getCustomer() {
 		return customer;
 	}
+
+	public Set<Requirement> getRequirementsUnassigned() {
+		Set<Requirement> requirementsUnassigned = this.requirements;
+		for (models.Version v : this.releases) {
+			for (models.Sprint sp : v.getSprints()) {
+				requirementsUnassigned.removeAll(sp.getRequirements());
+			}
+		}
+		return requirementsUnassigned;
+	}
 	
 	
 }

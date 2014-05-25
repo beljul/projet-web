@@ -34,5 +34,22 @@ public class Task extends Model {
 		calendar.add(Calendar.DATE, duration);
 		this.finished = new Date(calendar.getTimeInMillis());
 	}
+
+	public static Integer getCurrentId(Requirement requirement) {
+		Integer res = find("select t.ident "
+					 + 	"from Task t "
+					 + 	"inner join t.requirement req "
+					 + 	"where req= ? "
+					 +  "order by t.ident desc", requirement).first();
+		
+		if(res != null)
+			return res;
+		else
+			return 1;
+	}
+	
+	public void register() {
+		this.save();
+	}
 	
 }

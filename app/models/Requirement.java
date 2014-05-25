@@ -60,4 +60,12 @@ public class Requirement extends Model {
 	public static Requirement getById(Long id) {
 		return findById(id);
 	}
+	
+	public static Requirement getByContent(String content) {
+		return find("byContent", content).first();
+	}
+	
+	public boolean addTask(Task task) {
+		return this.tasks.add(task);
+	}
 }
