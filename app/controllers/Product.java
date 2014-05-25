@@ -280,7 +280,6 @@ public class Product extends WrapperController {
 			}
 		}
 		curProd.register();
-		HTMLFlash.contextual("Les exigences ont été réordonnées", HTMLFlash.VALIDATION, false);
 		//renderJSON(requirements);
 	}
 	

@@ -1,7 +1,7 @@
 #{extends 'dashboard.html' /} #{set title:'Ajouter release' /}
 #{stylesheet 'create.css' /} #{stylesheet 'version-add.css' /}
-<h1 class="page-header">Ajouter une release à :
-	${session.productName}</h1>
+<h2 class="page-header"><span class="glyphicon glyphicon-bookmark"></span> Ajouter une release à 
+	${session.productName}</h2>
 #{form @Version.register()}
 <div class="row">
 	<div class="col-lg-6">

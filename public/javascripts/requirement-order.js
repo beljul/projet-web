@@ -20,7 +20,7 @@ $("input#save-order").on("click",function(){
 		}
 	})
 	.success(function(){
-		window.location.replace("/Application/dashboard");
+		HTMLFlash_contextual("Les exigences ont été réordonnées","flashValidation",false);
 	})
 	.done(function(d) {
 		console.log(d);
