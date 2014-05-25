@@ -20,8 +20,9 @@ public class Sprint extends Model {
 		inverseJoinColumns={@JoinColumn(name="Release_ID", referencedColumnName="ID")})
 	private Version release;
 
-//	@ManyToMany
-//	Set<Requirement> requirements;
+	@ManyToMany
+	@OrderBy("created ASC")
+	Set<Requirement> requirements;
 	
 	@OneToMany
 	private Set<Document> documents;
@@ -31,7 +32,7 @@ public class Sprint extends Model {
 		this.created = created;
 		this.finished = finished;
 		this.win_rate = 0;
-//		this.requirements = new HashSet<Requirement>();
+		this.requirements = new HashSet<Requirement>();
 		this.documents = new HashSet<Document>();
 	}
 	
@@ -43,9 +44,13 @@ public class Sprint extends Model {
 		this.release = release;
 	}
 
-//	public void setRequirements(Set<Requirement> requirements) {
-//		this.requirements = requirements;
-//	}
+	public void setRequirements(Set<Requirement> requirements) {
+		this.requirements = requirements;
+	}
+
+	public Set<Requirement> getRequirements() {
+		return requirements;
+	}
 
 	public Date getCreated() {
 		return created;
