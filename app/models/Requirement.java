@@ -56,4 +56,8 @@ public class Requirement extends Model {
 	public String getContent() {
 		return this.content;
 	}
+	
+	public static Requirement getById(Long id) {
+		return findById(id);
+	}
 }

@@ -76,6 +76,8 @@ public class Sprint extends Model {
 	public String toString() {
 		return "Sprint " + this.id + " - " + this.created;
 	}
-	
-	
+
+	public boolean addRequirement(Requirement r) {
+		return this.requirements.add(r);
+	}
 }

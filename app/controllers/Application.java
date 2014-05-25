@@ -16,11 +16,10 @@ public class Application extends WrapperController {
     }
       
     public static void dashboard(){
-    	
-    	
     	if (session.get("productName") == null) {
     		session.put("isNotPO", "disabled");
     		session.put("isNotDev", "disabled");
+    		session.put("isNotPOAndDev", "disabled");
     	}
     	
     	render();

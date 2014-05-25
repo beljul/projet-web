@@ -258,15 +258,25 @@ public class Product extends WrapperController {
     		session.put("isNotDev", "");
     	}
     	
+    	if(!session.get("isNotPO").equals("") && !session.get("isNotDev").equals("")) {
+    		session.put("isNotPOAndDev", "disabled");
+    	}
+    	else {
+    		session.put("isNotPOAndDev", "");
+    	}
+    	
 		models.Version release = p.getCurrentRelease();
 		if(release != null) {
 			session.put("releaseName", release.getName());
 			models.Sprint sprint = release.getCurrentSprint();
 			session.put("sprintName", sprint);
+			session.put("sprintId", sprint.getId());
 		}
 		else {
 			session.put("releaseName", "");
 			session.put("sprintName", "");
+			session.put("sprintId", "");
+
 		}
 		return p;
 	}
@@ -286,6 +296,7 @@ public class Product extends WrapperController {
 	public static void setCurrentReleaseSprint(String releaseName, Long sprintID) {
 		session.put("releaseName", releaseName);
 		session.put("sprintName", models.Sprint.getById(sprintID));
+		session.put("sprintId", sprintID);
 	}
 
 }
