@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 import net.sf.cglib.transform.impl.AddDelegateTransformer;
 import play.data.validation.Required;
+import play.data.validation.Unique;
 import play.db.jpa.*;
 
 //@DiscriminatorColumn(
@@ -17,7 +18,10 @@ public class User extends Model {
 
 	private String name;
 	private String firstName;
+	
+	@Column(unique=true)
 	private String email;
+	
 	private String password;
 	
 	@ManyToMany
@@ -46,8 +50,7 @@ public class User extends Model {
 	
 	public static User getByEmail(String email) {
 		return find("byEmail", email).first();
-	}
-	
+	}	
 	public static List<User> getByBeginOfEmail(String email) {
 		return find("email like ?", email + "%").fetch(5);
 	}
@@ -74,6 +77,20 @@ public class User extends Model {
 	public String getFirstName(){
 		return firstName;
 	}
+	public String getPassword(){
+		return password;
+	}
+	public Map<Role, Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(Map<Role, Product> products) {
+		this.products = products;
+	}
+
+	public Product addRole(Role role, Product product) {
+		return this.products.put(role, product);
+	}
 	
 	public void setEmail(String email) {
 		this.email = email;
@@ -86,17 +103,5 @@ public class User extends Model {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public Map<Role, Product> getProducts() {
-		return products;
-	}
-
-	public void setProducts(Map<Role, Product> products) {
-		this.products = products;
-	}
-
-	public Product addRole(Role role, Product product) {
-		return this.products.put(role, product);
 	}
 }
