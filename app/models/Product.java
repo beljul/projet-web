@@ -9,6 +9,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.mysql.jdbc.Util;
+
 import play.db.jpa.Model;
 
 @Entity
@@ -86,7 +88,12 @@ public class Product extends Model {
 	}
 
 	public void setCreated(Date created) {
+		System.out.println("trilillalala");
+		System.out.println(created);
 		this.created = created;
+	}
+	public void setCreated(java.util.Date created){
+		this.created = new Date(created.getTime());
 	}
 
 	public String getDescription() {

@@ -1,0 +1,12 @@
+ Product(p1): 
+    "name":            "Product 1"
+    "created":         "2014-06-03T19:00:00+02:00"
+    "description":     "La description du produit 1"
+    "sprintDuration":  4
+    productOwner:      bob42
+
+Product(p2):
+    "name":            "Product 2"
+    "created":          "2014-06-03T19:00:00+02:00"
+    "description":     "La description du produit 2"
+    "sprintDuration":   2

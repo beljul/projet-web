@@ -1,48 +1,5 @@
-#{fixture delete:'all', load:'data/user.yml'/}
-
+#{fixture delete:'all', load:'data/user.yml', load:'data/product.yml' /}
 #{selenium 'Populate DB here'}		
-	#Product 1 : product1 - bob1@gmail.com
-	clearSession()
-	open('/')
-	type('username', 'bob1@gmail.com')
-	type('password', 'bobbob')
-	clickAndWait('signin')
-	assertTextPresent('Welcome bob1@gmail.com !')	
-
-	
-	assertTextPresent('Créer un nouveau produit')
-	clickAndWait('new-product')
-	assertTextPresent('Création d'un nouveau produit')
-	
-	type('name', 'Product 1')
-	type('description', 'Ceci est notre premier produit')
-	type('scrum-master', 'bob2@gmail.com')
-	type('customer', 'bob3@gmail.com')
-	type('dev1', 'bob4@gmail.com')
-	clickAndWait('new-product-submit')
-	assertTextPresent('Welcome bob1@gmail.com !')
-	clickAndWait('logout')
-	
-	#Product 2 : product2 - bob2@gmail.com
-	clearSession()
-	type('username', 'bob2@gmail.com')
-	type('password', 'bobbob')
-	clickAndWait('signin')
-	assertTextPresent('Welcome bob2@gmail.com !')	
-
-	
-	assertTextPresent('Créer un nouveau produit')
-	clickAndWait('new-product')
-	assertTextPresent('Création d'un nouveau produit')
-	
-	type('name', 'Product 2')
-	type('description', 'Ceci est notre second produit')
-	type('scrum-master', 'bob1@gmail.com')
-	type('customer', 'bob3@gmail.com')
-	type('dev1', 'bob4@gmail.com')
-	clickAndWait('new-product-submit')
-	assertTextPresent('Welcome bob2@gmail.com !')
-	clickAndWait('logout')
 	
 	#Requirements : requirement1 - product1
 	clearSession()
