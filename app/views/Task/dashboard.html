@@ -1,0 +1,48 @@
+#{extends 'dashboard.html' /}
+#{set title:'My dashboard' /}
+#{stylesheet 'dashboard.css' /}
+#{script 'jquery-ui.min.js' /}
+#{stylesheet 'task-dashboard.css' /}
+
+
+<h2 class="page-header"><span class="glyphicon glyphicon-th"></span> Tableau des tâches</h2>
+<div class=container-fluid>
+	<div class="row">
+		<input class="btn btn-success btn-md" type="submit" value="Sauvegarder"/>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<h3>A faire</h3>
+			<ul class="task-section sortable" id="todo-list">
+				#{list tasks, as:'l'}			
+				<li class="sticker">${l.description}</li>
+				#{/list}				
+			</ul>
+		</div>
+		<div class="col-md-3">
+			<h3>En cours</h3>
+			<ul class="task-section sortable" id="inpg-list">			
+				<li class="sticker">Blilliblil</li>
+				<li class="sticker">Blilliblil</li>
+				<li class="sticker">Blilliblil</li>				
+			</ul>
+		</div>
+		<div class="col-md-3">
+			<h3>A vérifier</h3>
+			<ul class="task-section sortable" id="tobeverified-list">			
+				<li class="sticker">Blilliblil</li>
+				<li class="sticker">Blilliblil</li>
+				<li class="sticker">Blilliblil</li>				
+			</ul>
+		</div>
+		<div class="col-md-3">
+			<h3>Terminées</h3>
+			<ul class="task-section sortable" id="done-list">			
+				<li class="sticker">Blilliblil</li>
+				<li class="sticker">Blilliblil</li>
+				<li class="sticker">Blilliblil</li>				
+			</ul>
+		</div>
+	</div>
+</div>
+#{script 'task-dashboard.js' /}

@@ -68,4 +68,8 @@ public class Requirement extends Model {
 	public boolean addTask(Task task) {
 		return this.tasks.add(task);
 	}
+	
+	public Set<Task> getTask(){
+		return this.getTask();
+	}
 }

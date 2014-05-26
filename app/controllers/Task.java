@@ -2,6 +2,8 @@ package controllers;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import play.mvc.With;
@@ -38,4 +40,17 @@ public class Task extends WrapperController {
 		redirect("/Application/dashboard");
 	}
 
+	static public void dashboard(){
+		
+		models.Product p = models.Product.getByName(session.get("productName"));
+		models.Version v = p.getReleaseByName(session.get("releaseName"));
+		models.Sprint  s = v.getSprintByName(session.get("sprintName"));
+		List<models.Task> tasks = new LinkedList<models.Task>();
+		
+		for(models.Requirement r : s.getRequirements()){
+			tasks.addAll(r.getTask());
+		}
+		
+		render(tasks);
+	}
 }

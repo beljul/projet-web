@@ -71,7 +71,20 @@ public class Version extends Model {
 				+ 	"where sp.created <= ?  and v = ? "
 				+ 	"order by sp.created desc", currentDate, this).first();
 	}
-
+	
+	/**
+	 * Get the sprint given in parameter
+	 * @param name
+	 * @return
+	 */
+	public Sprint getSprintByName(String name){
+		for(models.Sprint s : this.sprints){
+			if(s.toString().equals(name)){
+				return s;
+			}
+		}
+		return null;
+	}
 	public Set<Sprint> getSprints() {
 		return sprints;
 	}
