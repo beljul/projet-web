@@ -21,7 +21,7 @@ public class Task extends Model {
 	private Requirement requirement;
 
 	public Task(String description, Integer ident, Integer duration,
-			Date created, Integer priority) {
+			Date created, Integer priority, Long requirementId) {
 		super();
 		this.description = description;
 		this.ident = ident;
@@ -33,21 +33,24 @@ public class Task extends Model {
 		calendar.setTime(created);
 		calendar.add(Calendar.DATE, duration);
 		this.finished = new Date(calendar.getTimeInMillis());
+		this.requirement = Requirement.getById(requirementId);
 	}
 
 	public static Integer getCurrentId(Requirement requirement) {
-		Integer res = find("select t.ident "
-					 + 	"from Task t "
-					 + 	"inner join t.requirement req "
-					 + 	"where req= ? "
+		Task res = find("from Task t "
+					 + 	"where t.requirement= ? "
 					 +  "order by t.ident desc", requirement).first();
-		
+		System.out.println("===================" + res);
 		if(res != null)
-			return res;
+			return res.getIdent();
 		else
 			return 1;
 	}
 	
+	private Integer getIdent() {
+		return this.ident;
+	}
+
 	public void register() {
 		this.save();
 	}

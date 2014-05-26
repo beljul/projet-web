@@ -25,11 +25,11 @@ public class Task extends WrapperController {
 		
 		models.Requirement requirement = models.Requirement.getByContent(req);
 		Integer currentId = models.Task.getCurrentId(requirement);
+		if(currentId != 1) ++currentId;
 		
-		System.out.println(req);
 		for (int i = 0; i < descriptions.size(); i++) {
-			System.out.println(descriptions.get(i) + " - " + prioritys.get(i) + " - " + durations.get(i) + " - " + (i+currentId));
-			models.Task task = new models.Task(descriptions.get(i), i+currentId, durations.get(i), created, prioritys.get(i));
+			models.Task task = new models.Task(descriptions.get(i), currentId+i, durations.get(i),
+												created, prioritys.get(i), requirement.getId());
 			task.register();
 			requirement.addTask(task);
 		}
