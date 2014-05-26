@@ -68,14 +68,7 @@ public class Requirement extends WrapperController {
 		// Get requirements of current product
 		String productName = session.get("productName");
 		models.Product product = models.Product.getByName(productName);
-		Set<models.Requirement> requirementsUnassigned = product.getRequirements();
-
-		// Delete requirements if they are already assigned to a sprint
-		for (models.Version v : product.getReleases()) {
-			for (models.Sprint sp : v.getSprints()) {
-				requirementsUnassigned.removeAll(sp.getRequirements());
-			}
-		}
+		Set<models.Requirement> requirementsUnassigned = product.getRequirementsUnassigned();
 		
 		render(requirementsUnassigned, sprintRequirements);
 	}

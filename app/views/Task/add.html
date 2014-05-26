@@ -1,0 +1,55 @@
+#{extends 'dashboard.html' /} 
+#{set title:'Ajouter tâche' /}
+<h2 class="page-header"><span class="glyphicon glyphicon-pushpin"></span> Ajouter des tâches</h2>
+#{form @Task.register()}
+	<div class="row">
+		<div class="col-md-12 col-xs-12">		
+			<label for="req">Sélectionner une exigence de ${session.productName}</label> 
+			<select name="req" id="req" class="form-control">
+			  #{list requirements, as:'requirement'}
+			  	<option>${requirement.content}</option>
+			  #{/list}
+			</select>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-xs-6 ">		
+			<div class="input-group">
+				<label for="description">Description de la tâche</label>
+				<textarea name="descriptions[]" id="description1" 
+						  class="form-control description" rows="2" cols="50"
+						  placeholder="Description">${description}</textarea>
+			</div>
+		</div>
+		<div class="col-md-3 col-xs-3">
+			<label for="task-priority">Priorité de la tâche</label>
+			<select name="prioritys[]" class="slider-priority form-control input-xs" id="task-priority-1">
+				<option selected="selected">1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
+		</div>
+		<div class="col-md-3 col-xs-3">
+			<label for="task-duration">Durée de la tâche</label>
+			<select name="durations[]" class="slider-duration form-control input-xs" id="task-duration-1">
+				<option selected="selected">1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+				<option>6</option>
+				<option>7</option>
+			</select>
+		</div>
+	</div>
+	<div class="row">
+		<div id="submit" class="col-lg-12">			
+			<input type="submit" id="valid-task" class="btn-lg btn btn-success"
+				value="Nouvelles tâches" />
+		</div>
+	</div>
+#{/form}
+#{script 'jquery-ui.min.js' /} #{script 'task-add.js' /}
+
