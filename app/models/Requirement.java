@@ -68,4 +68,18 @@ public class Requirement extends Model {
 	public boolean addTask(Task task) {
 		return this.tasks.add(task);
 	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public void setCreated(java.util.Date created) {
+		this.created = new Date(created.getTime());
+	}
+
+	public void setDuration(Integer duration) {
+		this.duration = duration;
+	}
+	
+	
 }

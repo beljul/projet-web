@@ -48,8 +48,8 @@ public class Version extends Model {
 		return date;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDate(java.util.Date date) {
+		this.date = new Date(date.getTime());
 	}
 
 	public void setProduct(Product product) {

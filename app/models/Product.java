@@ -87,15 +87,14 @@ public class Product extends Model {
 		return created;
 	}
 
-	public void setCreated(Date created) {
-		System.out.println("trilillalala");
-		System.out.println(created);
-		this.created = created;
-	}
 	public void setCreated(java.util.Date created){
 		this.created = new Date(created.getTime());
 	}
-
+	
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+	
 	public String getDescription() {
 		return description;
 	}
@@ -175,6 +174,20 @@ public class Product extends Model {
 		}
 		return requirementsUnassigned;
 	}
+
+	public void setScrumMaster(User scrumMaster) {
+		this.scrumMaster = scrumMaster;
+	}
+
+	public void setCustomer(User customer) {
+		this.customer = customer;
+	}
 	
-	
+	public void setTeam(Team team) {
+		this.team = team;
+	}
+
+	public void setRequirements(Set<Requirement> requirements) {
+		this.requirements = requirements;
+	}
 }
