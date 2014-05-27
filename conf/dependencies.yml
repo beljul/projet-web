@@ -2,5 +2,5 @@
 
 require:
     - play
-    - play -> cobertura 2.3
     - play -> secure 
+    - play -> linkedin 0.2.1
