@@ -1,13 +1,27 @@
 package models;
 
 import java.util.*;
+import java.util.regex.Pattern;
 
 import javax.persistence.*;
 
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.Api;
+import org.scribe.builder.api.DefaultApi10a;
+import org.scribe.model.OAuthConfig;
+import org.scribe.model.OAuthRequest;
+import org.scribe.model.Response;
+import org.scribe.model.Token;
+import org.scribe.model.Verb;
+import org.scribe.oauth.OAuth10aServiceImpl;
+import org.scribe.oauth.OAuthService;
+
 import net.sf.cglib.transform.impl.AddDelegateTransformer;
+import play.Play;
 import play.data.validation.Required;
 import play.data.validation.Unique;
 import play.db.jpa.*;
+import play.modules.linkedin.LinkedInPlugin;
 
 //@DiscriminatorColumn(
 //    name="type",
@@ -103,5 +117,14 @@ public class User extends Model {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public static void linkedinOAuthCallback(play.modules.linkedin.LinkedInProfile o) {
+		Pattern p = Pattern.compile("[^a-zA-Z]+");
+		String[] skills = p.split(o.getSkills());
+		for (String string : skills) {
+			System.out.println(string);
+		}
+		
 	}
 }
