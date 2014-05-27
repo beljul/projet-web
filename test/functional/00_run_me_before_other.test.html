@@ -1,3 +1,190 @@
-#{fixture delete:'all', load:'data/product.yml' /}
+#{fixture delete:'all', load:'data/user.yml' /}
 #{selenium 'Populate DB here'}
+
+open('/')
+		#Product 1 : product1 - bob1@gmail.com
+clearSession()
+type('username', 'bob1@gmail.com')
+type('password', 'bobbob')
+clickAndWait('signin')
+assertTextPresent('Welcome bob1@gmail.com !')
+
+
+assertTextPresent('Créer un nouveau produit')
+clickAndWait('new-product')
+assertTextPresent('Création d'un nouveau produit')
+
+type('name', 'Product 1')
+type('description', 'Ceci est notre premier produit')
+type('scrum-master', 'bob2@gmail.com')
+type('customer', 'bob3@gmail.com')
+type('dev1', 'bob4@gmail.com')
+clickAndWait('new-product-submit')
+assertTextPresent('Welcome bob1@gmail.com !')
+clickAndWait('logout')
+
+#Product 2 : product2 - bob2@gmail.com
+clearSession()
+type('username', 'bob2@gmail.com')
+type('password', 'bobbob')
+clickAndWait('signin')
+assertTextPresent('Welcome bob2@gmail.com !')
+
+
+assertTextPresent('Créer un nouveau produit')
+clickAndWait('new-product')
+assertTextPresent('Création d'un nouveau produit')
+
+type('name', 'Product 2')
+type('description', 'Ceci est notre second produit')
+type('scrum-master', 'bob1@gmail.com')
+type('customer', 'bob3@gmail.com')
+type('dev1', 'bob4@gmail.com')
+clickAndWait('new-product-submit')
+assertTextPresent('Welcome bob2@gmail.com !')
+clickAndWait('logout')
+
+#Requirements : requirement1 - product1
+clearSession()
+type('username', 'bob1@gmail.com')
+type('password', 'bobbob')
+clickAndWait('signin')
+assertTextPresent('Welcome bob1@gmail.com !')
+
+clickAndWait('change-product-1')
+assertTextPresent('Nouveau produit courant :')
+
+clickAndWait('requirement-add')
+type('req1', 'Exigence 1 du produit 1')
+clickAndWait('valid-req')
+assertTextPresent('Nouvelle(s) exigence(s) ajoutée(s)')
+
+clickAndWait('requirement-add')
+type('req1', 'Exigence 2 du produit 1')
+clickAndWait('valid-req')
+assertTextPresent('Nouvelle(s) exigence(s) ajoutée(s)')
+
+clickAndWait('requirement-add')
+type('req1', 'Exigence 3 du produit 1')
+clickAndWait('valid-req')
+assertTextPresent('Nouvelle(s) exigence(s) ajoutée(s)')
+
+clickAndWait('requirement-add')
+type('req1', 'Exigence 4 du produit 1')
+clickAndWait('valid-req')
+assertTextPresent('Nouvelle(s) exigence(s) ajoutée(s)')
+
+clickAndWait('requirement-add')
+type('req1', 'Exigence 5 du produit 1')
+clickAndWait('valid-req')
+assertTextPresent('Nouvelle(s) exigence(s) ajoutée(s)')
+
+clickAndWait('requirement-add')
+type('req1', 'Exigence 6 du produit 1')
+clickAndWait('valid-req')
+assertTextPresent('Nouvelle(s) exigence(s) ajoutée(s)')
+
+clickAndWait('requirement-add')
+type('req1', 'Exigence 7 du produit 1')
+clickAndWait('valid-req')
+assertTextPresent('Nouvelle(s) exigence(s) ajoutée(s)')
+
+clickAndWait('requirement-add')
+type('req1', 'Exigence 8 du produit 1')
+clickAndWait('valid-req')
+assertTextPresent('Nouvelle(s) exigence(s) ajoutée(s)')
+
+clickAndWait('requirement-add')
+type('req1', 'Exigence 9 du produit 1')
+clickAndWait('valid-req')
+assertTextPresent('Nouvelle(s) exigence(s) ajoutée(s)')
+
+clickAndWait('requirement-add')
+type('req1', 'Exigence 10 du produit 1')
+clickAndWait('valid-req')
+assertTextPresent('Nouvelle(s) exigence(s) ajoutée(s)')
+
+#Requirements : requirement2 - product2
+clickAndWait('logout')
+
+clearSession()
+type('username', 'bob2@gmail.com')
+type('password', 'bobbob')
+clickAndWait('signin')
+assertTextPresent('Welcome bob2@gmail.com !')
+
+clickAndWait('change-product-2')
+assertTextPresent('Nouveau produit courant :')
+
+clickAndWait('requirement-add')
+type('req1', 'Exigence 1 du produit 2')
+clickAndWait('valid-req')
+assertTextPresent('Nouvelle(s) exigence(s) ajoutée(s)')
+
+clickAndWait('requirement-add')
+type('req1', 'Exigence 2 du produit 2')
+clickAndWait('valid-req')
+assertTextPresent('Nouvelle(s) exigence(s) ajoutée(s)')
+
+clickAndWait('requirement-add')
+type('req1', 'Exigence 3 du produit 2')
+clickAndWait('valid-req')
+assertTextPresent('Nouvelle(s) exigence(s) ajoutée(s)')
+
+clickAndWait('requirement-add')
+type('req1', 'Exigence 4 du produit 2')
+clickAndWait('valid-req')
+assertTextPresent('Nouvelle(s) exigence(s) ajoutée(s)')
+
+clickAndWait('requirement-add')
+type('req1', 'Exigence 5 du produit 2')
+clickAndWait('valid-req')
+assertTextPresent('Nouvelle(s) exigence(s) ajoutée(s)')
+
+clickAndWait('requirement-add')
+type('req1', 'Exigence 6 du produit 2')
+clickAndWait('valid-req')
+assertTextPresent('Nouvelle(s) exigence(s) ajoutée(s)')
+
+clickAndWait('requirement-add')
+type('req1', 'Exigence 7 du produit 2')
+clickAndWait('valid-req')
+assertTextPresent('Nouvelle(s) exigence(s) ajoutée(s)')
+
+clickAndWait('requirement-add')
+type('req1', 'Exigence 8 du produit 2')
+clickAndWait('valid-req')
+assertTextPresent('Nouvelle(s) exigence(s) ajoutée(s)')
+
+clickAndWait('requirement-add')
+type('req1', 'Exigence 9 du produit 2')
+clickAndWait('valid-req')
+assertTextPresent('Nouvelle(s) exigence(s) ajoutée(s)')
+
+clickAndWait('requirement-add')
+type('req1', 'Exigence 10 du produit 2')
+clickAndWait('valid-req')
+assertTextPresent('Nouvelle(s) exigence(s) ajoutée(s)')
+
+# Release : AER1 - product1
+clickAndWait('logout')
+
+clearSession()
+type('username', 'bob1@gmail.com')
+type('password', 'bobbob')
+clickAndWait('signin')
+assertTextPresent('Welcome bob1@gmail.com !')
+clickAndWait('change-product-1')
+
+clickAndWait('version-add')
+type('release', 'AER1')
+clickAndWait('version-register')
+assertTextPresent('La release AER1 a été créée')
+
+clickAndWait('version-add')
+type('release', 'AER2')
+clickAndWait('version-register')
+assertTextPresent('La release AER2 a été créée')
+
+
 #{/selenium}

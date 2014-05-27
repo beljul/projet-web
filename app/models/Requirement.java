@@ -27,6 +27,7 @@ public class Requirement extends Model {
 	@ManyToMany
 	Set<Sprint> sprints;
 	
+	@OrderBy("priority ASC")
 	@OneToMany
 	private Set<Task> tasks;
 	
@@ -68,6 +69,10 @@ public class Requirement extends Model {
 	public boolean addTask(Task task) {
 		return this.tasks.add(task);
 	}
+	
+	public Set<Task> getTask(){
+		return tasks;
+	}
 
 	public void setContent(String content) {
 		this.content = content;
@@ -80,6 +85,5 @@ public class Requirement extends Model {
 	public void setDuration(Integer duration) {
 		this.duration = duration;
 	}
-	
 	
 }

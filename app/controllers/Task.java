@@ -2,6 +2,9 @@ package controllers;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import play.mvc.With;
@@ -13,7 +16,7 @@ public class Task extends WrapperController {
 	static public void add() {
 		String productName = session.get("productName");
 		Set<models.Requirement> requirements = models.Product.getByName(productName).getRequirements();
-		render(requirements);
+		render(requirements);		
 	}
 	
 	static public void register(String req, ArrayList<String> descriptions, 
@@ -31,11 +34,27 @@ public class Task extends WrapperController {
 			models.Task task = new models.Task(descriptions.get(i), currentId+i, durations.get(i),
 												created, prioritys.get(i), requirement.getId());
 			task.register();
-			requirement.addTask(task);
+			requirement.addTask(task);			
 		}
 		requirement.register();
 		HTMLFlash.contextual("De nouvelles tâches ont été ajoutées", HTMLFlash.VALIDATION, false);
 		redirect("/Application/dashboard");
+	}
+
+	static public void dashboard(){
+			
+		models.Product p = models.Product.getByName(session.get("productName"));
+		models.Version v = p.getReleaseByName(session.get("releaseName"));
+		models.Sprint  s2 = v.getSprintByName(session.get("sprintName"));
+		models.Sprint s = models.Sprint.getById(Long.parseLong(session.get("sprintId")));
+
+		List<models.Task> tasks = new LinkedList<models.Task>();
+
+		for(models.Requirement r : s.getRequirements()){
+			tasks.addAll(r.getTask());
+		}
+		
+		render(tasks);
 	}
 
 }

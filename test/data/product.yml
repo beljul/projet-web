@@ -62,20 +62,23 @@ Team(t1):
     "name":            "Equipe 1 du produit 1"
     "created":         "2014-06-03T19:00:00+02:00"
     "members":         [bob1, bob2, bob3, bob4]
-
-Team(t2):
-    "name":            "Equipe 2 du produit 2"
-    "created":         "2014-06-03T19:00:00+02:00"
-    "members":         [bob1, bob2, bob3, bob4]
-
-Product(p1):
+    
+Product(p1):           
     "name":            "Produit 1"
     "created":         "2014-06-03T19:00:00+02:00"
     "description":     "Description du produit 1"
     "productOwner":    bob1
     "scrumMaster":     bob2
     "customer":        bob3
+    team:              t1
+    products:          &t1
     
+        
+Team(t2):
+    "name":            "Equipe 2 du produit 2"
+    "created":         "2014-06-03T19:00:00+02:00"
+    "members":         [bob1, bob2, bob3, bob4]
+        
 Product(p2):
     "name":            "Produit 2"
     "created":         "2014-06-03T19:00:00+02:00"
@@ -83,7 +86,9 @@ Product(p2):
     "productOwner":    bob2
     "scrumMaster":     bob1
     "customer":        bob3
-
+    "team":            t2
+    products:          &t2
+    
 Requirement(req11):
     "content":         "Requirement 1 du produit 1"
     "created":         "2014-06-03T19:00:00+02:00"
