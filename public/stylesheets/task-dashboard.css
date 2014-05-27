@@ -1,0 +1,101 @@
+/*
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+ul.task-section {
+	min-height: 10em;
+	padding:10px;
+}
+ul.task-section li.sticker {
+	list-style: none;
+	display:block;	
+}
+.sticker{
+	min-height:5em;
+    padding:0.5em;
+    margin-bottom: 1em;
+    -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
+    -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+    -o-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+    box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+/*     -webkit-transform:rotate(-1deg); */
+/*   	-o-transform:rotate(-1deg); */
+/*   	-moz-transform:rotate(-1deg); */
+  	cursor:move;
+  	position:relative;
+  	padding-top:1.3em;
+  	padding-bottom:1em;
+
+}
+.sticker .task-content{
+	display:inline-block;
+	word-break:break-all;
+/* 	width:100%; */
+}
+.sticker div.slider {
+	position:absolute;
+	width:90%;
+	bottom:0;
+	left:5%;
+}
+.sticker div.complementary-info {
+	display:none;
+}
+.sticker div.complementary-info span {
+	display:block;
+	margin:0.8em;
+}
+.sticker span.badge, .sticker span.task-priority, .sticker span.task-duration {
+	cursor:help;
+}
+.sticker span.display-info {
+	cursor: pointer;
+}
+.sticker span.badge {
+	position:absolute;
+	top:5px;
+	right:2%;	
+	width:25%;
+}
+.sticker span.task-priority {
+	position:absolute;
+	top:5px;
+	right:27%;	
+	width:30%;
+}
+.sticker span.task-duration {
+	position:absolute;
+	top:5px;
+	right:57%;	
+	width:30%;
+}
+ul.task-section#todo-list .sticker {
+	background-color: #FFF999;
+}
+ul.task-section#inpg-list .sticker{
+	background-color: #8CFFF7;
+}
+ul.task-section#tobeverified-list .sticker{
+	background-color: #FF9854;
+}
+ul.task-section#done-list .sticker{
+    background-color: #9BFF6D;
+}
+.sticker h3{
+    font-size:1.2em;
+    text-decoration: underline;
+    font-family:arial,sans-serif;
+}
+ 
+.sticker p{
+    font-size: 1em;
+    font-family:Reenie Beanie,arial,sans-serif;
+    font-size:2em;
+}
+
+/*validation button on the same line that the title*/
+#save-progression {
+	display:inline-block;
+	margin-left:2em;
+	margin-bottom:1em;
+}
