@@ -1,12 +1,182 @@
- Product(p1): 
-    "name":            "Product 1"
-    "created":         "2014-06-03T19:00:00+02:00"
-    "description":     "La description du produit 1"
-    "sprintDuration":  4
-    productOwner:      bob42
+User(bob1):
+    "email":          "bob1@gmail.com"
+    "name":           "bob"
+    "firstName":      "bob"
+    "password":       "bobbob"
 
+User(bob2):
+    "email":          "bob2@gmail.com"
+    "name":           "bob"
+    "firstName":      "bob"
+    "password":       "bobbob"
+
+User(bob3):  
+    "email":          "bob3@gmail.com"
+    "name":           "bob"
+    "firstName":      "bob"
+    "password":       "bobbob"
+
+User(bob4):
+    "email":          "bob4@gmail.com"
+    "name":           "bob"
+    "firstName":      "bob"
+    "password":       "bobbob"
+
+User(bob5):
+    "email":          "bob5@gmail.com"
+    "name":           "bob"
+    "firstName":      "bob"
+    "password":       "bobbob"
+
+User(bob6):  
+    "email":          "bob6@gmail.com"
+    "name":           "bob"
+    "firstName":      "bob"
+    "password":       "bobbob"
+
+User(bob7):
+    "email":          "bob7@gmail.com"
+    "name":           "bob"
+    "firstName":      "bob"
+    "password":       "bobbob"
+
+User(bob8):  
+    "email":          "bob8@gmail.com"
+    "name":           "bob"
+    "firstName":      "bob"
+    "password":       "bobbob"
+
+User(bob9):
+    "email":          "bob9@gmail.com"
+    "name":           "bob"
+    "firstName":      "bob"
+    "password":       "bobbob"
+
+User(bob10):
+    "email":          "bob10@gmail.com"
+    "name":           "bob"
+    "firstName":      "bob"
+    "password":       "bobbob"
+
+Team(t1):
+    "name":            "Equipe 1 du produit 1"
+    "created":         "2014-06-03T19:00:00+02:00"
+    "members":         [bob1, bob2, bob3, bob4]
+    
+Product(p1):           
+    "name":            "Produit 1"
+    "created":         "2014-06-03T19:00:00+02:00"
+    "description":     "Description du produit 1"
+    "productOwner":    bob1
+    "scrumMaster":     bob2
+    "customer":        bob3
+    team:              t1
+    products:          &t1
+    
+        
+Team(t2):
+    "name":            "Equipe 2 du produit 2"
+    "created":         "2014-06-03T19:00:00+02:00"
+    "members":         [bob1, bob2, bob3, bob4]
+        
 Product(p2):
-    "name":            "Product 2"
-    "created":          "2014-06-03T19:00:00+02:00"
-    "description":     "La description du produit 2"
-    "sprintDuration":   2
+    "name":            "Produit 2"
+    "created":         "2014-06-03T19:00:00+02:00"
+    "description":     "Description du produit 2"
+    "productOwner":    bob2
+    "scrumMaster":     bob1
+    "customer":        bob3
+    "team":            t2
+    products:          &t2
+    
+Requirement(req11):
+    "content":         "Requirement 1 du produit 1"
+    "created":         "2014-06-03T19:00:00+02:00"
+    "priority":        1
+    "duration":        2
+    "product":         p1
+
+Requirement(req12):
+    "content":         "Requirement 2 du produit 1"
+    "created":         "2014-06-03T19:00:00+02:00"
+    "priority":        2
+    "duration":        3
+    "product":         p1
+
+Requirement(req13):
+    "content":         "Requirement 3 du produit 1"
+    "created":         "2014-06-03T19:00:00+02:00"
+    "priority":        3
+    "duration":        4
+    "product":         p1
+    
+Requirement(req14):
+    "content":         "Requirement 4 du produit 1"
+    "created":         "2014-06-03T19:00:00+02:00"
+    "priority":        4
+    "duration":        5
+    "product":         p1
+    
+Requirement(req15):
+    "content":         "Requirement 5 du produit 1"
+    "created":         "2014-06-03T19:00:00+02:00"
+    "priority":        5
+    "duration":        6
+    "product":         p1
+
+Requirement(req21):
+    "content":         "Requirement 1 du produit 2"
+    "created":         "2014-06-03T19:00:00+02:00"
+    "priority":        1
+    "duration":        2
+    "product":         p2
+
+Requirement(req22):
+    "content":         "Requirement 2 du produit 2"
+    "created":         "2014-06-03T19:00:00+02:00"
+    "priority":        2
+    "duration":        3
+    "product":         p2
+
+Requirement(req23):
+    "content":         "Requirement 3 du produit 2"
+    "created":         "2014-06-03T19:00:00+02:00"
+    "priority":        3
+    "duration":        4
+    "product":         p2
+    
+Requirement(req24):
+    "content":         "Requirement 4 du produit 2"
+    "created":         "2014-06-03T19:00:00+02:00"
+    "priority":        4
+    "duration":        5
+    "product":         p2
+    
+Requirement(req25):
+    "content":         "Requirement 5 du produit 2"
+    "created":         "2014-06-03T19:00:00+02:00"
+    "priority":        5
+    "duration":        6
+    "product":         p2
+    
+p1:
+    "requirements":    [req11, req12, req13, req14, req15]
+
+p1:
+    "requirements":    [req21, req22, req23, req24, req25]
+    
+Version(release1):
+    "name":            "AER1 P1"
+    "date":            "2014-06-03T19:00:00+02:00"
+    "product":         p1
+
+Version(release2):
+    "name":            "AER1 P2"
+    "date":            "2014-06-03T19:00:00+02:00"
+    "product":         p2
+
+p1:
+    "releases":        [release1]
+
+p2:
+    "releases":        [release2]

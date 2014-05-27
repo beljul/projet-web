@@ -15,8 +15,10 @@ public class Task extends Model {
 	private Integer duration;
 	private Date created;
 	private Date finished;
-	private Integer priority;	
-	private TaskState curState;
+	private Integer priority;
+	
+	/*Default task state is TODO */
+	private TaskState curState = TaskState.TODO;
 	
 	public enum TaskState {
 		TODO, INPG, TOVERIFIED, DONE;
@@ -24,7 +26,10 @@ public class Task extends Model {
 			return this.name();
 		}
 	}
-	
+	public final static TaskState STATE_TODO = TaskState.TODO;
+	public final static TaskState STATE_INPG = TaskState.INPG;
+	public final static TaskState STATE_TOVERIFIED = TaskState.TOVERIFIED;
+	public final static TaskState STATE_DONE = TaskState.DONE;
 	@ManyToOne
 	private Requirement requirement;
 
@@ -71,6 +76,16 @@ public class Task extends Model {
 	 */
 	public void setCurTask(TaskState newState){
 		this.curState = newState;
+	}
+	
+	/**
+	 * Change the task win rate if it is between 0 and 100 
+	 * @param rate
+	 */
+	public void setWinRate(int rate) {
+		if(rate >= 0 && rate <= 100) {
+			this.win_rate = rate;
+		}
 	}
 	public void register() {
 		this.save();

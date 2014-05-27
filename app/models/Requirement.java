@@ -27,6 +27,7 @@ public class Requirement extends Model {
 	@ManyToMany
 	Set<Sprint> sprints;
 	
+	@OrderBy("priority ASC")
 	@OneToMany
 	private Set<Task> tasks;
 	
@@ -70,6 +71,19 @@ public class Requirement extends Model {
 	}
 	
 	public Set<Task> getTask(){
-		return this.getTask();
+		return tasks;
 	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public void setCreated(java.util.Date created) {
+		this.created = new Date(created.getTime());
+	}
+
+	public void setDuration(Integer duration) {
+		this.duration = duration;
+	}
+	
 }

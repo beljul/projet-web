@@ -62,4 +62,21 @@ public class Team extends Model {
 	public void setMembers(Set<User> members) {
 		this.members = members;
 	}
+	
+	public void setCreated(java.util.Date created){
+		this.created = new Date(created.getTime());
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Set<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(Set<Product> products) {
+		this.products = products;
+	}
+
 }

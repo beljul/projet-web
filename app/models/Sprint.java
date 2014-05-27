@@ -2,6 +2,7 @@ package models;
 
 import java.sql.Date;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -79,5 +80,25 @@ public class Sprint extends Model {
 
 	public boolean addRequirement(Requirement r) {
 		return this.requirements.add(r);
+	}
+	
+	public void saveTasks(Map<Long, models.Task.TaskState> newTaskStates,
+						   Map<Long, Integer> winrates){
+		
+		//For all requirement of the sprint
+		for(models.Requirement r : this.requirements){			
+			//For all task of the requirements
+			for(models.Task t : r.getTask()){
+				//If the examinated task is in the given map
+				if(newTaskStates.containsKey(t.getId())){					
+					t.setCurTask(newTaskStates.get(t.getId()));					
+				}
+				if(winrates.containsKey(t.getId())){
+					t.setWinRate(winrates.get(t.getId()));
+				}
+				t.save();
+			}
+		}
+		this.save();
 	}
 }
