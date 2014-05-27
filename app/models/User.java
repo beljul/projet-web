@@ -22,6 +22,7 @@ import play.data.validation.Required;
 import play.data.validation.Unique;
 import play.db.jpa.*;
 import play.modules.linkedin.LinkedInPlugin;
+import play.mvc.Controller;
 
 //@DiscriminatorColumn(
 //    name="type",
@@ -45,6 +46,12 @@ public class User extends Model {
 	@OneToMany
 	private Set<Document> documents;
 	
+	@ManyToMany
+	@JoinTable( name="User_Skills", 
+		joinColumns={@JoinColumn(name="Skills_Id", referencedColumnName="ID")}, 
+		inverseJoinColumns={@JoinColumn(name="Users_Id", referencedColumnName="ID")})
+	private Set<Skill> skills;
+	
 	public User(String name, String firstName, String email, String password) {
 		super();
 		this.name = name;
@@ -52,6 +59,7 @@ public class User extends Model {
 		this.email = email;
 		this.password = password;
 		this.products = new HashMap<Role, Product>();
+		this.skills = new HashSet<Skill>();
 	}
 	
 	public static User connect(String email, String password) {
@@ -119,12 +127,18 @@ public class User extends Model {
 		this.password = password;
 	}
 	
+	public boolean addSkill(Skill s) {
+		return this.skills.add(s);
+	}
+	
+	// Have to use directly the model ? To improve.
 	public static void linkedinOAuthCallback(play.modules.linkedin.LinkedInProfile o) {
 		Pattern p = Pattern.compile("[^a-zA-Z]+");
-		String[] skills = p.split(o.getSkills());
-		for (String string : skills) {
-			System.out.println(string);
-		}
-		
+		Set<String> skills = new HashSet<>(Arrays.asList(p.split(o.getSkills())));
+		boolean b = controllers.User.addSkills(skills);
+	}
+
+	public void register() {
+		this.save();
 	}
 }

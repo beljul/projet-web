@@ -2,6 +2,8 @@ package controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.regex.Pattern;
 
 import play.mvc.Controller;
 import play.mvc.With;
@@ -61,6 +63,21 @@ public class User extends WrapperController {
 			items.add(jsi);
 		}		
 		renderJSON(items);
+	}
+	public static boolean addSkills(Set<String> skills) {
+		models.User user = models.User.getByEmail(session.get("username"));
+		for (String skill : skills) {
+			if(skill != null && !skill.equals("")) {
+				models.Skill s = new models.Skill(skill);
+				s.save();
+				user.addSkill(s);
+			}
+		}
+		user.register();
+		return true;
+	}
+	public static models.User getCurrentUser() {
+		return models.User.getByEmail(session.get("username"));
 	}
 
 }
