@@ -1,0 +1,97 @@
+#{extends 'dashboard.html' /}
+#{set title:'My dashboard' /}
+#{stylesheet 'dashboard.css' /}
+#{script 'jquery-ui.min.js' /}
+#{stylesheet 'task-dashboard.css' /}
+
+
+<h2 class="page-header"><span class="glyphicon glyphicon-th"></span> Tableau des tâches<input id="save-progression" class="btn btn-success btn-md" type="submit" value="Sauvegarder"/></h2>
+<div class=container-fluid>
+	<div class="row">
+		<div class="col-md-3">
+			<h3>A faire</h3>
+			<ul class="task-section sortable" id="todo-list" data-state="${models.Task.STATE_TODO}">
+				#{list tasks, as:'l'}
+					#{if l.curState == l.STATE_TODO }		
+						<li data-id="${l.getId()}" data-win-rate="${l.win_rate}" class="sticker" >							
+							<span class="task-content">${l.description}</span>
+							<span title="Priorité" class="task-priority glyphicon glyphicon-exclamation-sign">${l.priority}</span>
+							<span title="Durée estimée" class="task-duration glyphicon glyphicon-time">${l.duration}j</span>
+							<span class="badge">${l.win_rate}%</span>
+							<span title="More information" class="display-info glyphicon glyphicon-plus"></span>
+							<div class="complementary-info">
+								<span title="Exigence" class="glyphicon glyphicon-paperclip"> ${l.requirement.content}</span>
+								<span title="Crée le" class="glyphicon glyphicon-calendar"> ${l.created}</span>
+							</div>
+							<div title="Changer l'avancement" class="slider"></div>
+						</li>						
+					#{/if}
+				#{/list}				
+			</ul>
+		</div>
+		<div class="col-md-3">
+			<h3>En cours</h3>
+			<ul class="task-section sortable" id="inpg-list" data-state="${models.Task.STATE_INPG}">			
+				#{list tasks, as:'l'}
+					#{if l.curState == l.STATE_INPG}		
+						<li data-id="${l.getId()}" data-win-rate="${l.win_rate}" class="sticker" >							
+							<span class="task-content">${l.description}</span>
+							<span title="Priorité" class="task-priority glyphicon glyphicon-exclamation-sign">${l.priority}</span>
+							<span title="Durée estimée" class="task-duration glyphicon glyphicon-time">${l.duration}j</span>
+							<span class="badge">${l.win_rate}%</span>
+							<span title="More information" class="display-info glyphicon glyphicon-plus"></span>
+							<div class="complementary-info">
+								<span title="Exigence" class="glyphicon glyphicon-paperclip"> ${l.requirement.content}</span>
+								<span title="Crée le" class="glyphicon glyphicon-calendar"> ${l.created}</span>
+							</div>
+							<div title="Changer l'avancement" class="slider"></div>
+						</li>			
+					#{/if}
+				#{/list}			
+			</ul>
+		</div>
+		<div class="col-md-3">
+			<h3>A vérifier</h3>
+			<ul class="task-section sortable" id="tobeverified-list" data-state="${models.Task.STATE_TOVERIFIED}">			
+				#{list tasks, as:'l'}
+					#{if l.curState == l.STATE_TOVERIFIED }		
+						<li data-id="${l.getId()}" data-win-rate="${l.win_rate}" class="sticker" >							
+							<span class="task-content">${l.description}</span>
+							<span title="Priorité" class="task-priority glyphicon glyphicon-exclamation-sign">${l.priority}</span>
+							<span title="Durée estimée" class="task-duration glyphicon glyphicon-time">${l.duration}j</span>
+							<span class="badge">${l.win_rate}%</span>
+							<span title="More information" class="display-info glyphicon glyphicon-plus"></span>
+							<div class="complementary-info">
+								<span title="Exigence" class="glyphicon glyphicon-paperclip"> ${l.requirement.content}</span>
+								<span title="Crée le" class="glyphicon glyphicon-calendar"> ${l.created}</span>
+							</div>
+							<div title="Changer l'avancement" class="slider"></div>
+						</li>		
+					#{/if}
+				#{/list}					
+			</ul>
+		</div>
+		<div class="col-md-3">
+			<h3>Terminées</h3>
+			<ul class="task-section sortable" id="done-list" data-state="${models.Task.STATE_DONE}">			
+				#{list tasks, as:'l'}
+					#{if l.curState == l.STATE_DONE }		
+						<li data-id="${l.getId()}" data-win-rate="${l.win_rate}" class="sticker" >							
+							<span class="task-content">${l.description}</span>
+							<span title="Priorité" class="task-priority glyphicon glyphicon-exclamation-sign">${l.priority}</span>
+							<span title="Durée estimée" class="task-duration glyphicon glyphicon-time">${l.duration}j</span>
+							<span class="badge">${l.win_rate}%</span>
+							<span title="More information" class="display-info glyphicon glyphicon-plus"></span>
+							<div class="complementary-info">
+								<span title="Exigence" class="glyphicon glyphicon-paperclip"> ${l.requirement.content}</span>
+								<span title="Crée le" class="glyphicon glyphicon-calendar"> ${l.created}</span>
+							</div>
+							<div title="Changer l'avancement" class="slider"></div>
+						</li>		
+					#{/if}
+				#{/list}				
+			</ul>
+		</div>
+	</div>
+</div>
+#{script 'task-dashboard.js' /}

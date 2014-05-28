@@ -56,4 +56,12 @@ public class Sprint extends WrapperController {
 		}
 		renderJSON(requirementsAvailable);
 	}
+	/*
+	 * Save the progression of the current sprint
+	 */
+	static public void saveProgression(Map<Long,models.Task.TaskState> states,
+										 Map<Long,Integer> winrates){
+		 models.Sprint s = models.Sprint.getById(Long.parseLong(session.get("sprintId")));
+		 s.saveTasks(states, winrates);
+	}
 }

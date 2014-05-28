@@ -167,7 +167,20 @@ public class Product extends Model {
 	public User getCustomer() {
 		return customer;
 	}
-
+	/**
+	 * Get a release of the product by a given name
+	 * @param name the name of the product
+	 * @return
+	 */
+	public models.Version getReleaseByName(String name){
+		for(models.Version r: this.releases){
+			if(r.getName().equals(name)){
+				return r;
+			}
+		}
+		return null;
+	}
+	
 	public Set<Requirement> getRequirementsUnassigned() {
 		Set<Requirement> requirementsUnassigned = this.requirements;
 		for (models.Version v : this.releases) {

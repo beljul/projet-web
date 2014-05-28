@@ -70,10 +70,13 @@ public class Team extends Model {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public Set<Product> getProducts() {
+		return products;
+	}
 
 	public void setProducts(Set<Product> products) {
-		System.out.println("********************************************************");
 		this.products = products;
 	}
-	
+
 }

@@ -10,3 +10,11 @@ div.scrum-col:last-child {
 	border-width:0 1px 0 1px;
 	border-style:solid;
 }
+
+/*Display the tree in line for the smallest devices */
+@media (max-width: 750px) { 
+	li.parent_li {
+		display:inline-block;
+		vertical-align: top;
+	} 
+}

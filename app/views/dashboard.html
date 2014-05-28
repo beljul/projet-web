@@ -9,20 +9,35 @@
 
 
 <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
 	<div id="navigation" class="col-sm-3 col-md-2 sidebar">
 		<ul class="nav nav-tabs" id="tabs">
 			<li class="active"><a href="#menu" data-toggle="tab">Menu</a></li>
 			<li><a title="Consulter l'arbre produit" href="#tree" data-toggle="tab">Produit</a></li>
 		</ul>
+		<nav class="navbar navbar-default" role="navigation">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav.nav-sidebar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+    </div>
+    </nav>
 		<div class="tab-content">
 			<div class="tab-pane active" id="menu">
 				<ul class="nav nav-sidebar">
 					<li><a class="glyphicon glyphicon-th"
-						href="@{Application.dashboard}"> Tableau des taches</a></li>
+						href="@{task.dashboard}"> Tableau des taches</a></li>
 					<li class="${session.isNotPO}"><a id="requirement-add"
 						class="glyphicon glyphicon-paperclip" href="@{Requirement.add}">
 							Ajouter des exigences </a></li>
-					<li><a class="active glyphicon glyphicon-pushpin" href="@{Task.add}">
+					<li><a id="task-add" class="active glyphicon glyphicon-pushpin" href="@{Task.add}">
 							Ajouter une tache</a></li>
 					<li class="${session.isNotPO}"><a id="version-add" class="glyphicon glyphicon-bookmark" href="@{Version.add}">
 							Ajouter une release</a></li>

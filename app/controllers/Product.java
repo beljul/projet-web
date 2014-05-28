@@ -185,7 +185,10 @@ public class Product extends WrapperController {
 		}
 		flash.put("message", "Le produit " + name + " a été créé");
 		flash.put("messageStyle", "validation");
-		redirect("/Application/dashboard");	    	 
+		
+		//redirect in RSSFlux.add
+		RSSFlux.add();
+//		redirect("/Application/dashboard");	    	 
 	}
 	
 	public static void show() {
