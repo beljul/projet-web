@@ -3,3 +3,5 @@
 require:
     - play
     - play -> secure 
+    - play -> linkedin 0.2.1
+    - jdom 2.0.5
