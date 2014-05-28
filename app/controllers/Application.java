@@ -12,7 +12,7 @@ import models.Product;
 public class Application extends WrapperController {
 //
     public static void index() {
-        dashboard();
+//        Sprint.progression();
     }
       
     public static void dashboard(){

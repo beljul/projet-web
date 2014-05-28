@@ -40,21 +40,4 @@ public class Task extends WrapperController {
 		HTMLFlash.contextual("De nouvelles tâches ont été ajoutées", HTMLFlash.VALIDATION, false);
 		redirect("/Application/dashboard");
 	}
-
-	static public void dashboard(){
-			
-		models.Product p = models.Product.getByName(session.get("productName"));
-		models.Version v = p.getReleaseByName(session.get("releaseName"));
-		models.Sprint  s2 = v.getSprintByName(session.get("sprintName"));
-		models.Sprint s = models.Sprint.getById(Long.parseLong(session.get("sprintId")));
-
-		List<models.Task> tasks = new LinkedList<models.Task>();
-
-		for(models.Requirement r : s.getRequirements()){
-			tasks.addAll(r.getTask());
-		}
-		
-		render(tasks);
-	}
-
 }

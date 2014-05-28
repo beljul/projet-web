@@ -6,6 +6,13 @@ $(function () {
 	
 	$('li.disabled a').attr("href", "#");	
 })
-  
+ $(window).on('resize',function(){
+	 if($( window ).width() > 750) {
+		 console.log("tiit");
+	 }
+	 else {
+		 $('button#sub-menu-display.navbar-toggle').click();		 
+	 }
+ });
 
   

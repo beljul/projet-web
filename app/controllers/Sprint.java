@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -63,5 +64,18 @@ public class Sprint extends WrapperController {
 										 Map<Long,Integer> winrates){
 		 models.Sprint s = models.Sprint.getById(Long.parseLong(session.get("sprintId")));
 		 s.saveTasks(states, winrates);
+	}
+	static public void progression(){
+		models.Product p = models.Product.getByName(session.get("productName"));
+		models.Version v = p.getReleaseByName(session.get("releaseName"));
+		models.Sprint  s2 = v.getSprintByName(session.get("sprintName"));
+		models.Sprint s = models.Sprint.getById(Long.parseLong(session.get("sprintId")));
+
+		List<models.Task> tasks = new LinkedList<models.Task>();
+
+		for(models.Requirement r : s.getRequirements()){
+			tasks.addAll(r.getTask());
+		}		
+		render(tasks);
 	}
 }

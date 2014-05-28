@@ -15,6 +15,7 @@ div.scrum-col:last-child {
 @media (max-width: 750px) { 
 	li.parent_li {
 		display:inline-block;
+		margin:0.5em !important;
 		vertical-align: top;
 	} 
 }
