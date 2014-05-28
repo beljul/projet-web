@@ -58,6 +58,7 @@ public class RSSFlux extends WrapperController {
 			entries.add(item);
 		}
 		feed.setEntries(entries);
+		redirect("/Application/dashboard");
 	}
 	
 	public static void serialize() {

@@ -45,7 +45,6 @@
           <ul class="nav navbar-nav">            
             #{if session.username}
             <li><a>Welcome ${session.username} ! </a></li>
-			#{linkedin.button label:'Login using your LinkedIn account.' /}
             <li><a href="/Application/dashboard">Dashboard</a></li>            
             <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produits<b class="caret"></b></a>
@@ -60,6 +59,15 @@
                     <li><a id="new-product" href="@{Product.create}">Créer un nouveau produit</a></li>
                     <li><a href="@{Product.show()}">Voir tous mes produits</a></li>
                   </ul>
+             </li>
+             <li class="dropdown">
+             	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Communauté<b class="caret"></b></a>
+             	<ul class="dropdown-menu">
+             	    <li class="dropdown-header">Mon compte</li>                    
+             		<li>#{linkedin.button label:'Lier mon compte à LinkedIn' /}<li>
+             		<li class="dropdown-header">Mon équipe</li>                    
+             		<li><a href="@{RSSFlux.serialize()}">Abonnement RSS</a></li>
+             	</ul>
              </li>
              <li><a href="@{Secure.logout()}" id="logout">Log out</a></li>
             #{/if}
