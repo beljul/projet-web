@@ -54,7 +54,7 @@ public class RSSFlux extends WrapperController {
 			content.setType("text/plain");
 			content.setValue(product.getDescription());
 			item.setDescription(content);
-			item.setLink(request.getBase() + "/Product/show/");
+			item.setLink(request.getBase() + "/Product/show");
 			entries.add(item);
 		}
 		feed.setEntries(entries);
