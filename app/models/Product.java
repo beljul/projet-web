@@ -29,6 +29,9 @@ public class Product extends Model {
 	private Set<Version> releases;
 	
 	@ManyToOne
+	@JoinTable( name="Product_Team", 
+		joinColumns={@JoinColumn(name="Products_ID", referencedColumnName="ID")}, 
+		inverseJoinColumns={@JoinColumn(name="Team_ID", referencedColumnName="ID")})
 	private Team team;
 	
 	@ManyToOne
@@ -184,10 +187,14 @@ public class Product extends Model {
 	}
 	
 	public void setTeam(Team team) {
+		System.out.println("=========================================");
+
 		this.team = team;
 	}
 
 	public void setRequirements(Set<Requirement> requirements) {
 		this.requirements = requirements;
 	}
+	
+	
 }

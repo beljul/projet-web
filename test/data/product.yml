@@ -75,7 +75,8 @@ Product(p1):
     "productOwner":    bob1
     "scrumMaster":     bob2
     "customer":        bob3
-    
+    "team":            t1
+
 Product(p2):
     "name":            "Produit 2"
     "created":         "2014-06-03T19:00:00+02:00"
@@ -83,7 +84,8 @@ Product(p2):
     "productOwner":    bob2
     "scrumMaster":     bob1
     "customer":        bob3
-
+    "team":            t2
+    
 Requirement(req11):
     "content":         "Requirement 1 du produit 1"
     "created":         "2014-06-03T19:00:00+02:00"

@@ -25,6 +25,10 @@ public class User extends Model {
 	private String password;
 	
 	@ManyToMany
+	@JoinTable( name="User_Product", 
+		joinColumns={@JoinColumn(name="Users_ID", referencedColumnName="ID")}, 
+		inverseJoinColumns={@JoinColumn(name="Products_ID", referencedColumnName="ID")})
+	@MapKeyJoinColumn(name="Role_ID", referencedColumnName="ID")
 	private Map<Role, Product> products;
 	
 	//private Set<Team> teams;
