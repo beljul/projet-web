@@ -15,13 +15,13 @@ public class Requirement extends WrapperController {
 	
 	@Before
 	static void checkAccessRules(){
-		String msg = "Vous n'êtes pas autorisé à accéder à cette functionnalité";
-		System.out.println("titi");
-		if(! AccessRules.isDev()) {
-			System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!titi");
-			HTMLFlash.cancelFlash();
-			HTMLFlash.screen(msg, HTMLFlash.ERROR, false);
-		}
+//		String msg = "Vous n'êtes pas autorisé à accéder à cette functionnalité";
+//		System.out.println("titi");
+//		if(! AccessRules.isDev()) {
+//			System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!titi");
+//			HTMLFlash.cancelFlash();
+//			HTMLFlash.screen(msg, HTMLFlash.ERROR, false);
+//		}
 	}
 	
 	public static void add() {
