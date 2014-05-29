@@ -9,8 +9,7 @@ public class Security extends Secure.Security {
 	}			
 	static void onAuthenticated(){
 		HTMLFlash.contextual("Bienvenue sur scrumnch", HTMLFlash.INFORMATION, false);
-		Application.dashboard();
-		
+		Application.index();		
 	}
 	
 	static void onDisconnected() {

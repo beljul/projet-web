@@ -14,7 +14,7 @@ import play.mvc.With;
 public class Requirement extends WrapperController {
 	
 	@Before
-	static void checkProductIsSelected(){
+	static void checkAccessRules(){
 		String productName = session.get("productName");
 		if(productName == null){
 			flash.put("message", "Veuillez d'abord sélectionner un produit");

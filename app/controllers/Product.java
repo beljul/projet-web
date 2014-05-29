@@ -207,7 +207,7 @@ public class Product extends WrapperController {
 		models.Product p = Product.__setCurrentProduct(id);
 		HTMLFlash.contextual("Nouveau produit courant : " + p.getName(),
 							HTMLFlash.INFORMATION, false);
-		redirect("/Application/dashboard");	    	 
+		redirect("/sprint/progression");
 	}
 	
 	/**
@@ -216,59 +216,24 @@ public class Product extends WrapperController {
 	 * @return
 	 */
 	static models.Product __setCurrentProduct(Long id){
+		
+		//Retrieve the product selected
 		models.Product p = models.Product.getById(id);
+		
+		//Change the current product
 		session.put("productName", p.getName());
 		
-		String email = session.get("username");
-    	String emailPO = new String();
-    	String emailSM = new String();
-    	String emailCust = new String();
-    	Set<String> emailTeam = new HashSet<String>();
-    	emailPO = p.getProductOwner().getEmail();
-    	emailSM = p.getScrumMaster().getEmail();
-    	emailCust = p.getCustomer().getEmail();
-    	for (models.User user : p.getTeam().getMembers()) {
-    		emailTeam.add(user.getEmail());
-		}
-    	// To verify if current user is the current product's product owner
-    	if(!email.equals(emailPO)) {
-    		session.put("isNotPO", "disabled");
-    	}
-    	else {
-    		session.put("isNotPO", "");
-    	}
-    	
-    	// To verify if current user is the current product's scrum master
-    	if(!email.equals(emailSM)) {
-    		session.put("isNotSM", "disabled");
-    	}
-    	else {
-    		session.put("isNotSM", "");
-    	}
-    	
-    	/* 
-    	 * To verify is current user is a developer of current product
-    	 * He has to be in the team
-    	 * and he can't be the scrum master, product owner or customer in same time
-    	 */
-    	if(!emailTeam.contains(email) ||
-    	   email.equals(emailPO) ||
-    	   email.equals(emailSM) ||
-    	   email.equals(emailCust)) {
-    		session.put("isNotDev", "disabled");
-    	}
-    	else {
-    		session.put("isNotDev", "");
-    	}
-    	
-    	if(!session.get("isNotPO").equals("") && !session.get("isNotDev").equals("")) {
-    		session.put("isNotPOAndDev", "disabled");
-    	}
-    	else {
-    		session.put("isNotPOAndDev", "");
-    	}
+		//Refresh rules of the product
+		AccessRules.refresh();
     	
 		models.Version release = p.getCurrentRelease();
+		
+		/*Remove the previous product session variables */
+		session.remove("releaseName");
+		session.remove("sprintName");
+		session.remove("sprintId");
+		
+		/*Store the new ones */
 		if(release != null) {
 			session.put("releaseName", release.getName());
 			models.Sprint sprint = release.getCurrentSprint();
@@ -276,10 +241,7 @@ public class Product extends WrapperController {
 			session.put("sprintId", sprint.getId());
 		}
 		else {
-			session.put("releaseName", "");
-			session.put("sprintName", "");
-			session.put("sprintId", "");
-
+			HTMLFlash.contextual("Aucune release trouvée.", HTMLFlash.ERROR, false);
 		}
 		return p;
 	}

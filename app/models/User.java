@@ -141,4 +141,13 @@ public class User extends Model {
 	public void register() {
 		this.save();
 	}
+	@Override
+	public boolean equals(Object other) {
+		//check for self-comparison
+	    if ( this == other) return true;	    
+	    if ( !(other instanceof User) ) return false;
+	    System.out.println("Jussqu'ici tout va bien");
+	    System.out.println(this.getEmail() + "==" + ((User)other).getEmail());
+	    return this.email.equals(((User) other).email);	  
+	}
 }

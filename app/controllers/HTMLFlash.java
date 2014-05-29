@@ -18,19 +18,22 @@ public abstract class HTMLFlash {
 		  }
 	}
 	private static void init(String message, FlashStyle style,
-								boolean closable, boolean window){
+								boolean closable, boolean window){		
 		play.mvc.Scope.Flash flash = play.mvc.Scope.Flash.current();
 		flash.put("message", message);
 		flash.put("messageStyle", style.toString());
-		if(closable) {
+		if (closable) {
 			flash.put("messageClosable", closable);
 		}
-		if(window){
+		if (window) {
 			flash.put("messageWindow", window);
 		}
+			
 	}
 	/**
-	 * Initialize a contextual flash message 
+	 * Initialize a contextual flash message. 
+	 * This method take its first call in consideration.
+	 * Next calls will be ignored
 	 * @param message the content of the message
 	 * @param style   the message style (validation,error ...)
 	 * @param closable If true, a link will allow to close the message
@@ -42,7 +45,9 @@ public abstract class HTMLFlash {
 		init(message, style, closable,false);
 	}
 	/**
-	 * Initialize a screen flash message for the next HTTP request 
+	 * Initialize a screen flash message for the next HTTP request
+	 * This method take its first call in consideration. 
+	 * Next calls will be ignored 
 	 * @param message the content of the message
 	 * @param style   the message style (validation,error ...)
 	 * @param closable If true, a link will allow to close the message
@@ -52,5 +57,16 @@ public abstract class HTMLFlash {
 	public static void screen(String message, FlashStyle style,
 								boolean closable){
 		init(message, style, closable,true);
+	}
+	
+	/**
+	 * Cancel a previous initialized message
+	 */
+	public static void cancelFlash(){
+		play.mvc.Scope.Flash flash = play.mvc.Scope.Flash.current();
+		flash.remove("message");
+		flash.remove("messageStyle");
+		flash.remove("messageClosable");
+		flash.remove("messageWindow");
 	}
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import play.mvc.Before;
 import play.mvc.With;
 
 @With(Secure.class)
@@ -67,15 +68,20 @@ public class Sprint extends WrapperController {
 	}
 	static public void progression(){
 		models.Product p = models.Product.getByName(session.get("productName"));
-		models.Version v = p.getReleaseByName(session.get("releaseName"));
-		models.Sprint  s2 = v.getSprintByName(session.get("sprintName"));
-		models.Sprint s = models.Sprint.getById(Long.parseLong(session.get("sprintId")));
-
+		
+		models.Version v = null;
+		models.Sprint s = null;
+		if(p != null)
+			v = p.getReleaseByName(session.get("releaseName"));
+		if(v != null)
+			s = models.Sprint.getById(Long.parseLong(session.get("sprintId")));
+		
 		List<models.Task> tasks = new LinkedList<models.Task>();
-
-		for(models.Requirement r : s.getRequirements()){
-			tasks.addAll(r.getTask());
-		}		
+		if(s != null) {
+			for(models.Requirement r : s.getRequirements()){
+				tasks.addAll(r.getTask());
+			}
+		}
 		render(tasks);
 	}
 }

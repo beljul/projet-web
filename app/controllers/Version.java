@@ -13,7 +13,9 @@ public class Version extends WrapperController {
 	
 	public static void add() {
 		int nbSprints = 4;
-		render(nbSprints);
+		/*Avoid release selection asking message */
+		HTMLFlash.cancelFlash();
+		render(nbSprints);		
 	}
 	
 	public static void register(String release, Integer nbSprints) {

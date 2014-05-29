@@ -10,8 +10,21 @@ import models.Product;
 
 //@With(Secure.class)
 public class WrapperController extends Controller {
-
-  
+	
+	/**
+	 * Initialize a flash message if no product have been selected
+	 */
+    @Before 
+    static void checkSelection(){
+    	if(session.get("productName") == null) {
+    		String msg = "Commencez par sélectionner un produit dans la barre de menu";
+			HTMLFlash.contextual(msg,HTMLFlash.INFORMATION, true);
+    	}
+    	else if(session.get("releaseName") == null || session.get("sprintID") == null) {
+    		String msg = "Sélectionner une release et un sprint dans l'onglet produit";
+    		HTMLFlash.contextual(msg, HTMLFlash.INFORMATION, true);
+    	}
+    }
    @Before
     static void getUserInfo() {
     	if(!session.isEmpty()) {

@@ -58,7 +58,13 @@ public class Team extends Model {
 	public Set<User> getMembers() {
 		return members;
 	}
-
+	public boolean containsMember(User userToCheck) {
+		for(User u : members) {
+			if(u.equals(userToCheck))
+				return true;
+		}
+		return false;
+	}
 	public void setMembers(Set<User> members) {
 		this.members = members;
 	}
