@@ -65,6 +65,11 @@ public class Team extends Model {
 		}
 		return false;
 	}
+	
+	public boolean containsMember(String userEmail) {
+		models.User u = models.User.getByEmail(userEmail);
+		return this.containsMember(u);
+	}
 	public void setMembers(Set<User> members) {
 		this.members = members;
 	}

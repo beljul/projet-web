@@ -220,6 +220,13 @@ public class Product extends WrapperController {
 		//Retrieve the product selected
 		models.Product p = models.Product.getById(id);
 		
+		/*Only a team member can access to the product ... */
+		if(! p.getTeam().containsMember(session.get("username"))){
+			HTMLFlash.notAuthorized();
+			redirect("/");
+		}
+		
+		
 		//Change the current product
 		session.put("productName", p.getName());
 		

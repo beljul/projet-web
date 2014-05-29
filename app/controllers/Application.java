@@ -12,11 +12,11 @@ import models.Product;
 public class Application extends WrapperController {
 	
     public static void index() {
-    	if(session.get("productName") != null)
-    		Sprint.progression();    	
-    	else {
+//    	if(session.get("productName") != null)
+//    		Sprint.progression();    	
+//    	else {
     		render();
-    	}
+//    	}
     }
       
     public static void dashboard(){
