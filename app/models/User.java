@@ -154,4 +154,9 @@ public class User extends Model {
 	    System.out.println(this.getEmail() + "==" + ((User)other).getEmail());
 	    return this.email.equals(((User) other).email);	  
 	}
+
+	public Set<Skill> getSkills() {
+		return skills;
+	}
+	
 }

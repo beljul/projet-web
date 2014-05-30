@@ -53,7 +53,8 @@ public class User extends WrapperController {
 			this.value = value;
 			this.name = name;
 		}
-	};	
+	};
+	
 	public static void jsonSearch(String term) {
 		List<models.User> users = models.User.getByBeginOfEmail(term);
 		List<JsonSearchItem> items = new ArrayList<JsonSearchItem>();		
@@ -64,6 +65,7 @@ public class User extends WrapperController {
 		}		
 		renderJSON(items);
 	}
+	
 	public static boolean addSkills(Set<String> skills) {
 		models.User user = models.User.getByEmail(session.get("username"));
 		for (String skill : skills) {
@@ -76,8 +78,13 @@ public class User extends WrapperController {
 		user.register();
 		return true;
 	}
+	
 	public static models.User getCurrentUser() {
 		return models.User.getByEmail(session.get("username"));
 	}
 
+	public static void profile() {
+		models.User user = models.User.getByEmail(session.get("username"));
+		render(user);
+	}
 }
