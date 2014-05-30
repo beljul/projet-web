@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -68,13 +69,15 @@ public class User extends WrapperController {
 	
 	public static boolean addSkills(Set<String> skills) {
 		models.User user = models.User.getByEmail(session.get("username"));
+		Set<models.Skill> newSkills= new HashSet<models.Skill>();
 		for (String skill : skills) {
 			if(skill != null && !skill.equals("")) {
 				models.Skill s = new models.Skill(skill);
 				s.save();
-				user.addSkill(s);
+				newSkills.add(s);
 			}
 		}
+		user.setSkills(newSkills);
 		user.register();
 		return true;
 	}

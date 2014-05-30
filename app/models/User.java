@@ -137,7 +137,7 @@ public class User extends Model {
 	
 	// Have to use directly the model ? To improve.
 	public static void linkedinOAuthCallback(play.modules.linkedin.LinkedInProfile o) {
-		Pattern p = Pattern.compile("[^a-zA-Z]+");
+		Pattern p = Pattern.compile("[^a-zA-Z]+ [^a-zA-Z]*");
 		Set<String> skills = new HashSet<>(Arrays.asList(p.split(o.getSkills())));
 		boolean b = controllers.User.addSkills(skills);
 	}
@@ -157,6 +157,10 @@ public class User extends Model {
 
 	public Set<Skill> getSkills() {
 		return skills;
+	}
+
+	public void setSkills(Set<Skill> skills) {
+		this.skills = skills;
 	}
 	
 }
