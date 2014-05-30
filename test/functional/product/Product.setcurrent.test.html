@@ -1,0 +1,23 @@
+#{selenium 'User can change a product he belongs to'}
+	clearSession()
+	open('/')
+	type('username', 'bob1@gmail.com')
+	type('password', 'bobbob')
+	
+	clickAndWait('signin')
+	assertTextPresent('bob1@gmail.com')
+	clickAndWait('change-product-1')
+	assertTextPresent('Nouveau produit courant')
+#{/selenium}
+
+#{selenium 'User can\'t change a product he does not belongs to'}
+    clickAndWait(logout)
+    clearSession()
+	type('username','bob10@gmail.com')
+	type('password','bobbob')
+	clickAndWait('signin')
+	assertTextPresent('Welcome bob10@gmail.com')
+	
+	open('/product/setcurrentproduct?id=1')
+	assertTextPresent('Vous n\'êtes pas autorisé à accéder à cette fonctionnalité')
+#{/selenium}

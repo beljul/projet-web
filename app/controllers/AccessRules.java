@@ -40,11 +40,11 @@ public abstract class AccessRules {
 	    	 * product owner or customer at the same time
 	    	 */
 			boolean isDevelopper = false;
-			if(!p.getTeam().containsMember(curUser) 
-					|| p.getScrumMaster().equals(curUser)
-					|| p.getProductOwner().equals(curUser)
-					|| p.getCustomer().equals(curUser)) {
-				session.put(SESSION_IS_DEV, SESSION_NOT);
+			if(p.getTeam().containsMember(curUser) 
+					&& !p.getScrumMaster().equals(curUser)
+					&& !p.getProductOwner().equals(curUser)
+					&& !p.getCustomer().equals(curUser)) {
+				session.put(SESSION_IS_DEV, SESSION_IS);
 				isDevelopper = true;
 			}
 			/*if(!p.getProductOwner().equals(curUser) && !isDevelopper)
