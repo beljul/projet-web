@@ -1,0 +1,14 @@
+#{extends 'dashboard.html' /} 
+#{set title:'Documents' /}
+
+#{list documents, as:'d'}
+	<div class="panel panel-info">
+	  <div class="panel-heading">${d.type} du ${d.created}</div>
+	  <div class="panel-body">
+	    ${d.content}
+	  </div>
+	  <div class="panel-footer">${d.author}</div>
+	</div>
+#{/list}
+
+

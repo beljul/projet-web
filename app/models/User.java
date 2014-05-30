@@ -162,5 +162,10 @@ public class User extends Model {
 	public void setSkills(Set<Skill> skills) {
 		this.skills = skills;
 	}
+
+	@Override
+	public String toString() {
+		return this.firstName + " " + this.name;
+	}
 	
 }

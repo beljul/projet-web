@@ -6,8 +6,13 @@ import javax.persistence.*;
 
 import play.db.jpa.Model;
 
+@DiscriminatorColumn(
+name="type",
+discriminatorType=DiscriminatorType.STRING)
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @Entity
 public class Document extends Model {
+	private String type;
 	private Date created;
 	private String content;
 	
