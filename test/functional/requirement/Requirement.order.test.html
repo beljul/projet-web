@@ -9,3 +9,58 @@
 	assertTextPresent('Ordonner les exigences')		
 #{/selenium}
 
+#{selenium 'Product owner can\'t access to requirement ordering functionality'}
+	clearSession()
+	open('/')
+	type('username', 'bob1@gmail.com')
+	type('password', 'bobbob')	
+	clickAndWait('signin')
+	clickAndWait('change-product-1')
+	open('/requirement/order')	
+	verifyElementPresent('css=div.flash.flashError')
+#{/selenium}
+
+#{selenium 'Scrum master can\'t access to requirement ordering functionality'}
+	clearSession()
+	open('/')
+	type('username', 'bob2@gmail.com')
+	type('password', 'bobbob')	
+	clickAndWait('signin')
+	clickAndWait('change-product-1')
+	open('/requirement/order')	
+	verifyElementPresent('css=div.flash.flashError')
+#{/selenium}
+
+#{selenium 'Customer can\'t access to requirement ordering functionality'}
+	clearSession()
+	open('/')
+	type('username', 'bob3@gmail.com')
+	type('password', 'bobbob')	
+	clickAndWait('signin')
+	clickAndWait('change-product-1')
+	open('/requirement/order')	
+	verifyElementPresent('css=div.flash.flashError')
+#{/selenium}
+
+#{selenium 'Order saving for a developer'}
+    clearSession()
+    open('/')
+    type('username', 'bob4@gmail.com')
+    type('password', 'bobbob')
+    clickAndWait('signin')
+    clickAndWait('change-product-1')
+    open('/requirement/order')    	    	
+	#dragAndDropToObject(css=li[data-id="4"],css=ul[data-priority="3"])
+	dragAndDropToObject('css=li[data-id="4"]','css=ul#priority3')
+	verifyText(//ul[@data-priority=3], 'Exigence 4 du produit 1')
+	dragAndDropToObject('css=li[data-id="4"]','css=ul#priority4')
+	click('save-order')
+	waitForElementPresent('css=div.flash.flashValidation')
+	open('/requirement/order')    
+	verifyText(//ul[@data-priority=3], 'Exigence 4 du produit 1')
+	dragAndDropToObject('css=li[data-id="4"]','css=ul#priority1')
+	waitForElementPresent('css=div.flash.flashValidation')
+	assertText(//ul[@data-priority=1], 'Exigence 4 du produit 1')
+	click('save-order')
+#{/selenium}
+

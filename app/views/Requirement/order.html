@@ -8,54 +8,55 @@
 <div class="row">
 <div class="col-md-2 col-md-offset-1">
 <h3>Priorité 1</h3>
-<ul data-priority="1" class="sortable priority1" id="sortable">
+<ul id="priority1" data-priority="1" class="sortable priority1" id="sortable">
 	#{list r, as:'requirement'}
 		#{if requirement.priority == 1}		
-		<li data-id="${requirement.getId()}" class="ui-state-default">${requirement.content}</li>
+		<li id="requirement-${requirement.getId()}" data-id="${requirement.getId()}" class="ui-state-default">${requirement.content}</li>
 		#{/if}
 	#{/list}
 </ul>
 </div>
 <div class="col-md-2">
 <h3>Priorité 2</h3>
-<ul data-priority="2" class="sortable priority2" id="sortable">
+<ul id="priority2" data-priority="2" class="sortable priority2" >
 	#{list r, as:'requirement'}
 		#{if requirement.priority == 2}		
-		<li data-id="${requirement.getId()}" class="ui-state-default">${requirement.content}</li>
+		<li id="requirement-${requirement.getId()}" data-id="${requirement.getId()}" class="ui-state-default">${requirement.content}</li>
 		#{/if}
 	#{/list}
 </ul>
 </div>
 <div class="col-md-2">
 <h3>Priorité 3</h3>
-<ul data-priority="3" class="sortable priority3" id="sortable">
+<ul id="priority3" data-priority="3" class="sortable priority3" >
 	#{list r, as:'requirement'}
 		#{if requirement.priority == 3}		
-		<li data-id="${requirement.getId()}" class="ui-state-default">${requirement.content}</li>
+		<li id="requirement-${requirement.getId()}" data-id="${requirement.getId()}" class="ui-state-default">${requirement.content}</li>
 		#{/if}
 	#{/list}
 </ul>
 </div>
 <div class="col-md-2">
 <h3>Priorité 4</h3>
-<ul  data-priority="4" class="sortable priority4" id="sortable">
+<ul  id="priority4" data-priority="4" class="sortable priority4" >
 	#{list r, as:'requirement'}
 		#{if requirement.priority == 4}		
-		<li data-id="${requirement.getId()}" class="ui-state-default">${requirement.content}</li>
+		<li id="requirement-${requirement.getId()}" data-id="${requirement.getId()}" class="ui-state-default">${requirement.content}</li>
 		#{/if}
 	#{/list}
 </ul>
 </div>
 <div class="col-md-2">
 <h3>Priorité 5</h3>
-<ul  data-priority="5"  class="sortable priority5" id="sortable">
+<ul  id="priority5" data-priority="5"  class="sortable priority5" >
 	#{list r, as:'requirement'}
 		#{if requirement.priority == 5}		
-		<li data-id="${requirement.getId()}" class="ui-state-default">${requirement.content}</li>
+		<li id="requirement-${requirement.getId()}" data-id="${requirement.getId()}" class="ui-state-default">${requirement.content}</li>
 		#{/if}
 	#{/list}
 </ul>		
 </div>
 </div>
-
+<div id="drag-essai"></div>
+<div id="drop-essai"></div>
 #{script 'jquery-ui.min.js' /} #{script 'requirement-order.js' /}
