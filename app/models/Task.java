@@ -53,7 +53,6 @@ public class Task extends Model {
 		Task res = find("from Task t "
 					 + 	"where t.requirement= ? "
 					 +  "order by t.ident desc", requirement).first();
-		System.out.println("===================" + res);
 		if(res != null)
 			return res.getIdent();
 		else

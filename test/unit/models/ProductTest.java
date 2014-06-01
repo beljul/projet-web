@@ -29,8 +29,8 @@ public class ProductTest extends UnitTest {
 		User productOwner = new User("pinkman", "jessie", "jessie.pinkman@gmail.com", "rootroot");
 		User customer = new User("junkie", "noname", "junkie.42@gmail.com", "rootroot");
 		
-		Product pSuccess = Product.register(name, created, description, sprintDuration,
+		Product pSuccess = new Product(name, created, description, sprintDuration,
 											team, scrumMaster, productOwner, customer);
-		assertNotNull(pSuccess);	
+		assertNotNull(pSuccess);
 	}
 }
