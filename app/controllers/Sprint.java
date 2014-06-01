@@ -84,4 +84,8 @@ public class Sprint extends WrapperController {
 		}
 		render(tasks);
 	}
+	
+	static models.Sprint getCurSprint(){
+		return models.Sprint.getById(Long.parseLong(session.get("sprintId")));
+	}
 }

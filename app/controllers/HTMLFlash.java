@@ -10,7 +10,7 @@ public abstract class HTMLFlash {
 	public static final FlashStyle INFORMATION = FlashStyle.flashInformation;
 	
 	/*A generic authorization error message */
-	public static final String AUTH_ERR = "Vous n'êtes pas autorisé à accéder à cette fonctionnalité";
+	public static final String AUTH_ERR = "Vous n'êtes pas authorisé à accéder à cette fonctionnalité";
 	
 	public enum FlashStyle {
 		  flashValidation,

@@ -168,4 +168,12 @@ public class User extends Model {
 		return this.firstName + " " + this.name;
 	}
 	
+	/**
+	 * Add a document written by the user
+	 * @param d the document to be added
+	 */
+	public void addDocument(Document d) {
+		this.documents.add(d);
+	}
+	
 }

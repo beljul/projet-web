@@ -105,4 +105,8 @@ public class Sprint extends Model {
 	public Set<Document> getDocuments() {
 		return documents;
 	}
+	
+	public void addDocument(Document d){
+		this.documents.add(d);
+	}
 }

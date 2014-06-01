@@ -1,0 +1,4 @@
+/*Correct a css conflict */
+a.jqte_tool_label.unselectable {
+	height: auto !important;
+}

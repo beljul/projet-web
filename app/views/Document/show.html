@@ -3,11 +3,12 @@
 
 #{list documents, as:'d'}
 	<div class="panel panel-info">
-	  <div class="panel-heading">${d.type} du ${d.created}</div>
+	  <div class="panel-heading">${d.getDocumentType()} du ${d.getDate()}</div>
 	  <div class="panel-body">
-	    ${d.content}
+	    ${d.getContent().replace("<script","&lt;script&gt;")
+	    				.replace("</script>","&lt;script&gt;").raw()}
 	  </div>
-	  <div class="panel-footer">${d.author}</div>
+	  <div class="panel-footer">${d.getAuthor().getEmail()}</div>
 	</div>
 #{/list}
 

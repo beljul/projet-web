@@ -49,7 +49,7 @@
 					</li>
 					<li class="${controllers.AccessRules.cssAccessDevOrPO()}"><a class="glyphicon glyphicon-map-marker" href="@{Requirement.assign}">
 							Associer une exigence à ce sprint</a></li>
-					<li><a class="glyphicon glyphicon-pencil" href=""> Ecrire
+					<li class="${controllers.AccessRules.cssAccessPO()}"><a id="document-create" class="glyphicon glyphicon-pencil" href="@{Document.create}"> Ecrire
 							un rapport</a></li>
 					<li><a class="glyphicon glyphicon-eye-open" href="@{Document.show}">
 							Consulter rapport</a></li>
