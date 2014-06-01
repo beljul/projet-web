@@ -3,6 +3,7 @@ package models;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -41,6 +42,7 @@ public class Requirement extends Model {
 		calendar.setTime(created);
 		calendar.add(Calendar.DATE, duration);
 		this.finished = new Date(calendar.getTimeInMillis());
+		this.tasks = new HashSet<Task>();
 	}
 
 	public void register() {

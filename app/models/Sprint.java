@@ -106,7 +106,7 @@ public class Sprint extends Model {
 		return documents;
 	}
 	
-	public void addDocument(Document d){
-		this.documents.add(d);
+	public boolean addDocument(Document d){
+		return this.documents.add(d);
 	}
 }

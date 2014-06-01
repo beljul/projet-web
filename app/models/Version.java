@@ -88,6 +88,9 @@ public class Version extends Model {
 	public Set<Sprint> getSprints() {
 		return sprints;
 	}
-	
+
+	public Product getProduct() {
+		return product;
+	}
 	
 }
