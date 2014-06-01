@@ -1,3 +1,4 @@
+
 #{selenium 'Accessibility'}
 	clearSession()
 	open('/')
@@ -50,17 +51,11 @@
     clickAndWait('signin')
     clickAndWait('change-product-1')
     open('/requirement/order')    	    	
-	#dragAndDropToObject(css=li[data-id="4"],css=ul[data-priority="3"])
 	dragAndDropToObject('css=li[data-id="4"]','css=ul#priority3')
 	verifyText(//ul[@data-priority=3], 'Exigence 4 du produit 1')
-	dragAndDropToObject('css=li[data-id="4"]','css=ul#priority4')
 	click('save-order')
 	waitForElementPresent('css=div.flash.flashValidation')
 	open('/requirement/order')    
-	verifyText(//ul[@data-priority=3], 'Exigence 4 du produit 1')
-	dragAndDropToObject('css=li[data-id="4"]','css=ul#priority1')
-	waitForElementPresent('css=div.flash.flashValidation')
-	assertText(//ul[@data-priority=1], 'Exigence 4 du produit 1')
-	click('save-order')
+	verifyText(//ul[@data-priority=3], 'Exigence 4 du produit 1')	
 #{/selenium}
 
