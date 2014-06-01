@@ -42,8 +42,9 @@
           <a class="navbar-brand" href="#">Scrumch</a>
         </div>
         <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">            
+           
             #{if session.username}
+            <ul class="nav navbar-nav">           
             <li><a>Welcome ${session.username} ! </a></li>
             <li><a href="@{Sprint.progression}">Dashboard</a></li>            
             <li class="dropdown">
@@ -71,8 +72,20 @@
              	</ul>
              </li>
              <li><a href="@{Secure.logout()}" id="logout">Log out</a></li>
+              </ul>   
             #{/if}
-          </ul>          
+            #{else}
+             <form class="navbar-form navbar-right" action="@{Secure.authenticate}" method="post" role="form">
+            <div class="form-group">
+              <input class="form-control" type="text" name="username" id="username" value="${flash.username}" placeholder="Email"/>
+            </div>
+            <div class="form-group">
+             <input class="form-control" type="password" name="password" id="password" value="" placeholder="Password"/>
+            </div>
+            <button id="signin" type="submit" class="btn btn-success">Sign in</button>
+          </form>
+            #{/else}
+                
         </div><!--/.nav-collapse -->
       </div>
     </div>    
