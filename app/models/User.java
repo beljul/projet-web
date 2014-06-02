@@ -40,6 +40,10 @@ public class User extends Model {
 	private String password;
 	
 	@ManyToMany
+	@JoinTable( name="User_Product", 
+		joinColumns={@JoinColumn(name="Users_ID", referencedColumnName="ID")}, 
+		inverseJoinColumns={@JoinColumn(name="Products_ID", referencedColumnName="ID")})
+	@MapKeyJoinColumn(name="Role_ID", referencedColumnName="ID")
 	private Map<Role, Product> products;
 	
 	//private Set<Team> teams;
@@ -133,7 +137,7 @@ public class User extends Model {
 	
 	// Have to use directly the model ? To improve.
 	public static void linkedinOAuthCallback(play.modules.linkedin.LinkedInProfile o) {
-		Pattern p = Pattern.compile("[^a-zA-Z]+");
+		Pattern p = Pattern.compile("[^a-zA-Z]+ [^a-zA-Z]*");
 		Set<String> skills = new HashSet<>(Arrays.asList(p.split(o.getSkills())));
 		boolean b = controllers.User.addSkills(skills);
 	}
@@ -141,4 +145,35 @@ public class User extends Model {
 	public void register() {
 		this.save();
 	}
+	@Override
+	public boolean equals(Object other) {
+		//check for self-comparison
+	    if ( this == other) return true;	    
+	    if ( !(other instanceof User) ) return false;
+	    System.out.println("Jussqu'ici tout va bien");
+	    System.out.println(this.getEmail() + "==" + ((User)other).getEmail());
+	    return this.email.equals(((User) other).email);	  
+	}
+
+	public Set<Skill> getSkills() {
+		return skills;
+	}
+
+	public void setSkills(Set<Skill> skills) {
+		this.skills = skills;
+	}
+
+	@Override
+	public String toString() {
+		return this.firstName + " " + this.name;
+	}
+	
+	/**
+	 * Add a document written by the user
+	 * @param d the document to be added
+	 */
+	public void addDocument(Document d) {
+		this.documents.add(d);
+	}
+	
 }

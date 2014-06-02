@@ -42,10 +42,11 @@
           <a class="navbar-brand" href="#">Scrumch</a>
         </div>
         <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">            
+           
             #{if session.username}
+            <ul class="nav navbar-nav">           
             <li><a>Welcome ${session.username} ! </a></li>
-            <li><a href="/Application/dashboard">Dashboard</a></li>            
+            <li><a href="@{Sprint.progression}">Dashboard</a></li>            
             <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produits<b class="caret"></b></a>
                   <ul class="dropdown-menu">
@@ -65,13 +66,26 @@
              	<ul class="dropdown-menu">
              	    <li class="dropdown-header">Mon compte</li>                    
              		<li>#{linkedin.button label:'Lier mon compte à LinkedIn' /}<li>
+             		<li><a href="@{User.profile()}">Mon profil</a>
              		<li class="dropdown-header">Mon équipe</li>                    
              		<li><a href="@{RSSFlux.serialize()}">Abonnement RSS</a></li>
              	</ul>
              </li>
              <li><a href="@{Secure.logout()}" id="logout">Log out</a></li>
+              </ul>   
             #{/if}
-          </ul>          
+            #{else}
+             <form class="navbar-form navbar-right" action="@{Secure.authenticate}" method="post" role="form">
+            <div class="form-group">
+              <input class="form-control" type="text" name="username" id="username" value="${flash.username}" placeholder="Email"/>
+            </div>
+            <div class="form-group">
+             <input class="form-control" type="password" name="password" id="password" value="" placeholder="Password"/>
+            </div>
+            <button id="signin" type="submit" class="btn btn-success">Sign in</button>
+          </form>
+            #{/else}
+                
         </div><!--/.nav-collapse -->
       </div>
     </div>    

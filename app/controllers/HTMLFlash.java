@@ -8,6 +8,10 @@ public abstract class HTMLFlash {
 	public static final FlashStyle ERROR = FlashStyle.flashError;
 	public static final FlashStyle WARNING = FlashStyle.flashWarning;
 	public static final FlashStyle INFORMATION = FlashStyle.flashInformation;
+	
+	/*A generic authorization error message */
+	public static final String AUTH_ERR = "Vous n'êtes pas authorisé à accéder à cette fonctionnalité";
+	
 	public enum FlashStyle {
 		  flashValidation,
 		  flashError,
@@ -18,19 +22,23 @@ public abstract class HTMLFlash {
 		  }
 	}
 	private static void init(String message, FlashStyle style,
-								boolean closable, boolean window){
+								boolean closable, boolean window){		
 		play.mvc.Scope.Flash flash = play.mvc.Scope.Flash.current();
 		flash.put("message", message);
 		flash.put("messageStyle", style.toString());
-		if(closable) {
+		if (closable) {
 			flash.put("messageClosable", closable);
 		}
-		if(window){
+		else {
+			flash.remove("messageClosable");
+		}
+		if (window) {
 			flash.put("messageWindow", window);
 		}
+			
 	}
 	/**
-	 * Initialize a contextual flash message 
+	 * Initialize a contextual flash message. 
 	 * @param message the content of the message
 	 * @param style   the message style (validation,error ...)
 	 * @param closable If true, a link will allow to close the message
@@ -42,7 +50,7 @@ public abstract class HTMLFlash {
 		init(message, style, closable,false);
 	}
 	/**
-	 * Initialize a screen flash message for the next HTTP request 
+	 * Initialize a screen flash message for the next HTTP request
 	 * @param message the content of the message
 	 * @param style   the message style (validation,error ...)
 	 * @param closable If true, a link will allow to close the message
@@ -52,5 +60,32 @@ public abstract class HTMLFlash {
 	public static void screen(String message, FlashStyle style,
 								boolean closable){
 		init(message, style, closable,true);
+	}
+	
+	/**
+	 * Cancel a previous initialized message
+	 */
+	public static void cancelFlash(){
+		play.mvc.Scope.Flash flash = play.mvc.Scope.Flash.current();
+		flash.remove("message");
+		flash.remove("messageStyle");
+		flash.remove("messageClosable");
+		flash.remove("messageWindow");
+	}
+	
+	/**
+	 * Generate a flash message for non authorized access
+	 */
+	public static void notAuthorized(){
+		HTMLFlash.screen(HTMLFlash.AUTH_ERR, HTMLFlash.ERROR, false);
+	}
+	
+	/**
+	 * Determine if a Flash message has already been set
+	 * @return true if a message has already been initialized, false otherwise
+	 */
+	public static boolean present(){
+		play.mvc.Scope.Flash flash = play.mvc.Scope.Flash.current();
+		return flash.get("message") != null;
 	}
 }

@@ -4,8 +4,17 @@ $(function () {
 		$(this).tab('show');
 	});
 	
-	$('li.disabled a').attr("href", "#");	
+	/*Disable not allowed pages access*/ 
+	var msg = "Vous n'êtes pas autorisé à accéder à cette fonctionnalité"
+	$('li.disabled a').attr("href", "#").attr("title",msg);	
 })
-  
+ $(window).on('resize',function(){
+	 if($( window ).width() > 750) {
+		 console.log("tiit");
+	 }
+	 else {
+		 $('button#sub-menu-display.navbar-toggle').click();		 
+	 }
+ });
 
   

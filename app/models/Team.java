@@ -58,7 +58,18 @@ public class Team extends Model {
 	public Set<User> getMembers() {
 		return members;
 	}
-
+	public boolean containsMember(User userToCheck) {
+		for(User u : members) {
+			if(u.equals(userToCheck))
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean containsMember(String userEmail) {
+		models.User u = models.User.getByEmail(userEmail);
+		return this.containsMember(u);
+	}
 	public void setMembers(Set<User> members) {
 		this.members = members;
 	}
@@ -70,7 +81,7 @@ public class Team extends Model {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
 	public Set<Product> getProducts() {
 		return products;
 	}

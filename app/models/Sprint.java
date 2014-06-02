@@ -101,4 +101,12 @@ public class Sprint extends Model {
 		}
 		this.save();
 	}
+
+	public Set<Document> getDocuments() {
+		return documents;
+	}
+	
+	public boolean addDocument(Document d){
+		return this.documents.add(d);
+	}
 }

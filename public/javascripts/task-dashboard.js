@@ -6,7 +6,8 @@ $( ".slider" ).slider({
 	change:function(e,ui){
 		$(this).siblings('span.badge').text(ui.value + '%');
 		$(this).parent().attr("data-win-rate",ui.value);
-	}
+	},
+	step: 5 
 });
 $( ".slider" ).each(function(){
 	$(this).slider( "option", "value",$(this).parent().attr("data-win-rate"));

@@ -10,9 +10,13 @@ import models.Product;
 
 @With(Secure.class)
 public class Application extends WrapperController {
-//
+	
     public static void index() {
-        dashboard();
+//    	if(session.get("productName") != null)
+//    		Sprint.progression();    	
+//    	else {
+    		render();
+//    	}
     }
       
     public static void dashboard(){

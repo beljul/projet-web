@@ -14,19 +14,26 @@ import play.mvc.With;
 public class Requirement extends WrapperController {
 	
 	@Before
-	static void checkProductIsSelected(){
-		String productName = session.get("productName");
-		if(productName == null){
-			flash.put("message", "Veuillez d'abord sélectionner un produit");
-			flash.put("messageStyle", "error");
-			redirect("/Application/dashboard");
-		}
+	static void checkAccessRules(){
+//		String msg = "Vous n'êtes pas autorisé à accéder à cette functionnalité";
+//		System.out.println("titi");
+//		if(! AccessRules.isDev()) {
+//			System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!titi");
+//			HTMLFlash.cancelFlash();
+//			HTMLFlash.screen(msg, HTMLFlash.ERROR, false);
+//		}
 	}
 	
 	public static void add() {
 		render();
 	}
 	public static void order(){
+		String msg = "Vous n'êtes pas autorisé à accéder à cette functionnalité";		
+		if(! AccessRules.isDev()) {			
+			HTMLFlash.cancelFlash();
+			HTMLFlash.screen(msg, HTMLFlash.ERROR, false);
+			redirect("/");
+		}
 		String productName = session.get("productName");
 		models.Product product = models.Product.getByName(productName);
 		Collection<models.Requirement> r = product.getRequirements();

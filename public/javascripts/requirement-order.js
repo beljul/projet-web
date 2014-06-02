@@ -26,9 +26,9 @@ $("input#save-order").on("click",function(){
 		console.log(d);
 	})
 	.fail(function() {
-	alert( "error" );
+	//alert( "error" );
 	})
 	.always(function() {
-	alert( "complete" );
+//	alert( "complete" );
 	});
 });

@@ -58,3 +58,92 @@ a.flash-close:hover{
     background-color: #d2d2d2;
 }
 /* Fin des styles des messages flashs*/
+
+.carousel {
+    height: 500px;
+    margin-bottom: 60px;
+}
+.carousel-caption {
+    z-index: 10;
+}
+.carousel .item {
+    background-color: #777777;
+    height: 500px;
+}
+.carousel-inner > .item > img {
+    height: 500px;
+    left: 0;
+    min-width: 100%;
+    position: absolute;
+    top: 0;
+}
+.carousel-inner > .item > .container {
+	margin:0;
+	position: absolute !important;
+	top:500px !important;
+	left:0 !important;
+}
+.marketing {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.marketing .col-lg-4 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+.marketing h2 {
+    font-weight: normal;
+}
+.marketing .col-lg-4 p {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.featurette-divider {
+    margin: 80px 0;
+}
+.featurette-heading {
+    font-weight: 300;
+    letter-spacing: -1px;
+    line-height: 1;
+}
+@media (min-width: 768px) {
+.marketing {
+    padding-left: 0;
+    padding-right: 0;
+}
+.navbar-wrapper {
+    margin-top: 20px;
+}
+.navbar-wrapper .container {	
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.navbar-wrapper .navbar {
+    padding-left: 0;
+    padding-right: 0;
+}
+.navbar-wrapper .navbar {
+    border-radius: 4px;
+}
+.carousel-caption p {
+    font-size: 21px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+.carousel-inner .item {
+	position: relative;
+}
+.carousel-inner .item img {
+	display:block;
+	position: absolute !important;
+	bottom:0 !important;
+}
+.featurette-heading {
+    font-size: 50px;
+}
+}
+@media (min-width: 992px) {
+.featurette-heading {
+    margin-top: 120px;
+}
+}
