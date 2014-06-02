@@ -10,10 +10,8 @@ $(function () {
 			var row = {};
 			row["Exigence"] = content;
 			row["Durée"] = requirements[content];
-			console.log(row);
 			data.push(row);
 		}
-		console.log(data);
 		var chart = AmCharts.makeChart("chartdiv", {
 		    "type": "pie",	
 			"theme": "none",
