@@ -58,7 +58,12 @@ a.flash-close:hover{
     background-color: #d2d2d2;
 }
 /* Fin des styles des messages flashs*/
-
+@media (max-width: 992px){
+	#schema {
+		width:100% !important;	
+	}
+}
+/* Carousel style */
 .carousel {
     height: 500px;
     margin-bottom: 60px;
@@ -70,14 +75,26 @@ a.flash-close:hover{
     background-color: #777777;
     height: 500px;
 }
-.carousel-inner > .item > img {
-    height: 500px;
+.carousel-inner > .item  img {
+    height: 400px !important;
     left: 0;
     min-width: 100%;
     position: absolute;
     top: 0;
 }
-.carousel-inner > .item > .container {
+.carousel-inner > .item {
+	text-align: center;
+}
+.carousel-inner > .item > h1 {
+	padding-top:0.5em;
+	color:#FFF;
+    height: 100px;
+    left: 0;
+    min-width: 100%;
+    position: absolute;
+    bottom: 0 !important;
+}
+.carousel-inner .item .container {
 	margin:0;
 	position: absolute !important;
 	top:500px !important;
@@ -133,11 +150,6 @@ a.flash-close:hover{
 .carousel-inner .item {
 	position: relative;
 }
-.carousel-inner .item img {
-	display:block;
-	position: absolute !important;
-	bottom:0 !important;
-}
 .featurette-heading {
     font-size: 50px;
 }
@@ -147,3 +159,4 @@ a.flash-close:hover{
     margin-top: 120px;
 }
 }
+/*End of carousel style */
