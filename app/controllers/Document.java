@@ -1,6 +1,8 @@
 package controllers;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import models.SprintRetrospective;
@@ -62,5 +64,14 @@ public class Document extends WrapperController {
 		msg = "Document sauvegardé";
 		HTMLFlash.contextual(msg, HTMLFlash.VALIDATION, false);
 		redirect("/");
+	}
+	
+	public static void getRequirements() {
+		Map<String, Integer> requirements = new HashMap<String, Integer>();
+		models.Product p = models.Product.getByName(session.get("productName"));
+		for (models.Requirement r : p.getRequirements()) {
+			requirements.put(r.getContent(), r.getDuration());
+		}
+		renderJSON(requirements);
 	}
 }

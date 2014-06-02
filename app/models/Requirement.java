@@ -88,4 +88,8 @@ public class Requirement extends Model {
 		this.duration = duration;
 	}
 	
+	public Integer getDuration() {
+		return this.duration;
+	}
+	
 }
