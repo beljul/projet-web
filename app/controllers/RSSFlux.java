@@ -25,27 +25,34 @@ import play.mvc.With;
 public class RSSFlux extends WrapperController {
 	private static SyndFeed feed = new SyndFeedImpl();
 
+	/**
+	 * Function which create the RSS feed with 
+	 * basic informations (author, language...)
+	 */
 	@Before
 	public static void create() {
-		System.out.println("creation fluuuuuuuuuuuuuuuuuuuuuuuuuuux");
 		feed.setAuthor("Scrumch");
-		
-		// Quelques types de flux supporté : rss_1.0, atom_1.0 (voir https://rome.dev.java.net/ pour tous les types)
 		feed.setFeedType("rss_2.0");
 		feed.setCopyright("Scrumch - ENSIMAG All right reserved 2014");
 		feed.setDescription("RSS Feed of your product from scrumch web site.");
-		// Dans play, request.getBase() retourne l'addresse web du site jusqu'à la racine
-		// par exemple : http://localhost:9000/
 		feed.setLink(request.getBase() + "/Application/dashboard");
 		feed.setTitle("Scrumch product feed");
 		feed.setLanguage("fr");
 		feed.setPublishedDate(new Date());
 	}
 	
+	/**
+	 * Function which add a specific information of the RSS feed
+	 * Add information of a new product when it has been created or modified
+	 */
 	public static void add() {
 		Collection<models.Product> products = models.User.getByEmail(session.get("username"))
 													.getProducts().values();
 		List entries = new ArrayList();
+		/* 
+		 * for each product of current user
+		 * add in the RSS feed
+		 */
 		for (models.Product product : products) {
 			SyndEntry item = new SyndEntryImpl();
 			item.setPublishedDate(product.getCreated());
@@ -61,6 +68,10 @@ public class RSSFlux extends WrapperController {
 		redirect("/Application/dashboard");
 	}
 	
+	/**
+	 * Function which let possibility for the user
+	 * to subscribe the RSS feed
+	 */
 	public static void serialize() {
 		StringWriter writer = new StringWriter();
 		SyndFeedOutput out = new SyndFeedOutput();
@@ -70,9 +81,8 @@ public class RSSFlux extends WrapperController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// Nécessaire pour certains lecteurs de fluxs...
+		
 		response.contentType = "application/rss+xml";
-		// retourne un statut http 200 en plus du contenu xml en paramètre
 		renderXml(writer.toString());
 	}
 }

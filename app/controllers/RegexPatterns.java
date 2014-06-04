@@ -1,5 +1,8 @@
 package controllers;
 
+/**
+ * Class where we record some patterns we need in our verifications
+ */
 public abstract class RegexPatterns {
 	public static final String ALPHA_NUM = "^[a-zA-Z0-9]+$";
 	public static final String ALPHA = "^[a-zA-Z]+$";

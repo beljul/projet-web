@@ -13,20 +13,18 @@ import play.mvc.With;
 @With(Secure.class)
 public class Requirement extends WrapperController {
 	
-	@Before
-	static void checkAccessRules(){
-//		String msg = "Vous n'êtes pas autorisé à accéder à cette functionnalité";
-//		System.out.println("titi");
-//		if(! AccessRules.isDev()) {
-//			System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!titi");
-//			HTMLFlash.cancelFlash();
-//			HTMLFlash.screen(msg, HTMLFlash.ERROR, false);
-//		}
-	}
-	
+	/**
+	 * Call adding requirements page of the application
+	 */
 	public static void add() {
 		render();
 	}
+	
+	/**
+	 * Get requirements of current product
+	 * and send them in order to order them then
+	 * Call the order page of requirements of the application
+	 */
 	public static void order(){
 		String msg = "Vous n'êtes pas autorisé à accéder à cette functionnalité";		
 		if(! AccessRules.isDev()) {			
@@ -40,16 +38,24 @@ public class Requirement extends WrapperController {
 		render(r);
 	}
 	
+	/**
+	 * Record new requirements
+	 * @param requirements : content of each requirement
+	 * @param priority : priority of each requirement
+	 * @param duration : duration of each requirement
+	 */
 	public static void register(ArrayList<String> requirements, ArrayList<Integer> priority, ArrayList<Integer> duration) {
+		// Get current product
 		String productName = session.get("productName");
 		models.Product product = models.Product.getByName(productName);
 		
+		// Get current date
 		java.util.Calendar cal = java.util.Calendar.getInstance();
 		java.util.Date utilDate = cal.getTime();
 		Date created = new Date(utilDate.getTime());
 
+		// Create and record new requirements
 		for (int i = 0; i < requirements.size(); i++) {
-			System.out.println(requirements.toArray()[i]);			
 			models.Requirement req = new models.Requirement((String)requirements.get(i), 
 											created, (Integer)priority.get(i), 
 											(Integer)duration.get(i));
@@ -61,6 +67,10 @@ public class Requirement extends WrapperController {
 		redirect("/Application/dashboard");
 	}
 	
+	/**
+	 * Sort requirements which are already assigned or not 
+	 * to the current sprint
+	 */
 	public static void assign() {
 		// Get requirements of current sprint
 		Set<models.Requirement> sprintRequirements;
@@ -72,7 +82,7 @@ public class Requirement extends WrapperController {
 			sprintRequirements = new HashSet<models.Requirement>();
 		}
 		
-		// Get requirements of current product
+		// Get requirements of current product (unassigned)
 		String productName = session.get("productName");
 		models.Product product = models.Product.getByName(productName);
 		Set<models.Requirement> requirementsUnassigned = product.getRequirementsUnassigned();
