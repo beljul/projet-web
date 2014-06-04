@@ -9,11 +9,11 @@
 	assertTextPresent('Password')
 	
 	type('username', 'bob1@gmail.com')
-	type('password', 'bob')
+	type('password', 'boberror')
 	
 	clickAndWait('signin')
 	
-	assertTextPresent('Oops')		
+	assertTextPresent('Echec d'authentification ')		
 #{/selenium}
 #{selenium 'User login'}
 
