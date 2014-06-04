@@ -98,6 +98,15 @@ public abstract class AccessRules {
 	}
 	
 	/**
+	 * Determine if a product is currently selected
+	 * @return true if a producgt is selected, false otherwise
+	 */
+	public static boolean productDefined(){
+		play.mvc.Scope.Session session =  play.mvc.Scope.Session.current();
+		return session.get(SESSION_PRODUCT) != null;
+				
+	}
+	/**
 	 * Determine if a sprint have been selected
 	 * @return true if a sprint is selected
 	 */

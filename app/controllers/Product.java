@@ -17,13 +17,26 @@ import models.ProductOwner;
 import models.Role;
 import models.ScrumMaster;
 import models.Team;
+import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.With;
 
 
 @With(Secure.class)
 public class Product extends WrapperController {
-
+	
+	/**
+	 * Check if a product has been selected
+	 */
+	@Before(only={"changeRequirementsOrder",
+				  "setCurrentReleaseSprint"})
+	public static void checkProductSelected(){
+		if(!AccessRules.productDefined()){
+			HTMLFlash.noProductDefined();
+			redirect("/");
+		}
+	}
+	
 	/**
 	 * Call the creation product page of the application
 	 */

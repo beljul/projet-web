@@ -6,12 +6,69 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.swing.text.html.HTML;
+
 import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.With;
 
 @With(Secure.class)
 public class Requirement extends WrapperController {
+	
+	/**
+	 * Check if a product has been selected
+	 */
+	@Before
+	public static void checkProductSelection(){
+		if(!AccessRules.productDefined()){
+			HTMLFlash.noProductDefined();
+			redirect("/");
+		}		
+	}
+	
+	/**
+	 * Check if a sprint has been selected
+	 */
+	@Before(only="assign")
+	public static void checkSprintSelection(){
+		if(!AccessRules.sprintDefined()){
+			HTMLFlash.noSprintDefined();
+			redirect("/");
+		}		
+	}
+	
+	/**
+	 * Product owner access
+	 */
+	@Before(only={"add","register"})
+	public static void checkPO(){
+		if(!AccessRules.isPO()){
+			HTMLFlash.notAuthorized();
+			redirect("/");
+		}
+	}
+	
+	/**
+	 * Developer access
+	 */
+	@Before(only={"order"})
+	public static void checkDev(){
+		if(!AccessRules.isDev()) {
+			HTMLFlash.notAuthorized();
+			redirect("/");
+		}
+	}
+	
+	/**
+	 * Developer or product owner access
+	 */
+	@Before(only={"assign"})
+	public static void checkDevOrPO(){
+		if(!AccessRules.isPO() && !AccessRules.isDev()){
+			HTMLFlash.notAuthorized();
+			redirect("/");
+		}
+	}
 	
 	/**
 	 * Call adding requirements page of the application
@@ -25,11 +82,9 @@ public class Requirement extends WrapperController {
 	 * and send them in order to order them then
 	 * Call the order page of requirements of the application
 	 */
-	public static void order(){
-		String msg = "Vous n'êtes pas autorisé à accéder à cette functionnalité";		
+	public static void order(){			
 		if(! AccessRules.isDev()) {			
-			HTMLFlash.cancelFlash();
-			HTMLFlash.screen(msg, HTMLFlash.ERROR, false);
+			HTMLFlash.notAuthorized();
 			redirect("/");
 		}
 		String productName = session.get("productName");
@@ -61,10 +116,10 @@ public class Requirement extends WrapperController {
 											(Integer)duration.get(i));
 			req.setProduct(product);
 			req.register();
-		}
-		flash.put("message", "Nouvelle(s) exigence(s) ajoutée(s)");
-		flash.put("messageStyle", "validation");
-		redirect("/Application/dashboard");
+		}	
+		HTMLFlash.contextual("Nouvelle(s) exigence(s) ajoutée(s)",
+							 HTMLFlash.VALIDATION, false);
+		redirect("/");
 	}
 	
 	/**
@@ -73,14 +128,9 @@ public class Requirement extends WrapperController {
 	 */
 	public static void assign() {
 		// Get requirements of current sprint
-		Set<models.Requirement> sprintRequirements;
-		if(!session.get("sprintId").isEmpty()) {
-			Long sprintId = Long.parseLong(session.get("sprintId"));
-			sprintRequirements = models.Sprint.getById(sprintId).getRequirements();
-		}
-		else { // TODO: error page
-			sprintRequirements = new HashSet<models.Requirement>();
-		}
+		Set<models.Requirement> sprintRequirements;		
+		Long sprintId = Long.parseLong(session.get("sprintId"));
+		sprintRequirements = models.Sprint.getById(sprintId).getRequirements();	
 		
 		// Get requirements of current product (unassigned)
 		String productName = session.get("productName");

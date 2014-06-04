@@ -13,7 +13,7 @@ public abstract class HTMLFlash {
 	public static final String AUTH_ERR = "Vous n'êtes pas authorisé à accéder à cette fonctionnalité";
 	/*A generic sprint not selected error message */
 	public static final String SPRINT_ERR = "Veuillez sélectionner un sprint";
-	
+	public static final String PROD_ERR = "Veuillez sélectionner un produit";
 	public enum FlashStyle {
 		  flashValidation,
 		  flashError,
@@ -82,6 +82,12 @@ public abstract class HTMLFlash {
 		HTMLFlash.screen(HTMLFlash.AUTH_ERR, HTMLFlash.ERROR, false);
 	}
 	
+	/**
+	 * Generate a flash message for product not selected error
+	 */
+	public static void noProductDefined(){
+		HTMLFlash.contextual(HTMLFlash.PROD_ERR, HTMLFlash.ERROR, false);
+	}
 	/**
 	 * Generate a flash message for sprint not defined error
 	 */

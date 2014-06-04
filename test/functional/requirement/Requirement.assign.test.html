@@ -1,0 +1,32 @@
+#{selenium 'Accessibility'}
+	#For developper
+	clearSession()	
+	open('/')	
+	type('username', 'bob4@gmail.com')
+	type('password', 'bobbob')	
+	clickAndWait('signin')
+	clickAndWait('change-product-1')
+	clickAndWait('requirement-assign')	
+	assertTextPresent('Exigences pour')
+	
+	#For PO
+	clearSession()	
+	open('/')	
+	type('username', 'bob1@gmail.com')
+	type('password', 'bobbob')	
+	clickAndWait('signin')
+	clickAndWait('change-product-1')
+	clickAndWait('requirement-assign')	
+	assertTextPresent('Exigences pour')	
+#{/selenium}
+
+#{selenium 'Access rules, SM can\'t access to this'}
+	clearSession()	
+	open('/')	
+	type('username', 'bob2@gmail.com')
+	type('password', 'bobbob')	
+	clickAndWait('signin')
+	clickAndWait('change-product-1')
+	open('requirement/assign')	
+	assertTextPresent('Vous n\'êtes pas authorisé à accéder à cette fonctionnalité')
+#{/selenium}

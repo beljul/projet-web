@@ -12,7 +12,9 @@ import play.mvc.With;
 
 @With(Secure.class)
 public class Sprint extends WrapperController {
-	
+//	
+//	@Before
+//	public static void check
 	/**
 	 * Add a list of requirements to the current sprint
 	 * @param requirements

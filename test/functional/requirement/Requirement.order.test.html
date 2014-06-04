@@ -1,12 +1,12 @@
 
-#{selenium 'Accessibility'}
-	clearSession()
+#{selenium 'Accessibility'}	
+	clearSession()	
 	open('/')
 	type('username', 'bob4@gmail.com')
 	type('password', 'bobbob')	
 	clickAndWait('signin')
 	clickAndWait('change-product-1')
-	clickAndWait('requirement-order')
+	clickAndWait('requirement-order')	
 	assertTextPresent('Ordonner les exigences')		
 #{/selenium}
 
