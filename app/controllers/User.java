@@ -11,9 +11,18 @@ import play.mvc.With;
 
 public class User extends WrapperController {
 
+	/**
+	 * Create and record a new user during subscribing
+	 * Informations about new user : 
+	 * @param email
+	 * @param name
+	 * @param firstname
+	 * @param firstPassword
+	 * @param secondPassword
+	 */
 	public static void register(String email, String name, String firstname, 
 								String firstPassword, String secondPassword) {		
-		
+		// Verification
 		validation.required(email);
 		validation.required(name);
 		validation.match(name, "^[a-zA-Z ']+$").message("Name must be alphanumeric");
@@ -23,8 +32,7 @@ public class User extends WrapperController {
 	    validation.minSize(firstPassword, 6);
 	    validation.required("password check",secondPassword);
 	    validation.email(email);
-	    
-	    
+	    // Password verification
 	    play.data.validation.Error e = validation.equals("password", firstPassword, "password verif", secondPassword).error;
 
 	     if(validation.hasErrors()) {
@@ -40,11 +48,12 @@ public class User extends WrapperController {
 	    	 //Connect the user 
 	    	 session.put("username", email);	    	 
 	    	 redirect("/Application/dashboard");
-	    	 
-	         //renderTemplate("Application/dashboard.html",name,email,firstname,firstPassword,secondPassword);
-	     }
+	    }
 	}
 
+	/**
+	 * Class in order to return a JSON <label, name, value>
+	 */
 	private static class JsonSearchItem {
 		private String label;
 		private String name;
@@ -56,6 +65,11 @@ public class User extends WrapperController {
 		}
 	};
 	
+	/**
+	 * Return JSON for ajax request in order to find
+	 * users whose email begins as search in the input
+	 * @param term : what current user is writing 
+	 */
 	public static void jsonSearch(String term) {
 		List<models.User> users = models.User.getByBeginOfEmail(term);
 		List<JsonSearchItem> items = new ArrayList<JsonSearchItem>();		
@@ -67,10 +81,18 @@ public class User extends WrapperController {
 		renderJSON(items);
 	}
 	
+	/**
+	 * Add skills to the current user
+	 * Skills are from linkedin API
+	 * @param skills
+	 * @return
+	 */
 	public static boolean addSkills(Set<String> skills) {
 		models.User user = models.User.getByEmail(session.get("username"));
 		Set<models.Skill> newSkills= new HashSet<models.Skill>();
+		// Add and record skills
 		for (String skill : skills) {
+			// Verification skill is not null or empty
 			if(skill != null && !skill.equals("")) {
 				models.Skill s = new models.Skill(skill);
 				s.save();
@@ -79,15 +101,23 @@ public class User extends WrapperController {
 		}
 		user.setSkills(newSkills);
 		user.register();
+		// TODO: If we don't return something, linkedin API crash, don't know why.
 		return true;
 	}
 	
+	/**
+	 * Get current user
+	 * @return
+	 */
 	public static models.User getCurrentUser() {
 		return models.User.getByEmail(session.get("username"));
 	}
 
+	/**
+	 * Call profile page of the current user
+	 */
 	public static void profile() {
-		models.User user = models.User.getByEmail(session.get("username"));
+		models.User user = getCurrentUser();
 		render(user);
 	}
 }

@@ -11,20 +11,31 @@ import play.mvc.With;
 @With(Secure.class)
 public class Version extends WrapperController {
 	
+	/**
+	 * Call add release page of the application
+	 */
 	public static void add() {
 		int nbSprints = 4;
-		/*Avoid release selection asking message */
+		/* Avoid release selection asking message */
 		HTMLFlash.cancelFlash();
 		render(nbSprints);		
 	}
 	
+	/**
+	 * Create and record a new release
+	 * @param release
+	 * @param nbSprints
+	 */
 	public static void register(String release, Integer nbSprints) {
+		// Verification
 		validation.required(release);
 		validation.min(nbSprints, 1).message("Au moins 1 sprint par release");
 		validation.max(nbSprints, 10).message("Maximum 10 sprints par release");
 		if(validation.hasErrors()){
 			renderTemplate("Version/add.html",release, nbSprints);
 		}
+		
+		// Get current product and sprint duration
 		String productName = session.get("productName");
 		models.Product product = models.Product.getByName(productName);
 		Integer sprintDuration = product.getSprintDuration();
@@ -36,6 +47,7 @@ public class Version extends WrapperController {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(created);
 		
+		// Create and add sprints according to the number specified in parameter
 		models.Version version = new models.Version(release, created);
 		for (int i = 0; i < nbSprints; i++) {
 			calendar.add(Calendar.DATE, sprintDuration);
@@ -46,9 +58,9 @@ public class Version extends WrapperController {
 			version.save();
 			sprint.register();
 			version.addSprint(sprint);
-			System.out.println(sprint.getCreated());
 		}
-
+		
+		// Record
 		version.setProduct(product);
 		version.register();
 		

@@ -24,6 +24,9 @@ import play.mvc.With;
 @With(Secure.class)
 public class Product extends WrapperController {
 
+	/**
+	 * Call the creation product page of the application
+	 */
 	public static void create() {
 		render();
 	}
@@ -52,27 +55,38 @@ public class Product extends WrapperController {
 		
 	}
 	
-	private static void registerConsistencies(String name, String description, 
-			  									Integer sprintDuration, String scrumMaster,
-			  									String customer, Set<String> developers,
-			  									String teamName) {
+	/**
+	 * Check values of fields
+	 * @param name
+	 * @param sprintDuration
+	 */
+	private static void registerConsistencies(String name, Integer sprintDuration) {
 		/*Check that the values specified are consistent */		
 		validation.match(name, RegexPatterns.ALPHA_NUM_EXT).message("le produit doit être alphanumérique");
 		validation.range(sprintDuration, 1, 6)
 				  .message("un sprint doit durer entre 1 et 6 semaines");
 	}
 	
+	/**
+	 * Record a product
+	 * @param name
+	 * @param description
+	 * @param sprintDuration
+	 * @param scrumMaster
+	 * @param customer
+	 * @param developers
+	 * @param teamName
+	 */
 	public static void register(String name, String description, 
 								  Integer sprintDuration, String scrumMaster,
 								  String customer, Set<String> developers,
 								  String teamName) {
-				
+		// Verification
 		registerRequirements(name, description, sprintDuration,
 							scrumMaster, customer, developers, teamName);
-		registerConsistencies(name, description, sprintDuration, 
-							scrumMaster, customer, developers, teamName);
+		registerConsistencies(name, sprintDuration);
 
-		/*Retrieve not null developers */
+		/* Retrieve not null developers */
 		Set<String> notNullDevelopers = new HashSet<String>();
 		for(String d : developers){
 			if(! d.equals("")) {
@@ -83,7 +97,7 @@ public class Product extends WrapperController {
 			validation.addError("deveopers", "Au moins un développeur doit être spécifié");
 		}
 		
-		/*Does not continue checking if some errors already exist*/
+		/* Does not continue checking if some errors already exist */
 		if(validation.hasErrors()) {
 			renderTemplate("Product/create.html",name,description,
 							sprintDuration,scrumMaster,customer,notNullDevelopers);
@@ -91,14 +105,12 @@ public class Product extends WrapperController {
 		
 		
 		/*Check that customer, developers, and scrumMaster exist in the DB */		
-		//models.ScrumMaster dbScrumMaster = ScrumMaster.getByEmail(scrumMaster);
 		models.User dbScrumMaster = models.User.getByEmail(scrumMaster);
 
 		if(dbScrumMaster == null) {
 			validation.addError("scrumMaster", "le scrum master n'existe pas");
 		}
 		
-		//models.Customer dbCustomer = Customer.getByEmail(customer);
 		models.User dbCustomer = models.User.getByEmail(customer);
 		if(dbCustomer == null) {
 			validation.addError("scrumMaster", "le client n'existe pas");
@@ -132,13 +144,11 @@ public class Product extends WrapperController {
 		Team team = new Team("team of product " + name, created);
 		Set<models.User> devs = new HashSet<models.User>();
 		for(String d : notNullDevelopers){
-			//Developer dev = (Developer) models.User.getByEmail(d);
 			models.User dev = models.User.getByEmail(d);
 			devs.add(dev);
 			team.addMember(dev);
 		}
 		
-		//ProductOwner productOwner = ProductOwner.getByEmail(session.get("username"));
 		models.User productOwner = models.User.getByEmail(session.get("username"));
 		if(notNullDevelopers.isEmpty()) { // Pas de devs saisis
 			team = Team.getByname(teamName);
@@ -161,36 +171,35 @@ public class Product extends WrapperController {
 		Role r = new ProductOwner();
 		r.add(productOwner, product);
 		productOwner.addRole(r, product);
-//		product.addRole(r, productOwner);
 		r.save();
 
 		r = new ScrumMaster();
 		r.add(dbScrumMaster, product);
 		dbScrumMaster.addRole(r, product);
-//		product.addRole(r, dbScrumMaster);
 		r.save();
 
 		r = new Customer();
 		r.add(dbCustomer, product);
 		dbCustomer.addRole(r, product);
-//		product.addRole(r, dbCustomer);
 		r.save();
 
 		for (models.User  dev: devs) {
 			r = new Developer();
 			r.add(dev, product);
 			dev.addRole(r, product);
-//			product.addRole(r, dev);
 			r.save();
 		}
+		
 		flash.put("message", "Le produit " + name + " a été créé");
 		flash.put("messageStyle", "validation");
 		
 		//redirect in RSSFlux.add
 		RSSFlux.add();
-//		redirect("/Application/dashboard");	    	 
 	}
 	
+	/**
+	 * List all products of the user connected
+	 */
 	public static void show() {
 		String email = session.get("username");
 		models.User user = models.User.getByEmail(email);
@@ -253,6 +262,10 @@ public class Product extends WrapperController {
 		return p;
 	}
 	
+	/**
+	 * Modify order (priority) of current product's requirements
+	 * @param requirements : map of requirement's id and priority corresponding
+	 */
 	public static void changeRequirementsOrder(Map<Long,Integer> requirements){
 		models.Product curProd = models.Product.getByName(session.get("productName"));		
 		for(models.Requirement r : curProd.getRequirements()){						
@@ -262,9 +275,14 @@ public class Product extends WrapperController {
 			}
 		}
 		curProd.register();
-		//renderJSON(requirements);
 	}
 	
+	/**
+	 * Set current session variables of release and sprint
+	 * thanks to the tree
+	 * @param releaseName : name of release chosen
+	 * @param sprintID : id of the sprint chosen
+	 */
 	public static void setCurrentReleaseSprint(String releaseName, Long sprintID) {
 		session.put("releaseName", releaseName);
 		session.put("sprintName", models.Sprint.getById(sprintID));

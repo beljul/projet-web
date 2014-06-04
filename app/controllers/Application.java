@@ -11,15 +11,20 @@ import models.Product;
 @With(Secure.class)
 public class Application extends WrapperController {
 	
+	/**
+	 * Call main page of the application
+	 */
     public static void index() {
-//    	if(session.get("productName") != null)
-//    		Sprint.progression();    	
-//    	else {
     		render();
-//    	}
     }
-      
+    
+    /**
+     * Call dashboard which is main page when we're connected
+     */
     public static void dashboard(){
+    	/*
+    	 * Initialize session variables (product not selected)
+    	 */
     	if (session.get("productName") == null) {
     		session.put("isNotPO", "disabled");
     		session.put("isNotDev", "disabled");

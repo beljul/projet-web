@@ -27,6 +27,11 @@ public class WrapperController extends Controller {
     		}
     	}
     }
+    
+    /**
+     * Get user informations in order to
+     * know what kind of worker he's in the current product
+     */
    @Before
     static void getUserInfo() {
     	if(!session.isEmpty()) {
