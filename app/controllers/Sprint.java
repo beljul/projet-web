@@ -7,14 +7,39 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.swing.text.html.HTML;
+
 import play.mvc.Before;
 import play.mvc.With;
 
 @With(Secure.class)
 public class Sprint extends WrapperController {
-//	
-//	@Before
-//	public static void check
+	
+	/**
+	 * Check if there is a product and a sprint selected
+	 */
+	@Before
+	public static void checkSelection(){
+		if(!AccessRules.productDefined()){
+			HTMLFlash.noProductDefined();
+			redirect("/");
+		}
+		if(!AccessRules.sprintDefined()){
+			HTMLFlash.noSprintDefined();
+			redirect("/");
+		}
+	}
+	
+	/**
+	 * Control PO and Dev access rules
+	 */
+	@Before(only="addRequirements")
+	public static void checkPOOrDev() {
+		if(!AccessRules.isPO() && !AccessRules.isDev()){
+			HTMLFlash.notAuthorized();
+			redirect("/");
+		}
+	}
 	/**
 	 * Add a list of requirements to the current sprint
 	 * @param requirements
