@@ -42,7 +42,7 @@ div.flash.flashInformation{
     background-color: #00B7E9;/*Pour les navigateurs ne reconnaissant pas le dégradé*/
     background-image:-moz-linear-gradient(#52a9ff,#00B7E9);
 }
-a.flash-close{
+a.flash-close, .flash a{
     position:relative;
     color:#fff;
     text-decoration: none;
@@ -54,7 +54,7 @@ a.flash-close{
     -moz-opacity:0.8;
     padding:2px;
 }
-a.flash-close:hover{
+a.flash-close:hover, .flash a:hover{
     background-color: #d2d2d2;
 }
 /* Fin des styles des messages flashs*/

@@ -38,8 +38,8 @@
 	type('firstPassword', '')
 	type('secondPassword', '')
 	
-	clickAndWait('signup')
-	
+	click('signup')
+	waitForElementPresent('css=div.alert.alert-danger')
 	verifyTextPresent('The following fields are invalid')
 #{/selenium}
 
@@ -61,7 +61,6 @@
 	type('secondPassword', 'size5')
 	
 	clickAndWait('signup')
-	
 	verifyTextPresent('The following fields are invalid')
 #{/selenium}
 
@@ -82,8 +81,8 @@
 	type('firstPassword', 'rootroot')
 	type('secondPassword', 'rootroot')
 	
-	clickAndWait('signup')
-	
+	click('signup')
+	waitForElementPresent('css=div.alert.alert-danger')
 	verifyTextPresent('The following fields are invalid')
 #{/selenium}
 
@@ -103,9 +102,8 @@
 	type('firstname', 'walter')
 	type('firstPassword', 'rootroot')
 	type('secondPassword', 'rootroot')
-	
-	clickAndWait('signup')
-	
+	click('signup')
+	waitForElementPresent('css=div.alert.alert-danger')
 	verifyTextPresent('The following fields are invalid')
 #{/selenium}
 
@@ -126,8 +124,8 @@
 	type('firstPassword', 'rootroot')
 	type('secondPassword', 'rootroot')
 	
-	clickAndWait('signup')
-	
+	click('signup')
+	waitForElementPresent('css=div.alert.alert-danger')
 	verifyTextPresent('The following fields are invalid')
 #{/selenium}
 
@@ -148,8 +146,8 @@
 	type('firstPassword', 'rootroot')
 	type('secondPassword', 'rootroot')
 	
-	clickAndWait('signup')
-	
+	click('signup')
+	waitForElementPresent('css=div.alert.alert-danger')
 	verifyTextPresent('The following fields are invalid')
 #{/selenium}
 
@@ -170,8 +168,8 @@
 	type('firstPassword', 'rootroot')
 	type('secondPassword', 'rootroot')
 	
-	clickAndWait('signup')
-	
+	click('signup')
+	waitForElementPresent('css=div.alert.alert-danger')
 	verifyTextPresent('The following fields are invalid')
 #{/selenium}
 
@@ -192,8 +190,8 @@
 	type('firstPassword', 'rootroot')
 	type('secondPassword', 'rootroot')
 	
-	clickAndWait('signup')
-	
+	click('signup')
+	waitForElementPresent('css=div.alert.alert-danger')
 	verifyTextPresent('The following fields are invalid')
 #{/selenium}
 
@@ -214,8 +212,8 @@
 	type('firstPassword', 'rootroot')
 	type('secondPassword', 'rootroot')
 	
-	clickAndWait('signup')
-	
+	click('signup')
+	waitForElementPresent('css=div.alert.alert-danger')
 	verifyTextPresent('The following fields are invalid')
 #{/selenium}
 
@@ -236,8 +234,8 @@
 	type('firstPassword', 'rootroot')
 	type('secondPassword', 'rootroot')
 	
-	clickAndWait('signup')
-	
+	click('signup')
+	waitForElementPresent('css=div.alert.alert-danger')
 	verifyTextPresent('The following fields are invalid')
 #{/selenium}
 #{selenium 'Email already used'}
