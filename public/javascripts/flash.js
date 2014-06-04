@@ -11,8 +11,7 @@ function __HTMLFlash_initAnimation(ajax){
 	if(!ajax)
 		flash=$("div.flash");
 	else
-		flash=$("div.flash.ajax");
-	console.log(flash);
+		flash=$("div.flash.ajax");	
     if(flash.length > 0 ){
         if(flash.hasClass("auto-hide")){
             flash.hide().slideDown(1000).delay(5000).slideUp({

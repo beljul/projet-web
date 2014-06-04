@@ -1,6 +1,6 @@
 #{extends 'dashboard.html' /} 
 #{set title:'Documents' /}
-
+<h1><span class="glyphicon glyphicon-file"></span>Liste des documents du sprint</h1>
 #{list documents, as:'d'}
 	<div class="panel panel-info">
 	  <div class="panel-heading">${d.getDocumentType()} du ${d.getDate()}</div>

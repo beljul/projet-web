@@ -11,6 +11,8 @@ public abstract class HTMLFlash {
 	
 	/*A generic authorization error message */
 	public static final String AUTH_ERR = "Vous n'êtes pas authorisé à accéder à cette fonctionnalité";
+	/*A generic sprint not selected error message */
+	public static final String SPRINT_ERR = "Veuillez sélectionner un sprint";
 	
 	public enum FlashStyle {
 		  flashValidation,
@@ -80,6 +82,12 @@ public abstract class HTMLFlash {
 		HTMLFlash.screen(HTMLFlash.AUTH_ERR, HTMLFlash.ERROR, false);
 	}
 	
+	/**
+	 * Generate a flash message for sprint not defined error
+	 */
+	public static void noSprintDefined(){
+		HTMLFlash.contextual(HTMLFlash.SPRINT_ERR, HTMLFlash.ERROR, false);
+	}
 	/**
 	 * Determine if a Flash message has already been set
 	 * @return true if a message has already been initialized, false otherwise
