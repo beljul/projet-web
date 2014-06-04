@@ -1,3 +1,7 @@
+/*
+ * Establishment of a slider to represent number
+ * of sprints in a release
+ */
 var select = $( ".slider-nbSprints" );
 var slider = $("<div id=\"slider\" class=\"slider\"></div>").insertAfter(select).slider( {
 	min : 1,

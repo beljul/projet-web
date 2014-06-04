@@ -1,3 +1,7 @@
+/*
+ * Create slider according to the sprint duration
+ * duration value in select item
+ */
 var select = $( "#sprint-duration" );
 var slider = $("<div id='slider'></div>").insertAfter(select).slider( {
 	min : 1,
@@ -11,6 +15,11 @@ var slider = $("<div id='slider'></div>").insertAfter(select).slider( {
 $("#sprint-duration").change(function() {
 	slider.slider("value", this.selectedIndex + 1);
 });
+
+/*
+ * Establishment of enter several developers
+ * thanks to key press ('enter')
+ */
 var devCounters = 1;
 $('form').on("keydown",'input.product-dev',function(e){	
 	if(e.target === this && e.keyCode === 13) {
@@ -31,6 +40,10 @@ $('form').on("keydown",'input.product-dev',function(e){
 		}
 	}	
 });
+/*
+ * Auto-complete function which find users
+ * who are already suscribed
+ */
 $.fn.customAutocomplete = function() {
 	$(this).autocomplete({
 		 source:"/User/jsonSearch",
