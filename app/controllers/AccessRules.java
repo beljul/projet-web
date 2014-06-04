@@ -5,13 +5,16 @@ public abstract class AccessRules {
 	/**
 	 * Define some session variables name
 	 */
+	//On User rules
 	private static final String SESSION_IS_PO = "isPO";
 	private static final String SESSION_IS_SM = "isSM";
 	private static final String SESSION_IS_DEV = "isDev";
 	private static final String SESSION_NOT = "false";
 	private static final String SESSION_IS = "true";
-
-	
+	//On product informations
+	private static final String SESSION_SPRINT = "sprintId";
+	private static final String SESSION_RELEASE = "releaseName";
+	private static final String SESSION_PRODUCT = "productName";
 	/**
 	 * Refresh the rules with the current product 
 	 */
@@ -95,6 +98,15 @@ public abstract class AccessRules {
 	}
 	
 	/**
+	 * Determine if a sprint have been selected
+	 * @return true if a sprint is selected
+	 */
+	public static boolean sprintDefined(){
+		play.mvc.Scope.Session session =  play.mvc.Scope.Session.current();
+		return session.get(SESSION_RELEASE) != null
+				&& session.get(SESSION_SPRINT) != null;
+	}
+	/**
 	 * Generate a css class for product owner access
 	 * @return
 	 */
@@ -118,6 +130,17 @@ public abstract class AccessRules {
 		return isDev()?"":"disabled";
 	}
 	
+	public static String cssAccessAll(){
+		return isDev() || isSM() || isPO() ? "" : "disabled";
+	}
+	/**
+	 * Genereate a css class for the scrum master access 
+	 * or the Product owner one
+	 * @return
+	 */
+	public static String cssAccessSMOrPO(){
+		return isPO() || isSM() ? "" : "disabled";
+	}
 	/**
 	 * Generate a css class for the developer access or the Product owner one
 	 * @return
@@ -125,4 +148,5 @@ public abstract class AccessRules {
 	public static String cssAccessDevOrPO(){
 		return isDev() || isPO() ? "" : "disabled";
 	}
+	
 }

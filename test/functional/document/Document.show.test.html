@@ -1,0 +1,32 @@
+#{selenium 'Access rules - PO And SM'}
+	#Product owner
+	clearSession()
+	open('/')
+	type('username', 'bob1@gmail.com')
+	type('password', 'bobbob')	
+	clickAndWait('signin')
+	clickAndWait('change-product-1')
+	clickAndWait('document-show')
+	assertTextPresent('Liste des documents du sprint')	
+	
+	#Scrum master
+	clearSession()
+	open('/')
+	type('username', 'bob2@gmail.com')
+	type('password', 'bobbob')	
+	clickAndWait('signin')
+	clickAndWait('change-product-1')
+	open('/document/show')
+	assertTextPresent('Liste des documents du sprint')	
+#{/selenium}
+
+#{selenium 'Access rules - developer can not read a document'}
+	clearSession()
+	open('/')
+	type('username', 'bob4@gmail.com')
+	type('password', 'bobbob')	
+	clickAndWait('signin')
+	clickAndWait('change-product-1')
+	open('/document/show')
+	verifyTextPresent('Vous n\'êtes pas authorisé à accéder à cette fonctionnalité')
+#{/selenium}

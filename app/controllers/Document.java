@@ -5,11 +5,46 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.swing.text.html.HTML;
+
 import models.SprintRetrospective;
+import play.mvc.Before;
 import play.mvc.With;
 
 @With(Secure.class)
 public class Document extends WrapperController {
+	
+	/**
+	 * Check that method show is disabled for developers
+	 */
+	@Before(only="show") 
+	public static void checkPOOrSM(){
+		if(!AccessRules.isPO() && !AccessRules.isSM()) {
+			HTMLFlash.notAuthorized();
+			redirect("/");
+		}
+		if(!AccessRules.sprintDefined()){
+			HTMLFlash.noSprintDefined();
+			redirect("/");
+		}
+	}
+	
+	/**
+	 * Check that other method are only for PO
+	 */
+	@Before(unless="show")
+	public static void checkPO(){		
+		if(!AccessRules.isPO()) {
+			HTMLFlash.notAuthorized();
+			redirect("/");
+		}
+		//PO is the only user who can create a document
+		if(!request.actionMethod.equals("create") && !AccessRules.sprintDefined()) {
+			HTMLFlash.noSprintDefined();
+			redirect("/");
+		}
+	}
+
 	/**
 	 * Call stats page of the application
 	 */
