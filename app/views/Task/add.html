@@ -1,7 +1,9 @@
 #{extends 'dashboard.html' /} 
 #{set title:'Ajouter tâche' /}
+<!-- Add task form -->
 <h2 class="page-header"><span class="glyphicon glyphicon-pushpin"></span> Ajouter des tâches</h2>
 #{form @Task.register()}
+	<!-- Select of a specific requirement -->
 	<div class="row">
 		<div class="col-md-12 col-xs-12">		
 			<label for="req">Sélectionner une exigence de ${session.productName}</label> 
@@ -12,9 +14,11 @@
 			</select>
 		</div>
 	</div>
+	<!-- Form to add task, possible to add several -->
 	<div class="row">
 		<div class="col-md-6 col-xs-6 ">		
 			<div class="input-group">
+				<!-- Descriptions of tasks -->
 				<label for="description">Description de la tâche</label>
 				<textarea name="descriptions[]" id="description1" 
 						  class="form-control description" rows="2" cols="50"
@@ -22,6 +26,7 @@
 			</div>
 		</div>
 		<div class="col-md-3 col-xs-3">
+			<!-- Priorities of tasks -->
 			<label for="task-priority">Priorité de la tâche</label>
 			<select name="prioritys[]" class="slider-priority form-control input-xs" id="task-priority-1">
 				<option selected="selected">1</option>
@@ -32,6 +37,7 @@
 			</select>
 		</div>
 		<div class="col-md-3 col-xs-3">
+			<!-- Durations of tasks -->
 			<label for="task-duration">Durée de la tâche</label>
 			<select name="durations[]" class="slider-duration form-control input-xs" id="task-duration-1">
 				<option selected="selected">1</option>

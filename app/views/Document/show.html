@@ -1,10 +1,12 @@
 #{extends 'dashboard.html' /} 
 #{set title:'Documents' /}
+<!-- List of all documents according to the current product -->
 <h1><span class="glyphicon glyphicon-file"></span>Liste des documents du sprint</h1>
 #{list documents, as:'d'}
 	<div class="panel panel-info">
 	  <div class="panel-heading">${d.getDocumentType()} du ${d.getDate()}</div>
 	  <div class="panel-body">
+	  <!-- Replace tags in order to have a correct display -->
 	    ${d.getContent().replace("<script","&lt;script&gt;")
 	    				.replace("</script>","&lt;script&gt;").raw()}
 	  </div>

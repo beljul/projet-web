@@ -1,11 +1,13 @@
 #{extends 'dashboard.html' /} #{set title:'Ajouter release' /}
 #{stylesheet 'create.css' /} #{stylesheet 'version-add.css' /}
+<!-- Add release form -->
 <h2 class="page-header"><span class="glyphicon glyphicon-bookmark"></span> Ajouter une release à 
 	${session.productName}</h2>
 #{form @Version.register()}
 <div class="row">
 	<div class="col-lg-6">
 		<div class="input-group">
+			<!-- Name of the release -->
 			<label for="req1">Nom de la release</label> <input id="release"
 				name="release" type="text" class="form-control"
 				placeholder="Nom de la release" value="${release}" />
@@ -14,6 +16,7 @@
 </div>
 <div class="row">
 	<div class="col-lg-6">
+		<!-- Select the number of sprints during the release -->
 		<label for="req1">Nombre de sprints</label> 
 		<select name="nbSprints"
 			class="slider-nbSprints form-control input-xs" id="nbSprints">
@@ -36,6 +39,7 @@
 			value="Nouvelle release" />
 	</div>
 </div>
+<!-- Verification of form -->
 #{ifErrors}
 <div class="alert alert-danger">
 	The following fields are invalid : 

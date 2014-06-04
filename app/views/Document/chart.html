@@ -1,4 +1,4 @@
-#{extends 'dashboard.html' /} 
+#{extends 'dashboard.html' /}
 #{set title:'Chart' /}
 #{stylesheet 'chart.css' /}
 
@@ -7,6 +7,10 @@
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/pie.js"></script>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>
 
+<!-- 
+	Chart who compare duration of requirements on a product 
+	All the work is done into javascript file
+-->
 <h1 class="page-header"><span class="glyphicon glyphicon-stats"></span> Répartition des exigences de ${session.productName}</h1>
 <div id="chartdiv"></div>
 

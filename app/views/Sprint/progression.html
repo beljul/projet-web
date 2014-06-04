@@ -4,12 +4,14 @@
 #{script 'jquery-ui.min.js' /}
 #{stylesheet 'task-dashboard.css' /}
 
-
+<!-- Dashboard page where are displayed all tasks -->
 <h2 class="page-header"><span class="glyphicon glyphicon-th"></span> Tableau des tâches<input id="save-progression" class="btn btn-success btn-md" type="submit" value="Sauvegarder"/></h2>
 <div class=container-fluid>
 	<div class="row">
 		<div class="col-md-3">
 			<h3>A faire</h3>
+			<!-- Display tasks according to their states (TODO, INPROGRESS, TOVERIFY, DONE) -->
+			<!-- Display TODO tasks -->
 			<ul class="task-section sortable" id="todo-list" data-state="${models.Task.STATE_TODO}">
 				#{list tasks, as:'l'}
 					#{if l.curState == l.STATE_TODO }		
@@ -31,6 +33,7 @@
 		</div>
 		<div class="col-md-3">
 			<h3>En cours</h3>
+			<!-- Display IN PROGRESS tasks -->
 			<ul class="task-section sortable" id="inpg-list" data-state="${models.Task.STATE_INPG}">			
 				#{list tasks, as:'l'}
 					#{if l.curState == l.STATE_INPG}		
@@ -52,6 +55,7 @@
 		</div>
 		<div class="col-md-3">
 			<h3>A vérifier</h3>
+			<!-- Display TO VERIFY tasks -->
 			<ul class="task-section sortable" id="tobeverified-list" data-state="${models.Task.STATE_TOVERIFIED}">			
 				#{list tasks, as:'l'}
 					#{if l.curState == l.STATE_TOVERIFIED }		
@@ -73,6 +77,7 @@
 		</div>
 		<div class="col-md-3">
 			<h3>Terminées</h3>
+			<!-- Display DONE tasks -->
 			<ul class="task-section sortable" id="done-list" data-state="${models.Task.STATE_DONE}">			
 				#{list tasks, as:'l'}
 					#{if l.curState == l.STATE_DONE }		

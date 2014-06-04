@@ -3,8 +3,10 @@
 #{stylesheet 'jquery-te-1.4.0.css' /}
 #{stylesheet 'document-create.css' /}
 <h2 class="page-header">Création d'un nouveau document</h2>
+<!-- Create document form -->
 #{form @Document.save()}
 	<div class="row">
+		<!-- Select type of the document -->
 		<div class="col-lg-8">
 			<label for="document-type">Quel type de document ?</label>
 			<select id="document-type" name="type" class="form-control">
@@ -13,10 +15,12 @@
 				<option value="daily">Réunion quotidienne </option>
 			</select>
 		</div>
+		<!-- Save the document -->
 		<div class="col-lg-4">
 			<input type="submit" class="btn btn-success btn-lg" value="Sauvegarder le document"/>
 		</div>
 	</div>
+	<!-- Content of the document -->
 	<div class="row">
 		<div class="col-lg-12">
 			<textarea name="document" id="document" class="form-constrol" rows="100"
