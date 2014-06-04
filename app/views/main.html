@@ -90,9 +90,11 @@
             #{else}
              <form class="navbar-form navbar-right" action="@{Secure.authenticate}" method="post" role="form">
             <div class="form-group">
+              <label for="email" class="sr-only">Email</label>
               <input class="form-control" type="text" name="username" id="username" value="${flash.username}" placeholder="Email"/>
             </div>
             <div class="form-group">
+             <label for="password" class="sr-only">Password</label>
              <input class="form-control" type="password" name="password" id="password" value="" placeholder="Password"/>
             </div>
             <button id="signin" type="submit" class="btn btn-success">Sign in</button>
@@ -103,6 +105,6 @@
       </div>
     </div>    
 	#{doLayout /}	
-	#{script 'flash.js' /}
+	#{script 'flash.js' /} #{script 'login.js' /}
 </body>
 </html>
