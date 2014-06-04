@@ -60,6 +60,10 @@ public class Version extends Model {
 		return this.sprints.add(s);
 	}
 
+	/**
+	 * Get current sprint according to the current date
+	 * @return
+	 */
 	public Sprint getCurrentSprint() {
 		java.util.Calendar cal = java.util.Calendar.getInstance();
 		java.util.Date utilDate = cal.getTime();

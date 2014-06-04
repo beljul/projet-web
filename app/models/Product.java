@@ -15,7 +15,6 @@ import play.db.jpa.Model;
 
 @Entity
 public class Product extends Model {
-	//rgret
 	private String name;
 	private Date created;
 	private String description;
@@ -44,9 +43,6 @@ public class Product extends Model {
 	@ManyToMany
 	private Set<Skill> skills;
 	
-//	@OneToMany
-//	private Map<Role, User> users;
-	
 	public Product(String name, Date created, String description, int sprintDuration, Team team,
 			User dbScrumMaster, User productOwner, User dbCustomer) {
 		super();
@@ -59,7 +55,6 @@ public class Product extends Model {
 		this.productOwner = productOwner;
 		this.customer = dbCustomer;
 		this.skills = new HashSet<Skill>();
-//		this.users = new HashMap<Role, User>();
 	}
 	
 	public boolean addSkill(Skill s) {
@@ -74,10 +69,6 @@ public class Product extends Model {
 		return p;
 	}
 	
-//	public User addRole(Role role, User user) {
-////		return this.users.put(role, user);
-//	}
-
 	public String getName() {
 		return name;
 	}
@@ -141,6 +132,10 @@ public class Product extends Model {
 		this.save();
 	}
 	
+	/**
+	 * Get current release according to the current date
+	 * @return
+	 */
 	public Version getCurrentRelease() {
 		java.util.Calendar cal = java.util.Calendar.getInstance();
 		java.util.Date utilDate = cal.getTime();
@@ -181,6 +176,9 @@ public class Product extends Model {
 		return null;
 	}
 	
+	/**
+	 * Get requirements not already assigned to a sprint
+	 */
 	public Set<Requirement> getRequirementsUnassigned() {
 		Set<Requirement> requirementsUnassigned = this.requirements;
 		for (models.Version v : this.releases) {
@@ -200,8 +198,6 @@ public class Product extends Model {
 	}
 	
 	public void setTeam(Team team) {
-		System.out.println("=========================================");
-
 		this.team = team;
 	}
 

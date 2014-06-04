@@ -20,6 +20,9 @@ public class Task extends Model {
 	/*Default task state is TODO */
 	private TaskState curState = TaskState.TODO;
 	
+	/**
+	 * States of task
+	 */
 	public enum TaskState {
 		TODO, INPG, TOVERIFIED, DONE;
 		public String toString(){

@@ -82,6 +82,11 @@ public class Sprint extends Model {
 		return this.requirements.add(r);
 	}
 	
+	/**
+	 * Modify and save tasks of the sprint
+	 * @param newTaskStates
+	 * @param winrates
+	 */
 	public void saveTasks(Map<Long, models.Task.TaskState> newTaskStates,
 						   Map<Long, Integer> winrates){
 		

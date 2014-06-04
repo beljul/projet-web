@@ -24,10 +24,6 @@ import play.db.jpa.*;
 import play.modules.linkedin.LinkedInPlugin;
 import play.mvc.Controller;
 
-//@DiscriminatorColumn(
-//    name="type",
-//    discriminatorType=DiscriminatorType.STRING)
-//@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @Entity 
 public class User extends Model {
 
@@ -46,7 +42,6 @@ public class User extends Model {
 	@MapKeyJoinColumn(name="Role_ID", referencedColumnName="ID")
 	private Map<Role, Product> products;
 	
-	//private Set<Team> teams;
 	@OneToMany
 	private Set<Document> documents;
 	
@@ -66,6 +61,12 @@ public class User extends Model {
 		this.skills = new HashSet<Skill>();
 	}
 	
+	/**
+	 * Verify if user is suscribed
+	 * @param email
+	 * @param password
+	 * @return
+	 */
 	public static User connect(String email, String password) {
 	    return find("byEmailAndPassword", email, password).first();
 	}
@@ -81,6 +82,7 @@ public class User extends Model {
 		return find("email like ?", email + "%").fetch(5);
 	}
 	public List<Product> getLastProducts(){
+		// TODO
 		return null;
 	}
 	public static User register(String email, String name, String firstname, 
@@ -90,10 +92,6 @@ public class User extends Model {
 		return user;
 	}
 	
-	/*public boolean isCustomer() {
-		return false;
-	}*/
-
 	public String getEmail() {
 		return email;
 	}
@@ -135,7 +133,11 @@ public class User extends Model {
 		return this.skills.add(s);
 	}
 	
-	// Have to use directly the model ? To improve.
+	/**
+	 * Return of linkedin API / module
+	 * TODO : Have to use directly the model ? To improve.
+	 * @param o
+	 */
 	public static void linkedinOAuthCallback(play.modules.linkedin.LinkedInProfile o) {
 		Pattern p = Pattern.compile("[^a-zA-Z]+ [^a-zA-Z]*");
 		Set<String> skills = new HashSet<>(Arrays.asList(p.split(o.getSkills())));
@@ -150,8 +152,6 @@ public class User extends Model {
 		//check for self-comparison
 	    if ( this == other) return true;	    
 	    if ( !(other instanceof User) ) return false;
-	    System.out.println("Jussqu'ici tout va bien");
-	    System.out.println(this.getEmail() + "==" + ((User)other).getEmail());
 	    return this.email.equals(((User) other).email);	  
 	}
 

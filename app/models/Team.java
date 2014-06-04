@@ -18,7 +18,6 @@ public class Team extends Model {
 	@OneToMany
 	private Set<Product> products;
 
-//	@OneToMany(mappedBy="teams")
 	@ManyToMany 
 	@JoinTable( name="Team_User", 
 			joinColumns={@JoinColumn(name="Teams_ID", referencedColumnName="ID")}, 
@@ -38,7 +37,6 @@ public class Team extends Model {
 	}
 	
 	public boolean addMember(User u) {
-		//if(u.isCustomer()) return false;	
 		return this.members.add(u);
 	}
 	
@@ -66,6 +64,11 @@ public class Team extends Model {
 		return false;
 	}
 	
+	/**
+	 * Verify if user in parameter is in the current team
+	 * @param userEmail
+	 * @return
+	 */
 	public boolean containsMember(String userEmail) {
 		models.User u = models.User.getByEmail(userEmail);
 		return this.containsMember(u);
