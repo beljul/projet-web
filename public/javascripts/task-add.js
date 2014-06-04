@@ -1,3 +1,7 @@
+/*
+ * Establishment of enter several tasks
+ * thanks to key press ('enter')
+ */
 var taskCounters = 1;
 $('form').on("keydown",'textarea.description',function(e){	
 	if(e.target === this && e.keyCode === 13) {
@@ -16,6 +20,9 @@ $('form').on("keydown",'textarea.description',function(e){
 								.text("Description de la tâche " + taskCounters);
 
 			newGrp.find("div.slider").remove();
+			/*
+	         * Establishment of slider for each items (duration and priority)
+	         */
 			var select1 = newGrp.find("select.slider-duration")
 				  				.attr("id","task-duration-" + taskCounters);
 			var select2 = newGrp.find("select.slider-priority")
@@ -53,6 +60,9 @@ $('form').on("keydown",'textarea.description',function(e){
 	}	
 });
 
+/*
+ * Initialization of slider for task duration
+ */
 var select1 = $( ".slider-duration" );
 var slider1 = $("<div id=\"slider1\" class=\"slider\"></div>").insertAfter(select1).slider( {
 	min : 1,
@@ -66,6 +76,10 @@ var slider1 = $("<div id=\"slider1\" class=\"slider\"></div>").insertAfter(selec
 select1.change(function() {
 	slider1.slider("value", this.selectedIndex + 1);
 });
+
+/*
+ * Initialization of slider for task priority
+ */
 var select2 = $(".slider-priority");
 var slider2 = $("<div id=\"slider2\" class=\"slider\"></div>").insertAfter(select2).slider( {
 	min : 1,

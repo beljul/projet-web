@@ -1,6 +1,7 @@
 /*
-	JS from http://jsfiddle.net/jhfrench/GpdgF/
-*/
+ * Tree in order to select a sprint according to a release
+ * JS from http://jsfiddle.net/jhfrench/GpdgF/
+ */
 
 $(function () {
     $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');

@@ -1,7 +1,9 @@
 #{extends 'dashboard.html' /}
 #{set title:'Mon profil' /}
+<!-- User profile page -->
 <h2 class="page-header"><span class="glyphicon glyphicon-user"></span> Mon profil</h2>
 
+<!-- Tab containing all informations of a user -->
 <table class="table table-bordered">
   		<tbody>
   			<tr>
@@ -19,6 +21,7 @@
   			<tr>
   				<td>Compétences</td>
   				<td>
+  				<!-- If user doesn't have skills, purpose to link account with LinkedIn -->
   				#{if user.skills}
 		  			#{list user.skills, as:'s'}
 		  				<span class="badge">${s.name}</span>

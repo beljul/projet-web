@@ -1,4 +1,5 @@
 $(function () {
+	// Get content and duration of requirements
 	$.ajax({
 		url: "/Document/getRequirements",
 		type:"GET"
@@ -12,6 +13,10 @@ $(function () {
 			row["Durée"] = requirements[content];
 			data.push(row);
 		}
+		/*
+		 * Creation of chart to compare duration of requirements
+		 * using a pie amCharts
+		 */
 		var chart = AmCharts.makeChart("chartdiv", {
 		    "type": "pie",	
 			"theme": "none",
@@ -42,6 +47,4 @@ $(function () {
 	})
 	.always(function() {
 		});
-	
-	
 })

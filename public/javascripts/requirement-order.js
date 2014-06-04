@@ -1,8 +1,15 @@
+/*
+ * Sort of requirements during ordering
+ */
 $( ".sortable" ).sortable({
 	connectWith:".sortable",
 	dropOnEmpty: true 
 });
 $( ".sortable" ).disableSelection();
+
+/*
+ * Save new priorities after validation
+ */
 $("input#save-order").on("click",function(){
 	var requirementsId = new Object();	
 	$(".sortable").children().each(function(){
@@ -11,7 +18,7 @@ $("input#save-order").on("click",function(){
 	});
 	var listReq = new Object();
 	listReq["requirements"] = requirementsId; 
-
+	// Ajax request to change order between requirements
 	$.ajax({
 		url: "/Product/changeRequirementsOrder",
 		type:"POST",
@@ -26,9 +33,9 @@ $("input#save-order").on("click",function(){
 		console.log(d);
 	})
 	.fail(function() {
-	//alert( "error" );
+		//alert( "error" );
 	})
 	.always(function() {
-//	alert( "complete" );
+		//alert( "complete" );
 	});
 });

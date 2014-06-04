@@ -1,3 +1,7 @@
+<!-- 
+	Main template corresponding to the menu on the top of the application
+	Begin of the HTML
+-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,44 +46,55 @@
           <a class="navbar-brand" href="#">Scrumch</a>
         </div>
         <div class="collapse navbar-collapse">
-           
+           	<!-- Display email of current user -->
             #{if session.username}
             <ul class="nav navbar-nav">           
             <li><a>Welcome ${session.username} ! </a></li>
-            <li><a href="@{Sprint.progression}">Dashboard</a></li>            
+            <li><a href="@{Sprint.progression}">Dashboard</a></li>  
+            <!-- Product menu -->          
             <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produits<b class="caret"></b></a>
                   <ul class="dropdown-menu">
+                  	<!-- Three last products -->
                   	<li class="dropdown-header">Mes trois derniers produits</li>
                   	#{list products, as:'p'}
 					<li><a id="change-product-${p_index}" 
 							href="@{Product.setCurrentProduct(p.id)}">${p.name}</a></li>
 			    	#{/list}
                     <li class="divider"></li>
-                    <li class="dropdown-header">Gérer mes produits</li>                    
+                    <li class="dropdown-header">Gérer mes produits</li>  
+                    <!-- Add a new product -->                  
                     <li><a id="new-product" href="@{Product.create}">Créer un nouveau produit</a></li>
+                    <!-- Show all products -->
                     <li><a href="@{Product.show()}">Voir tous mes produits</a></li>
                   </ul>
              </li>
+             <!-- Account menu -->
              <li class="dropdown">
              	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Communauté<b class="caret"></b></a>
              	<ul class="dropdown-menu">
-             	    <li class="dropdown-header">Mon compte</li>                    
+             	    <li class="dropdown-header">Mon compte</li> 
+             	    <!-- Use LinkedIn API to link user's account -->                  
              		<li>#{linkedin.button label:'Lier mon compte à LinkedIn' /}<li>
+             		<!-- Show profile account -->
              		<li><a href="@{User.profile()}">Mon profil</a>
-             		<li class="dropdown-header">Mon équipe</li>                    
+             		<li class="dropdown-header">Mon équipe</li>
+             		<!-- Suscribe to the RSS feed -->                    
              		<li><a href="@{RSSFlux.serialize()}">Abonnement RSS</a></li>
              	</ul>
              </li>
              <li><a href="@{Secure.logout()}" id="logout">Log out</a></li>
               </ul>   
             #{/if}
+            <!-- Not authenticated -->
             #{else}
              <form class="navbar-form navbar-right" action="@{Secure.authenticate}" method="post" role="form">
             <div class="form-group">
+              <label for="email" class="sr-only">Email</label>
               <input class="form-control" type="text" name="username" id="username" value="${flash.username}" placeholder="Email"/>
             </div>
             <div class="form-group">
+             <label for="password" class="sr-only">Password</label>
              <input class="form-control" type="password" name="password" id="password" value="" placeholder="Password"/>
             </div>
             <button id="signin" type="submit" class="btn btn-success">Sign in</button>
@@ -90,6 +105,6 @@
       </div>
     </div>    
 	#{doLayout /}	
-	#{script 'flash.js' /}
+	#{script 'flash.js' /} #{script 'login.js' /}
 </body>
 </html>

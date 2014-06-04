@@ -1,8 +1,16 @@
+/*
+ * Sort of requirements during assignment
+ * to a specific sprint
+ */
 $( ".sortable" ).sortable({
 	connectWith:".sortable",
 	dropOnEmpty: true 
 });
 $( ".sortable" ).disableSelection();
+
+/*
+ * Record requirements to the sprint selected
+ */
 $("input#save-assign").on("click",function(){
 	var requirementsId = new Object();
 	var i = 0;
@@ -12,7 +20,7 @@ $("input#save-assign").on("click",function(){
 	});
 	var listReq = new Object();
 	listReq["requirements"] = requirementsId; 
-
+	// Ajax request to add each requirement
 	$.ajax({
 		url: "/Sprint/addRequirements",
 		type:"POST",
@@ -32,9 +40,15 @@ $("input#save-assign").on("click",function(){
 	.always(function() {
 	});
 });
+
+/*
+ * Reload all requirements if an other sprint
+ * has been selected during the assignment
+ */
 $(".sprint").on("click", function() {
 	var listReq = new Object();
-	listReq["sprintId"] = $(this).attr('data-sprint'); 
+	listReq["sprintId"] = $(this).attr('data-sprint');
+	// Ajax request to get requirements
 	$.ajax({
 		url: "/Sprint/getRequirements",
 		type:"POST",
@@ -60,7 +74,7 @@ $(".sprint").on("click", function() {
 	})
 	.always(function() {
 	});
-	
+	// Ajax request to get requirements not already assigned
 	$.ajax({
 		url: "/Sprint/getRequirementsAvailable",
 		type:"POST",

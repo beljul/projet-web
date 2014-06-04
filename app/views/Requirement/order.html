@@ -1,11 +1,13 @@
 #{extends 'dashboard.html' /} 
 #{set title:'Ordonner les exigences' /}
 #{stylesheet 'requirement-order.css' /}
+<!-- Order requirements between themselves page -->
 <h2 class="page-header"><span class="glyphicon glyphicon-sort"></span> Ordonner les exigences de ${session.productName}</h2>
 <div class="row">
 	<input id="save-order" class="btn btn-success btn-lg" type="submit" value="Sauvegarder l'ordre"/>
 </div>
 <div class="row">
+<!-- Display requirements according to their priorities (1 to 5) -->
 <div class="col-md-2 col-md-offset-1">
 <h3>Priorité 1</h3>
 <ul id="priority1" data-priority="1" class="sortable priority1" id="sortable">

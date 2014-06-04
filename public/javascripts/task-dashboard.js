@@ -1,7 +1,14 @@
+/*
+ * Sort of tasks during display
+ * into the dashboard
+ */
 $('.sortable').sortable({
 	connectWith:'.sortable'
 })
 $( ".sortable" ).disableSelection();
+/*
+ * Establishment of slider for advancement of a task
+ */
 $( ".slider" ).slider({
 	change:function(e,ui){
 		$(this).siblings('span.badge').text(ui.value + '%');
@@ -18,6 +25,10 @@ $(".sticker span.display-info").on("click", function(){
 		}
 	);
 });
+/*
+ * Save progression of the task when we change
+ * the state and advancement of it
+ */
 $("#save-progression").on("click", function(){
 	var newStates = new Object();
 	var newWinRates = new Object();

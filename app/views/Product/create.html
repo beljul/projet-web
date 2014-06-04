@@ -1,22 +1,26 @@
 #{extends 'main.html' /} 
 #{set title:'Nouveau produit' /}
 #{stylesheet 'create.css' /}
+<!-- Create product form -->
 <h1 class="page-header"><span class="glyphicon glyphicon-briefcase"></span> Création d'un nouveau produit</h1>
 
 #{form @Product.register()}
 <div class="row">
-	<div class="col-md-6 col-xs-10 col-md-offset-1 col-xs-offset-1 col-lg-offset-1">		
+	<div class="col-md-6 col-xs-10 col-md-offset-1 col-xs-offset-1 col-lg-offset-1">	
+			<!-- Name of the product -->	
 			<div class="input-group">
 				<label for="name">Nom du projet</label> 
 				<input id="name" name="name" type="text" class="form-control" 
 					   placeholder="Nom du projet" value="${name}">
 			</div>
+			<!-- Description of the product -->
 			<div class="input-group">
 				<label for="description">Description du projet</label>
 				<textarea name="description" id="description" 
 						  class="form-control" rows="10" cols="80"
 						  placeholder="Description">${description}</textarea>
 			</div>
+			<!-- Duration of sprints of the product -->
 			<label for="sprint-duration">Duree de sprint (en semaine)</label> 
 				<select name="sprintDuration" id="sprint-duration">
 					<option>1</option>
@@ -27,6 +31,7 @@
 					<option>6</option>
 				</select>
 			</div>
+			<!-- Register of members of the team responsible of the product -->
 			<div class="col-md-5 col-xs-10 col-xs-offset-1 col-lg-offset-0">
 			<div class="input-group">
 				<label for="scrum-master">Scrum master</label>
@@ -39,6 +44,7 @@
 					  type="text" class="form-control" 
 					  placeholder="Nom de l'interlocuteur client" value="${customer}"/>
 			</div>
+			<!-- Can add several developers -->
 			<label for="dev1">Developpeurs</label>
 			<div class="input-group">				
 				#{list notNullDevelopers, as:'dev'}
@@ -54,6 +60,7 @@
 			</div>							
 	</div>
 </div>
+<!-- Verification of fields -->
 #{ifErrors}
 <div class="alert alert-danger">
 	Les champs suivants sont incorrects : 

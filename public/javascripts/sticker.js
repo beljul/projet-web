@@ -1,3 +1,6 @@
+/*
+ * Drop event used on dashboard for example
+ */
 $( ".sticker" ).draggable();
 $( "#droppable" ).droppable({
 	drop: function( event, ui ) {
