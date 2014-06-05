@@ -3,7 +3,7 @@
  */
 
 $(function () {
-	$("form[action='/user/register']").checkform({
+	$("form[action='/user/register']").checkform({		
 		CSSClass:"alert alert-danger",
 		items:{
 			password: {

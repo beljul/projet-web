@@ -87,12 +87,13 @@ a.flash-close:hover, .flash a:hover{
 }
 .carousel-inner > .item > h1 {
 	padding-top:0.5em;
-	color:#FFF;
+	color:#000;
     height: 100px;
     left: 0;
     min-width: 100%;
     position: absolute;
     bottom: 0 !important;
+    background:-moz-linear-gradient(56% 66% 90deg, #777777, #fff 84%);   
 }
 .carousel-inner .item .container {
 	margin:0;

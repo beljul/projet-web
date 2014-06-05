@@ -6,11 +6,33 @@ import java.util.Calendar;
 
 import models.Sprint;
 import play.libs.Crypto.HashType;
+import play.mvc.Before;
 import play.mvc.With;
 
 @With(Secure.class)
 public class Version extends WrapperController {
 	
+	/**
+	 * Check if there is a product
+	 */
+	@Before
+	public static void checkSelection(){
+		if(!AccessRules.productDefined()){
+			HTMLFlash.noProductDefined();
+			redirect("/");
+		}
+	}
+	
+	/**
+	 * Control PO access rules
+	 */
+	@Before(only={"add","register"})
+	public static void checkPO() {
+		if(!AccessRules.isPO()){
+			HTMLFlash.notAuthorized();
+			redirect("/");
+		}
+	}
 	/**
 	 * Call add release page of the application
 	 */
@@ -72,6 +94,6 @@ public class Version extends WrapperController {
 		HTMLFlash.contextual("La release " + release + " a été créée",
 						 HTMLFlash.VALIDATION, false);
 		
-		redirect("/Application/dashboard");
+		redirect("/");
 	}
 }

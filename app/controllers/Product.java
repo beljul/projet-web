@@ -202,12 +202,11 @@ public class Product extends WrapperController {
 			dev.addRole(r, product);
 			r.save();
 		}
-		
-		flash.put("message", "Le produit " + name + " a été créé");
-		flash.put("messageStyle", "validation");
+		HTMLFlash.contextual("Le produit " + name + " a été créé", 
+				 HTMLFlash.VALIDATION, false);	
 		
 		//redirect in RSSFlux.add
-		RSSFlux.add();
+		RSSFlux.add();		
 	}
 	
 	/**

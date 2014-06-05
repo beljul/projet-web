@@ -35,7 +35,7 @@ public class RSSFlux extends WrapperController {
 		feed.setFeedType("rss_2.0");
 		feed.setCopyright("Scrumch - ENSIMAG All right reserved 2014");
 		feed.setDescription("RSS Feed of your product from scrumch web site.");
-		feed.setLink(request.getBase() + "/Application/dashboard");
+		feed.setLink(request.getBase() + "/");
 		feed.setTitle("Scrumch product feed");
 		feed.setLanguage("fr");
 		feed.setPublishedDate(new Date());
@@ -65,7 +65,8 @@ public class RSSFlux extends WrapperController {
 			entries.add(item);
 		}
 		feed.setEntries(entries);
-		redirect("/Application/dashboard");
+		
+		redirect("/");
 	}
 	
 	/**

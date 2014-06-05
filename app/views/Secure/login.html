@@ -40,39 +40,39 @@
 	<div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
 		#{form @User.register()}
 		    <fieldset>
-		        <legend>Sign up</legend>
+		        <legend>Inscrivez vous</legend>
 		        <div class="input-group">
 		            <label for="email">Email</label>:
 		            <input id="email" name="email"
 		                   type="text" class="form-control"
-		                   placeholder="User email" value="${email}">
+		                   placeholder="Votre email" value="${email}">
 		        </div>
-		        <div class="input-group">
-		            <label for="name">Name</label>:
-		            <input id="name" name="name" type="text"
-		                   class="form-control" placeholder="Name"
-		                   value="${name}"/>
-		        </div>
-		        <div class="input-group">
-		            <label for="firstname">First name</label>:
+				<div class="input-group">
+		            <label for="firstname">Prénom</label>:
 		            <input id="firstname" name="firstname" type="text"
-		                   class="form-control" placeholder="First name" 
+		                   class="form-control" placeholder="Votre prénom" 
 		                   value="${firstname}"/>
 		        </div>
 		        <div class="input-group">
-		            <label for="password">Password</label>:
+		            <label for="name">Nom</label>:
+		            <input id="name" name="name" type="text"
+		                   class="form-control" placeholder="Votre nom"
+		                   value="${name}"/>
+		        </div>
+		        <div class="input-group">
+		            <label for="password">Mot de passe</label>:
 		            <input id="password" name="firstPassword" type="password"
-		                   class="form-control" placeholder="Password" 
+		                   class="form-control" placeholder="Choisissez un mot de passe" 
 		                   value="${firstPassword}"/>
 		        </div>
 		        <div class="input-group">
-		            <label for="password">Password Verification</label>:
+		            <label for="password">Confirmation</label>:
 		            <input id="password" name="secondPassword" type="password"
-		                   class="form-control" placeholder="Password"
+		                   class="form-control" placeholder="Confirmer le"
 		                   value="${secondPassword}"/>
 		        </div>
 		        <input class="btn btn-lg btn-primary btn-block" id="signup" type="submit"
-		                    value="Sign up"/>
+		                    value="S'inscrire"/>
 		    </fieldset>
 		    #{ifErrors}
 		    <div class="alert alert-danger">The following fields are invalid : 	    			

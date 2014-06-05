@@ -1,10 +1,9 @@
-#{fixture delete:'all', load:'data/user.yml'/}
 #{selenium 'Bad User login'}
 
 	clearSession()
 	open('/')
 	### Test that the user can log in
-	assertTextPresent('Sign in')
+	assertTextPresent('Se connecter')
 	assertTextPresent('E-mail')
 	assertTextPresent('Password')
 	
@@ -20,7 +19,7 @@
 	clearSession()
 	open('/')
 	### Test that the user can log in
-	assertTextPresent('Sign in')
+	assertTextPresent('Se connecter')
 	assertTextPresent('E-mail')
 	assertTextPresent('Password')
 	
@@ -30,7 +29,7 @@
 	clickAndWait('signin')
 	
 	assertTextPresent('Welcome bob1@gmail.com')
-	assertTextPresent('Log out')
+	assertTextPresent('Se déconnecter')
 		
 #{/selenium}
 
@@ -40,5 +39,5 @@
 		
 	clickAndWait('logout')
 	
-	assertTextPresent('Sign in')
+	assertTextPresent('Se connecter')
 #{/selenium}

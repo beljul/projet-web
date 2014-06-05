@@ -79,17 +79,17 @@
 				<!-- No product selected -->			
 				#{elseif session.productName}					
 					<div class="alert alert-danger">Aucune release n'a été trouvée.</div>
-					#{if session.isNotPO == 'disabled' }
-					<div class="alert alert-info">Demandez au Product Owner d'en ajouter</div>
-					#{/if}
-					#{else}
+					#{if controllers.AccessRules.isPO() }
 					<ul class="nav nav-sidebar">
-						<li class="${session.isNotPO}">
+						<li class="${controllers.AccessRules.cssAccessPO()}">
 							<a id="version-add" class="glyphicon glyphicon-bookmark" href="@{Version.add}">
 								Ajouter une release
 							</a>
 						</li>						
-					</ul>
+					</ul>				
+					#{/if}
+					#{else}
+						<div class="alert alert-info">Demandez au Product Owner d'en ajouter</div>
 					#{/else}
 				#{/elseif}
 			</div><!-- End of tree tab -->

@@ -47,7 +47,7 @@ public class User extends WrapperController {
 	    	 models.User.register(email, name, firstname, firstPassword, secondPassword);
 	    	 //Connect the user 
 	    	 session.put("username", email);	    	 
-	    	 redirect("/Application/dashboard");
+	    	 redirect("/");
 	    }
 	}
 

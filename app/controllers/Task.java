@@ -7,11 +7,38 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import play.mvc.Before;
 import play.mvc.With;
 
 
 @With(Secure.class)
 public class Task extends WrapperController {
+	
+	/**
+	 * Check if there is a product and a sprint selected
+	 */
+	@Before
+	public static void checkSelection(){
+		if(!AccessRules.productDefined()){
+			HTMLFlash.noProductDefined();
+			redirect("/");
+		}
+		if(!AccessRules.sprintDefined()){
+			HTMLFlash.noSprintDefined();
+			redirect("/");
+		}
+	}
+	
+	/**
+	 * Control PO and Dev access rules
+	 */
+	@Before(only={"add","register"})
+	public static void checkPOOrDev() {
+		if(!AccessRules.isPO() && !AccessRules.isDev()){
+			HTMLFlash.notAuthorized();
+			redirect("/");
+		}
+	}
 	
 	/**
 	 * Call the adding task page of the application
@@ -53,6 +80,6 @@ public class Task extends WrapperController {
 		}
 		requirement.register();
 		HTMLFlash.contextual("De nouvelles tâches ont été ajoutées", HTMLFlash.VALIDATION, false);
-		redirect("/Application/dashboard");
+		redirect("/");
 	}
 }

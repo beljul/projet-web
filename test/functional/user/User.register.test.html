@@ -1,14 +1,13 @@
-#{fixture delete:'all', load:'data/user.yml'/}
 #{selenium 'Fail password confirmation'}
 	clearSession()
 	open('/')
 	
-	verifyTextPresent('Sign up')
+	verifyTextPresent('Inscrivez vous')
 	verifyTextPresent('Email')
-	verifyTextPresent('Name')
-	verifyTextPresent('First name')
-	verifyTextPresent('Password')
-	verifyTextPresent('Password Verification')
+	verifyTextPresent('Nom')
+	verifyTextPresent('Prénom')
+	verifyTextPresent('Mot de passe')
+	verifyTextPresent('Confirmation')
 	
 	type('email', 'walter.white@gmail.com')
 	type('name', 'white')
@@ -25,12 +24,9 @@
 	clearSession()
 	open('/')
 	
-	verifyTextPresent('Sign up')
-	verifyTextPresent('Email')
-	verifyTextPresent('Name')
-	verifyTextPresent('First name')
-	verifyTextPresent('Password')
-	verifyTextPresent('Password Verification')
+	
+	verifyTextPresent('Inscrivez vous')
+
 	
 	type('email', 'walter.white@gmail.com')
 	type('name', 'white')
@@ -47,12 +43,7 @@
 	clearSession()
 	open('/')
 	
-	verifyTextPresent('Sign up')
-	verifyTextPresent('Email')
-	verifyTextPresent('Name')
-	verifyTextPresent('First name')
-	verifyTextPresent('Password')
-	verifyTextPresent('Password Verification')
+	verifyTextPresent('Inscrivez vous')
 	
 	type('email', 'walter.white@gmail.com')
 	type('name', 'white')
@@ -68,12 +59,7 @@
 	clearSession()
 	open('/')
 	
-	verifyTextPresent('Sign up')
-	verifyTextPresent('Email')
-	verifyTextPresent('Name')
-	verifyTextPresent('First name')
-	verifyTextPresent('Password')
-	verifyTextPresent('Password Verification')
+	verifyTextPresent('Inscrivez vous')
 	
 	type('email', 'walter.white.gmail.com')
 	type('name', 'white')
@@ -89,14 +75,7 @@
 #{selenium 'Email failed 2'}
 	clearSession()
 	open('/')
-	
-	verifyTextPresent('Sign up')
-	verifyTextPresent('Email')
-	verifyTextPresent('Name')
-	verifyTextPresent('First name')
-	verifyTextPresent('Password')
-	verifyTextPresent('Password Verification')
-	
+	verifyTextPresent('Inscrivez vous')
 	type('email', 'walter.white@gmail')
 	type('name', 'white')
 	type('firstname', 'walter')
@@ -111,12 +90,7 @@
 	clearSession()
 	open('/')
 	
-	verifyTextPresent('Sign up')
-	verifyTextPresent('Email')
-	verifyTextPresent('Name')
-	verifyTextPresent('First name')
-	verifyTextPresent('Password')
-	verifyTextPresent('Password Verification')
+	verifyTextPresent('Inscrivez vous')
 	
 	type('email', 'walter white@gmail.com')
 	type('name', 'white')
@@ -132,13 +106,7 @@
 #{selenium 'number in firstname'}
 	clearSession()
 	open('/')
-	
-	verifyTextPresent('Sign up')
-	verifyTextPresent('Email')
-	verifyTextPresent('Name')
-	verifyTextPresent('First name')
-	verifyTextPresent('Password')
-	verifyTextPresent('Password Verification')
+	verifyTextPresent('Inscrivez vous')
 	
 	type('email', 'walter.white@gmail.com')
 	type('name', 'white')
@@ -155,12 +123,7 @@
 	clearSession()
 	open('/')
 	
-	verifyTextPresent('Sign up')
-	verifyTextPresent('Email')
-	verifyTextPresent('Name')
-	verifyTextPresent('First name')
-	verifyTextPresent('Password')
-	verifyTextPresent('Password Verification')
+	verifyTextPresent('Inscrivez vous')
 	
 	type('email', 'walter.white@gmail.com')
 	type('name', 'white')
@@ -177,12 +140,7 @@
 	clearSession()
 	open('/')
 	
-	verifyTextPresent('Sign up')
-	verifyTextPresent('Email')
-	verifyTextPresent('Name')
-	verifyTextPresent('First name')
-	verifyTextPresent('Password')
-	verifyTextPresent('Password Verification')
+	verifyTextPresent('Inscrivez vous')
 	
 	type('email', 'walter.white@gmail.com')
 	type('name', 'white')
@@ -199,12 +157,7 @@
 	clearSession()
 	open('/')
 	
-	verifyTextPresent('Sign up')
-	verifyTextPresent('Email')
-	verifyTextPresent('Name')
-	verifyTextPresent('First name')
-	verifyTextPresent('Password')
-	verifyTextPresent('Password Verification')
+	verifyTextPresent('Inscrivez vous')
 	
 	type('email', 'walter.white@gmail.com')
 	type('name', 'white42')
@@ -220,13 +173,7 @@
 #{selenium 'Fail : Special char in name'}
 	clearSession()
 	open('/')
-	
-	verifyTextPresent('Sign up')
-	verifyTextPresent('Email')
-	verifyTextPresent('Name')
-	verifyTextPresent('First name')
-	verifyTextPresent('Password')
-	verifyTextPresent('Password Verification')
+	verifyTextPresent('Inscrivez vous')
 	
 	type('email', 'walter.white@gmail.com')
 	type('name', 'wh#ite')
@@ -238,6 +185,7 @@
 	waitForElementPresent('css=div.alert.alert-danger')
 	verifyTextPresent('The following fields are invalid')
 #{/selenium}
+*{
 #{selenium 'Email already used'}
 	clearSession()
 	open('/')
@@ -257,17 +205,12 @@
 	
 	verifyTextPresent('Sign in')
 #{/selenium}
+}*
 #{selenium 'Test register'}
 	clearSession()
 	open('/')
 	
-	verifyTextPresent('Sign up')
-	verifyTextPresent('Email')
-	verifyTextPresent('Name')
-	verifyTextPresent('First name')
-	verifyTextPresent('Password')
-	verifyTextPresent('Password Verification')
-	
+	verifyTextPresent('Inscrivez vous')
 	type('email', 'walter.white@gmail.com')
 	type('name', 'white')
 	type('firstname', 'walter')
@@ -281,5 +224,5 @@
 			
 	clickAndWait('logout')
 	
-	verifyTextPresent('Sign in')
+	verifyTextPresent('Inscrivez vous')
 #{/selenium}

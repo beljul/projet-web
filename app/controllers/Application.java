@@ -22,6 +22,8 @@ public class Application extends WrapperController {
      * Call dashboard which is main page when we're connected
      */
     public static void dashboard(){
+    	//Old code, shoud not be called
+    	redirect("/");
     	/*
     	 * Initialize session variables (product not selected)
     	 */

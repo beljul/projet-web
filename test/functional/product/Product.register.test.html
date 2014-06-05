@@ -51,5 +51,6 @@
 	type('customer','bob2@gmail.com')
 	type('dev1','bob3@gmail.com')
 	clickAndWait('new-product-submit')
-	assertTextPresent('Le produit PollosHermanos a été créé')	
+	clickAndWait('product-show')
+	assertTextPresent('PollosHermanos')	
 #{/selenium}

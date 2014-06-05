@@ -27,6 +27,6 @@
 	type('password', 'bobbob')	
 	clickAndWait('signin')
 	clickAndWait('change-product-1')
-	open('/document/show')
-	verifyTextPresent('Vous n\'êtes pas authorisé à accéder à cette fonctionnalité')
+	open('/document/show')	
+	assertTextPresent('Vous n\'êtes pas authorisé à accéder à cette fonctionnalité')
 #{/selenium}
